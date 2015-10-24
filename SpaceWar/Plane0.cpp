@@ -52,7 +52,8 @@ void Plane0::collideWithEnemy()
     }
     else
     {
-        Plane0::startStrong(3);//无敌三秒
+        //无敌三秒
+        Plane0::startStrong(3);
     }
 }
 /**

@@ -20,7 +20,15 @@ enum tag
     tagPlayerAuxiliary,//辅机
 };
 /**
- * 主机静态单例
+ *  主机静态单例
+ *
+ *  @param fileName 贴图资源名
+ *  @param _hpMax   最大血量
+ *  @param _hp      血量
+ *  @param x        起始坐标 x
+ *  @param y        起始坐标 y
+ *
+ *  @return 返回初始化好的主机
  */
 Plane* Plane::createPlayer(const char* fileName,int _hpMax,int _hp,float x,float y)
 {
@@ -35,10 +43,17 @@ Plane* Plane::createPlayer(const char* fileName,int _hpMax,int _hp,float x,float
     return NULL;
 }
 /**
- * 初始化主机，参数为：贴图资源名，最大血量，血量，起始坐标
+ *  初始化主机
+ *
+ *  @param fileName 贴图资源名
+ *  @param _hpMax   最大血量
+ *  @param _hp      血量
+ *  @param x        起始坐标 x
+ *  @param y        起始坐标 y
  */
 void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
 {
+    //主机播放帧动画
     this->runAction(createAnimate(fileName));
     //添加无敌状态的保护罩
     CCSprite *sp_star = CCSprite::create("环.png");
@@ -47,18 +62,23 @@ void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
     sp_star->setVisible(false);
     sp_star->setTag(tagProtect);
     //初始化主角出场动作
-    ccBezierConfig bezier2;//出场塞倍儿曲线
+    //出场塞倍儿曲线
+    ccBezierConfig bezier2;
     bezier2.controlPoint_1 =ccp(ScreenWidth, ScreenHeight);
     bezier2.controlPoint_2 =ccp(0,0);
     bezier2.endPosition =ccp(x, y);
-    CCFiniteTimeAction *action_bezier2 = CCBezierTo::create(2, bezier2);//塞贝儿曲线运动
+    //塞贝儿曲线运动
+    CCFiniteTimeAction *action_bezier2 = CCBezierTo::create(2, bezier2);
     this->setPosition(ccp(ScreenWidth/2, ScreenHeight*2));
     this->runAction(action_bezier2);
     //初始化主角状态参数
-    hpMax =_hpMax;//初始化血量上限
-    hp=_hp;//初始化当前血量
+    //初始化血量上限
+    hpMax =_hpMax;
+    //初始化当前血量
+    hp=_hp;
     show=true;
-    this->scheduleUpdate();//检测碰撞、吃道具的更新
+    //检测碰撞、吃道具的更新
+    this->scheduleUpdate();
 }
 /**
  * 系统帧更新，检测与敌机碰撞
@@ -93,8 +113,8 @@ void Plane::collideWithEnemy()
 {
     if(isStrong||Game::sharedWorld()->planeIsExist==false)
         return;
-        //手机振动
-        //SimpleAudioEngine::sharedEngine()->vibrate();
+    //手机振动
+    SimpleAudioEngine::sharedEngine()->vibrate();
     hp--;
     if(hp<=0)
     {
@@ -105,9 +125,11 @@ void Plane::collideWithEnemy()
         Game::sharedWorld()->planeIsExist=false;
         //爆炸
         SimpleAudioEngine::sharedEngine()->playEffect("plane.wav");
-        CCParticleSystemQuad * particle11 = CCParticleSystemQuad::create("主机爆炸.plist");
-        particle11->setPosition(this->getPosition());//主机位置
-        particle11->setAutoRemoveOnFinish(true);//自动释放
+        CCParticleSystemQuad * particle11 = CCParticleSystemQuad::create("particle_plane_boom.plist");
+        //主机位置
+        particle11->setPosition(this->getPosition());
+        //自动释放
+        particle11->setAutoRemoveOnFinish(true);
         Game::sharedWorld()->addChild(particle11);
         removeChildByTag(tagPlayerMajor);
         //调用失败界面
@@ -116,7 +138,8 @@ void Plane::collideWithEnemy()
     }
     else
     {
-        Plane::startStrong(5);//碰撞后没死保护5s
+        //碰撞后没死保护5s
+        Plane::startStrong(5);
     }
 }
 /**
@@ -142,18 +165,22 @@ CCAnimate* Plane::createAnimate(const char* fileName)
 void Plane::startStrong(float strongTime)
 {
     isStrong=true;
-    //auto sp_temp = getChildByTag(tag_protect);
-    //sp_temp->setVisible(true);//显示无敌标志
-    this->schedule(schedule_selector(Plane::shine), 0.05, -1, 0);//闪烁
-    this->schedule(schedule_selector(Plane::endStrong), 1, 1, strongTime);//三秒后结束无敌状态
+    auto sp_temp = getChildByTag(tagProtect);
+    //显示无敌标志
+    sp_temp->setVisible(true);
+    //闪烁
+    this->schedule(schedule_selector(Plane::shine), 0.05, -1, 0);
+    //三秒后结束无敌状态
+    this->schedule(schedule_selector(Plane::endStrong), 1, 1, strongTime);
 }
 /**
  * 结束无敌
  */
 void Plane::endStrong()
 {
-    //auto sp_temp1 =getChildByTag(tag_protect);
-    //sp_temp1->setVisible(false);//隐藏无敌标志
+    auto sp_temp1 =getChildByTag(tagProtect);
+    //隐藏无敌标志
+    sp_temp1->setVisible(false);
     this->unschedule(schedule_selector(Plane::shine));
     this->setVisible(true);
     isStrong=false;

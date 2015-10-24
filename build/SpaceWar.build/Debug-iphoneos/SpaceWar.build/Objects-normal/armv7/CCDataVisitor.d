@@ -1,0 +1,21 @@
+dependencies: \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.cpp \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCObject.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.h \
+  SpaceWar/libs/cocos2dx/platform/CCPlatformMacros.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
+  SpaceWar/libs/cocos2dx/platform/CCPlatformConfig.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCBool.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCInteger.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCFloat.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDouble.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCString.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCArray.h \
+  SpaceWar/libs/cocos2dx/support/data_support/ccCArray.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
+  SpaceWar/libs/cocos2dx/platform/CCCommon.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDictionary.h \
+  SpaceWar/libs/cocos2dx/support/data_support/uthash.h \
+  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCSet.h

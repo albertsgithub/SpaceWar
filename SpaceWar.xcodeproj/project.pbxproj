@@ -281,7 +281,7 @@
 		F77E7ACF1BCBB1FF006FE304 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7ACE1BCBB1FF006FE304 /* AppDelegate.cpp */; };
 		F77E7AD91BCBB354006FE304 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AD81BCBB354006FE304 /* Launch Screen.xib */; };
 		F77E7ADC1BCBB810006FE304 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7ADA1BCBB810006FE304 /* Menu.cpp */; };
-		F77E7AED1BCBB912006FE304 /* click_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AE31BCBB912006FE304 /* click_1.mp3 */; };
+		F77E7AED1BCBB912006FE304 /* clickEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AE31BCBB912006FE304 /* clickEffect.mp3 */; };
 		F77E7AEE1BCBB912006FE304 /* gameMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AE41BCBB912006FE304 /* gameMusic.mp3 */; };
 		F77E7AEF1BCBB912006FE304 /* plane.wav in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AE51BCBB912006FE304 /* plane.wav */; };
 		F77E7AF01BCBB912006FE304 /* plane0.wav in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AE61BCBB912006FE304 /* plane0.wav */; };
@@ -291,15 +291,14 @@
 		F77E7AF41BCBB912006FE304 /* menuMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AEA1BCBB912006FE304 /* menuMusic.mp3 */; };
 		F77E7AF51BCBB912006FE304 /* effect_boom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AEB1BCBB912006FE304 /* effect_boom.mp3 */; };
 		F77E7AF61BCBB912006FE304 /* effect_bullet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AEC1BCBB912006FE304 /* effect_bullet.mp3 */; };
-		F77E7AFE1BCBBAED006FE304 /* 主机爆炸.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AF81BCBBAED006FE304 /* 主机爆炸.plist */; };
-		F77E7AFF1BCBBAED006FE304 /* 荧光.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AF91BCBBAED006FE304 /* 荧光.plist */; };
+		F77E7AFE1BCBBAED006FE304 /* particle_plane_boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AF81BCBBAED006FE304 /* particle_plane_boom.plist */; };
+		F77E7AFF1BCBBAED006FE304 /* particle_color.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AF91BCBBAED006FE304 /* particle_color.plist */; };
 		F77E7B001BCBBAED006FE304 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AFA1BCBBAED006FE304 /* particleTexture.png */; };
 		F77E7B011BCBBAED006FE304 /* particle_boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AFB1BCBBAED006FE304 /* particle_boom.plist */; };
-		F77E7B021BCBBAED006FE304 /* 彩星.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AFC1BCBBAED006FE304 /* 彩星.plist */; };
-		F77E7B031BCBBAED006FE304 /* 喷泉.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AFD1BCBBAED006FE304 /* 喷泉.plist */; };
+		F77E7B021BCBBAED006FE304 /* particle_star.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AFC1BCBBAED006FE304 /* particle_star.plist */; };
+		F77E7B031BCBBAED006FE304 /* particle_fountain.plist in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AFD1BCBBAED006FE304 /* particle_fountain.plist */; };
 		F77E7B061BCBBFC6006FE304 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B041BCBBFC6006FE304 /* Map.cpp */; };
 		F77E7B091BCBC006006FE304 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B071BCBC006006FE304 /* Game.cpp */; };
-		F77E7B161BCBC1BD006FE304 /* HMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B0A1BCBC1BD006FE304 /* HMap.cpp */; };
 		F77E7B171BCBC1BD006FE304 /* Boss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B0C1BCBC1BD006FE304 /* Boss.cpp */; };
 		F77E7B181BCBC1BD006FE304 /* Tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B0E1BCBC1BD006FE304 /* Tool.cpp */; };
 		F77E7B191BCBC1BD006FE304 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B101BCBC1BD006FE304 /* Bullet.cpp */; };
@@ -307,7 +306,6 @@
 		F77E7B1B1BCBC1BD006FE304 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B141BCBC1BD006FE304 /* Enemy.cpp */; };
 		F77E7B201BCBC1CD006FE304 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B1C1BCBC1CD006FE304 /* Plane.cpp */; };
 		F77E7B211BCBC1CD006FE304 /* Plane0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7B1E1BCBC1CD006FE304 /* Plane0.cpp */; };
-		F77E7B251BCBCA13006FE304 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F77E7B241BCBCA13006FE304 /* Images.xcassets */; };
 		F77E7B271BCBCA37006FE304 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E7B261BCBCA37006FE304 /* menu_bg.png */; };
 		F77E7B2A1BCC8EDE006FE304 /* menu_button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E7B291BCC8EDE006FE304 /* menu_button_bg.png */; };
 		F77E7B2C1BCC8F10006FE304 /* menu_button0.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E7B2B1BCC8F10006FE304 /* menu_button0.png */; };
@@ -991,7 +989,7 @@
 		F77E7ADA1BCBB810006FE304 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		F77E7ADB1BCBB810006FE304 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		F77E7ADE1BCBB82E006FE304 /* Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
-		F77E7AE31BCBB912006FE304 /* click_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click_1.mp3; sourceTree = "<group>"; };
+		F77E7AE31BCBB912006FE304 /* clickEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clickEffect.mp3; sourceTree = "<group>"; };
 		F77E7AE41BCBB912006FE304 /* gameMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameMusic.mp3; sourceTree = "<group>"; };
 		F77E7AE51BCBB912006FE304 /* plane.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = plane.wav; sourceTree = "<group>"; };
 		F77E7AE61BCBB912006FE304 /* plane0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = plane0.wav; sourceTree = "<group>"; };
@@ -1001,18 +999,16 @@
 		F77E7AEA1BCBB912006FE304 /* menuMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuMusic.mp3; sourceTree = "<group>"; };
 		F77E7AEB1BCBB912006FE304 /* effect_boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = effect_boom.mp3; sourceTree = "<group>"; };
 		F77E7AEC1BCBB912006FE304 /* effect_bullet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = effect_bullet.mp3; sourceTree = "<group>"; };
-		F77E7AF81BCBBAED006FE304 /* 主机爆炸.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "主机爆炸.plist"; sourceTree = "<group>"; };
-		F77E7AF91BCBBAED006FE304 /* 荧光.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "荧光.plist"; sourceTree = "<group>"; };
+		F77E7AF81BCBBAED006FE304 /* particle_plane_boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particle_plane_boom.plist; sourceTree = "<group>"; };
+		F77E7AF91BCBBAED006FE304 /* particle_color.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particle_color.plist; sourceTree = "<group>"; };
 		F77E7AFA1BCBBAED006FE304 /* particleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture.png; sourceTree = "<group>"; };
 		F77E7AFB1BCBBAED006FE304 /* particle_boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particle_boom.plist; sourceTree = "<group>"; };
-		F77E7AFC1BCBBAED006FE304 /* 彩星.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "彩星.plist"; sourceTree = "<group>"; };
-		F77E7AFD1BCBBAED006FE304 /* 喷泉.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "喷泉.plist"; sourceTree = "<group>"; };
+		F77E7AFC1BCBBAED006FE304 /* particle_star.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particle_star.plist; sourceTree = "<group>"; };
+		F77E7AFD1BCBBAED006FE304 /* particle_fountain.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particle_fountain.plist; sourceTree = "<group>"; };
 		F77E7B041BCBBFC6006FE304 /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
 		F77E7B051BCBBFC6006FE304 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		F77E7B071BCBC006006FE304 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		F77E7B081BCBC006006FE304 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		F77E7B0A1BCBC1BD006FE304 /* HMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HMap.cpp; sourceTree = "<group>"; };
-		F77E7B0B1BCBC1BD006FE304 /* HMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMap.h; sourceTree = "<group>"; };
 		F77E7B0C1BCBC1BD006FE304 /* Boss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Boss.cpp; sourceTree = "<group>"; };
 		F77E7B0D1BCBC1BD006FE304 /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
 		F77E7B0E1BCBC1BD006FE304 /* Tool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tool.cpp; sourceTree = "<group>"; };
@@ -1027,7 +1023,6 @@
 		F77E7B1D1BCBC1CD006FE304 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
 		F77E7B1E1BCBC1CD006FE304 /* Plane0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane0.cpp; sourceTree = "<group>"; };
 		F77E7B1F1BCBC1CD006FE304 /* Plane0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane0.h; sourceTree = "<group>"; };
-		F77E7B241BCBCA13006FE304 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F77E7B261BCBCA37006FE304 /* menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_bg.png; path = Images.xcassets/Menu/menu_bg.imageset/menu_bg.png; sourceTree = "<group>"; };
 		F77E7B291BCC8EDE006FE304 /* menu_button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_button_bg.png; path = Images.xcassets/Menu/menu_button_bg.imageset/menu_button_bg.png; sourceTree = "<group>"; };
 		F77E7B2B1BCC8F10006FE304 /* menu_button0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_button0.png; path = Images.xcassets/Menu/menu_button0.imageset/menu_button0.png; sourceTree = "<group>"; };
@@ -2331,7 +2326,6 @@
 			isa = PBXGroup;
 			children = (
 				F77E7B571BCC9B7F006FE304 /* Sources */,
-				F77E7B241BCBCA13006FE304 /* Images.xcassets */,
 				F77E7ACB1BCBB1FF006FE304 /* Prefix.pch */,
 				F77E7ADE1BCBB82E006FE304 /* Prefix.h */,
 				F77E7AD81BCBB354006FE304 /* Launch Screen.xib */,
@@ -2343,24 +2337,6 @@
 			isa = PBXGroup;
 			children = (
 				F77E7C1F1BCCCEB2006FE304 /* GameWorld */,
-				F77E7B1D1BCBC1CD006FE304 /* Plane.h */,
-				F77E7B1C1BCBC1CD006FE304 /* Plane.cpp */,
-				F77E7B1F1BCBC1CD006FE304 /* Plane0.h */,
-				F77E7B1E1BCBC1CD006FE304 /* Plane0.cpp */,
-				F77E7B0B1BCBC1BD006FE304 /* HMap.h */,
-				F77E7B0A1BCBC1BD006FE304 /* HMap.cpp */,
-				F77E7B0D1BCBC1BD006FE304 /* Boss.h */,
-				F77E7B0C1BCBC1BD006FE304 /* Boss.cpp */,
-				F77E7B0F1BCBC1BD006FE304 /* Tool.h */,
-				F77E7B0E1BCBC1BD006FE304 /* Tool.cpp */,
-				F77E7B111BCBC1BD006FE304 /* Bullet.h */,
-				F77E7B101BCBC1BD006FE304 /* Bullet.cpp */,
-				F77E7B121BCBC1BD006FE304 /* EnemyBullet.h */,
-				F77E7B131BCBC1BD006FE304 /* EnemyBullet.cpp */,
-				F77E7B151BCBC1BD006FE304 /* Enemy.h */,
-				F77E7B141BCBC1BD006FE304 /* Enemy.cpp */,
-				F77E7B081BCBC006006FE304 /* Game.h */,
-				F77E7B071BCBC006006FE304 /* Game.cpp */,
 				F77E7B051BCBBFC6006FE304 /* Map.h */,
 				F77E7B041BCBBFC6006FE304 /* Map.cpp */,
 				F77E7ADB1BCBB810006FE304 /* Menu.h */,
@@ -2374,7 +2350,7 @@
 		F77E7AE21BCBB8E6006FE304 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				F77E7AE31BCBB912006FE304 /* click_1.mp3 */,
+				F77E7AE31BCBB912006FE304 /* clickEffect.mp3 */,
 				F77E7AE41BCBB912006FE304 /* gameMusic.mp3 */,
 				F77E7AE51BCBB912006FE304 /* plane.wav */,
 				F77E7AE61BCBB912006FE304 /* plane0.wav */,
@@ -2391,12 +2367,12 @@
 		F77E7AF71BCBBACC006FE304 /* Particals */ = {
 			isa = PBXGroup;
 			children = (
-				F77E7AF81BCBBAED006FE304 /* 主机爆炸.plist */,
-				F77E7AF91BCBBAED006FE304 /* 荧光.plist */,
+				F77E7AF81BCBBAED006FE304 /* particle_plane_boom.plist */,
+				F77E7AF91BCBBAED006FE304 /* particle_color.plist */,
 				F77E7AFA1BCBBAED006FE304 /* particleTexture.png */,
 				F77E7AFB1BCBBAED006FE304 /* particle_boom.plist */,
-				F77E7AFC1BCBBAED006FE304 /* 彩星.plist */,
-				F77E7AFD1BCBBAED006FE304 /* 喷泉.plist */,
+				F77E7AFC1BCBBAED006FE304 /* particle_star.plist */,
+				F77E7AFD1BCBBAED006FE304 /* particle_fountain.plist */,
 			);
 			name = Particals;
 			sourceTree = "<group>";
@@ -2583,6 +2559,22 @@
 		F77E7C1F1BCCCEB2006FE304 /* GameWorld */ = {
 			isa = PBXGroup;
 			children = (
+				F77E7B0D1BCBC1BD006FE304 /* Boss.h */,
+				F77E7B0C1BCBC1BD006FE304 /* Boss.cpp */,
+				F77E7B0F1BCBC1BD006FE304 /* Tool.h */,
+				F77E7B0E1BCBC1BD006FE304 /* Tool.cpp */,
+				F77E7B111BCBC1BD006FE304 /* Bullet.h */,
+				F77E7B101BCBC1BD006FE304 /* Bullet.cpp */,
+				F77E7B121BCBC1BD006FE304 /* EnemyBullet.h */,
+				F77E7B131BCBC1BD006FE304 /* EnemyBullet.cpp */,
+				F77E7B151BCBC1BD006FE304 /* Enemy.h */,
+				F77E7B141BCBC1BD006FE304 /* Enemy.cpp */,
+				F77E7B081BCBC006006FE304 /* Game.h */,
+				F77E7B071BCBC006006FE304 /* Game.cpp */,
+				F77E7B1D1BCBC1CD006FE304 /* Plane.h */,
+				F77E7B1C1BCBC1CD006FE304 /* Plane.cpp */,
+				F77E7B1F1BCBC1CD006FE304 /* Plane0.h */,
+				F77E7B1E1BCBC1CD006FE304 /* Plane0.cpp */,
 			);
 			name = GameWorld;
 			sourceTree = "<group>";
@@ -2653,7 +2645,7 @@
 				F77E7BD21BCC9C30006FE304 /* purple8.png in Resources */,
 				F77E774E1BCBB1FB006FE304 /* Icon.png in Resources */,
 				F77E7BA81BCC9C14006FE304 /* enemy_blue-.png in Resources */,
-				F77E7AFE1BCBBAED006FE304 /* 主机爆炸.plist in Resources */,
+				F77E7AFE1BCBBAED006FE304 /* particle_plane_boom.plist in Resources */,
 				F77E7BD01BCC9C30006FE304 /* purple6.png in Resources */,
 				F77E7BB81BCC9C21006FE304 /* 1.png in Resources */,
 				F77E7B441BCC8F9A006FE304 /* menu_plane_left0.png in Resources */,
@@ -2666,7 +2658,6 @@
 				F77E7BB71BCC9C21006FE304 /* boss2.png in Resources */,
 				F77E77F11BCBB1FC006FE304 /* ChangeLog in Resources */,
 				F77E773E1BCBB1FB006FE304 /* CloseNormal.png in Resources */,
-				F77E7B251BCBCA13006FE304 /* Images.xcassets in Resources */,
 				F77E774A1BCBB1FB006FE304 /* Icon-Small.png in Resources */,
 				F77E7B401BCC8F7D006FE304 /* menu_music_on.png in Resources */,
 				F77E77461BCBB1FB006FE304 /* Icon-72.png in Resources */,
@@ -2689,13 +2680,13 @@
 				F77E77441BCBB1FB006FE304 /* HelloWorld.png in Resources */,
 				F77E7BEF1BCC9C65006FE304 /* HP.png in Resources */,
 				F77E7BEB1BCC9C65006FE304 /* protect.png in Resources */,
-				F77E7AFF1BCBBAED006FE304 /* 荧光.plist in Resources */,
+				F77E7AFF1BCBBAED006FE304 /* particle_color.plist in Resources */,
 				F77E77481BCBB1FB006FE304 /* Icon-Small-50.png in Resources */,
 				F77E7AEE1BCBB912006FE304 /* gameMusic.mp3 in Resources */,
 				F77E7C0F1BCC9C9C006FE304 /* map_yello.png in Resources */,
 				F77E7B341BCC8F41006FE304 /* menu_close_blue.png in Resources */,
 				F77E7C121BCC9C9C006FE304 /* map_sky.png in Resources */,
-				F77E7B021BCBBAED006FE304 /* 彩星.plist in Resources */,
+				F77E7B021BCBBAED006FE304 /* particle_star.plist in Resources */,
 				F77E7BCE1BCC9C30006FE304 /* purple4.png in Resources */,
 				F77E7B851BCC9BC3006FE304 /* pause.png in Resources */,
 				F77E7B481BCC8FAE006FE304 /* menu_plane_left2.png in Resources */,
@@ -2721,7 +2712,7 @@
 				F77E7BD31BCC9C30006FE304 /* purple9.png in Resources */,
 				F77E7B611BCC9BA2006FE304 /* bullet_fire2.png in Resources */,
 				F77E7C111BCC9C9C006FE304 /* map_red.png in Resources */,
-				F77E7B031BCBBAED006FE304 /* 喷泉.plist in Resources */,
+				F77E7B031BCBBAED006FE304 /* particle_fountain.plist in Resources */,
 				F77E7BA91BCC9C14006FE304 /* hero_blue1.png in Resources */,
 				F77E7BBC1BCC9C21006FE304 /* 5.png in Resources */,
 				F77E7BA51BCC9C14006FE304 /* cohete_off.png in Resources */,
@@ -2758,7 +2749,7 @@
 				F77E7B621BCC9BA2006FE304 /* bullet_0.png in Resources */,
 				F77E7C141BCC9C9C006FE304 /* map_space.png in Resources */,
 				F77E7BB91BCC9C21006FE304 /* 2.png in Resources */,
-				F77E7AED1BCBB912006FE304 /* click_1.mp3 in Resources */,
+				F77E7AED1BCBB912006FE304 /* clickEffect.mp3 in Resources */,
 				F77E7AF41BCBB912006FE304 /* menuMusic.mp3 in Resources */,
 				F77E7B461BCC8FA4006FE304 /* menu_plane_left1.png in Resources */,
 			);
@@ -2912,7 +2903,6 @@
 				F77E7A091BCBB1FE006FE304 /* CCTableView.cpp in Sources */,
 				F77E78D71BCBB1FD006FE304 /* CCSpriteFrame.cpp in Sources */,
 				F77E77FF1BCBB1FC006FE304 /* plane.c in Sources */,
-				F77E7B161BCBC1BD006FE304 /* HMap.cpp in Sources */,
 				F77E7B061BCBBFC6006FE304 /* Map.cpp in Sources */,
 				F77E78761BCBB1FC006FE304 /* CCEGLView.mm in Sources */,
 				F77E7A381BCBB1FE006FE304 /* AttachmentLoader.cpp in Sources */,
@@ -3102,12 +3092,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SpaceWar/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = SpaceWar/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SpaceWar/libs/cocos2dx/platform/third_party/ios/libraries",
@@ -3128,11 +3121,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SpaceWar/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = SpaceWar/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SpaceWar/libs/cocos2dx/platform/third_party/ios/libraries",

@@ -288,5 +288,12 @@ void SimpleAudioEngine::stopAllEffects()
 {
     static_stopAllEffects();
 }
+    /**
+     *  实现自定义振动函数
+     */
+    void SimpleAudioEngine::vibrate()
+    {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
 
 } // endof namespace CocosDenshion {

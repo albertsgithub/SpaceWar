@@ -90,7 +90,7 @@ bool Game::init()
     Map * clouds = Map::createMap("clouds.png",-2);
     addChild(clouds);
     //离子
-    CCParticleSystemQuad * light = CCParticleSystemQuad::create("荧光.plist");
+    CCParticleSystemQuad * light = CCParticleSystemQuad::create("particle_color.plist");
     light->setPosition(ScreenWidth/2,ScreenHeight/1.5);
     addChild(light);
 

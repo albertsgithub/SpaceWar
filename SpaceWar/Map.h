@@ -11,11 +11,12 @@
 
 #include "Prefix.h"
 
-typedef enum{
+//枚举两张地图背景的交替出现
+enum
+{
     tag_oneImg,
     tag_twoImg,
-    tag_threeImg
-}tagMap0;//枚举两张地图背景的交替出现
+};
 
 class Map : public cocos2d::CCLayer
 {

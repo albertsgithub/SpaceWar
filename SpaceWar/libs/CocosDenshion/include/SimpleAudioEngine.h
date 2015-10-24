@@ -209,6 +209,10 @@ public:
     @param[in]        pszFilePath        The path of the effect file,or the FileName of T_SoundResInfo
     */
     void unloadEffect(const char* pszFilePath);
+    /**
+     *  自定义手机振动函数
+     */
+    void vibrate();
 };
 
 } // end of namespace CocosDenshion

@@ -41,15 +41,12 @@ bool Menu::init()
     }
     // 0.初始化右边飞机显示状态
     show=true;
-    
     // 1.开场音乐
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic("lady.mp3",true);
-    
     // 2.开场背景,主界面
     //创建精灵贴图当菜单背景
-    CCSprite* menuBg = CCSprite::create("menu_bg.png");
-    //设置背景位置在屏幕中心
-    menuBg->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
+    CCSprite* menuBg = CCSprite::create("menu_bg.png",CCRectMake(ScreenWidth/2, ScreenHeight/2, ScreenWidth, ScreenHeight));
+    //添加背景子视图
     addChild(menuBg);
     // 3.左边飞机动画
     //左边飞机精灵贴图
@@ -75,7 +72,6 @@ bool Menu::init()
     planeLeft->runAction(animateLeft);
     //左边飞机加入菜单界面
     addChild(planeLeft);
-    
     // 4.右边飞机动画
     //右边飞机贴图
     CCSprite* planeRight = CCSprite::create("menu_plane_right.png");
@@ -83,14 +79,12 @@ bool Menu::init()
     planeRight->setPosition(ccp(ScreenWidth-100, 100));
     //右边飞机加入菜单页面，并为它打上tag
     addChild(planeRight, 1, tagRightPlane);
-    
     // 5.添加离子动画
-    CCParticleSystemQuad * particleLight = CCParticleSystemQuad::create("荧光.plist");
+    CCParticleSystemQuad * particleLight = CCParticleSystemQuad::create("particle_color.plist");
     //离子源位置
     particleLight->setPosition(ScreenWidth/2,ScreenHeight/3);
     //添加离子源
     addChild(particleLight);
-    
     // 6.游戏模式选择按钮
     //按钮文字
     CCLabelTTF *singleTTF = CCLabelTTF::create("双机模式", font1, 30);
@@ -116,7 +110,6 @@ bool Menu::init()
     modelSwitch->setTag(tagSwitchControl);
     //添加按钮组件到菜单界面
     addChild(modelSwitch);
-    
     // 5.菜单按钮
     //开始游戏按钮
     CCMenuItemImage * itemPlay= CCMenuItemImage::create("menu_button0.png", "menu_button_bg.png",this,menu_selector(Menu::playIsPressed));
@@ -136,12 +129,10 @@ bool Menu::init()
     menu->setPosition(ScreenWidth/2,ScreenHeight/2);
     //添加菜单到界面
     addChild(menu);
-    
     // 6.界面系统刷新
     this->scheduleUpdate();
     return true;
 }
-
 /**
  * 控制右边飞机的显示与隐藏
  */
@@ -179,7 +170,6 @@ void Menu::playIsPressed(){
     //切换到游戏场景
     CCDirector::sharedDirector()->replaceScene(transition::create(turnTime, Game::scene()));
 }
-
 /**
  *按下战绩按钮
  */
@@ -189,7 +179,8 @@ void Menu::scoreIsPressed(){
     
     // 2.颜色遮罩层
     CCLayerColor *aboutLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
-    aboutLayer->setTag(tagColorLayer);//标记颜色层
+    //标记颜色层
+    aboutLayer->setTag(tagColorLayer);
     //关闭按钮
     CCMenuItemImage *_return = CCMenuItemImage::create("menu_close_purple.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
     //按钮位置
@@ -212,7 +203,6 @@ void Menu::scoreIsPressed(){
     aboutLayer->addChild(us_menu);
     //遮罩层添加到界面
     addChild(aboutLayer);
-    
     // 3.最高分、最高杀敌数、最远距离
     //标签字符串
     CCLabelTTF *ttfShow = CCLabelTTF::create("最高分数：",font1,30);
@@ -279,7 +269,8 @@ void Menu::setIsPressed(){
     SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     //颜色层
     CCLayerColor *aboutLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
-    aboutLayer->setTag(tagColorLayer);//标记颜色层
+    //标记颜色层
+    aboutLayer->setTag(tagColorLayer);
     //关闭按钮
     CCMenuItemImage *_return = CCMenuItemImage::create("menu_close_blue.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
     _return->setPosition(ccp(-125, 155));
