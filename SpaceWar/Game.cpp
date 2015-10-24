@@ -84,7 +84,7 @@ bool Game::init()
         mapname = "map_yello.png";
     else
         mapname = "map_night.png";
-    HMap * map = HMap::createMap(mapname);
+    Map * map = Map::createMap(mapname,2);
     addChild(map);
     //云层
     Map * clouds = Map::createMap("clouds.png",-2);

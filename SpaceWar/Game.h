@@ -11,7 +11,6 @@
 #include "Tool.h"
 #include "Plane.h"
 #include "Plane0.h"
-#include "HMap.h"
 #include "Map.h"
 #include "Bullet.h"
 #include "Enemy.h"
