@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/spine/SkeletonData.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/SkeletonData.cpp \
   SpaceWar/libs/extensions/spine/SkeletonData.h \
   SpaceWar/libs/extensions/spine/BoneData.h \
   SpaceWar/libs/extensions/spine/SlotData.h \

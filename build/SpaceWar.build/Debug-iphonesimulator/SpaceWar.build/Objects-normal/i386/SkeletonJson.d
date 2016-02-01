@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/spine/SkeletonJson.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/SkeletonJson.cpp \
   SpaceWar/libs/extensions/spine/SkeletonJson.h \
   SpaceWar/libs/extensions/spine/Attachment.h \
   SpaceWar/libs/extensions/spine/AttachmentLoader.h \
@@ -9,7 +9,7 @@ dependencies: \
   SpaceWar/libs/extensions/spine/SlotData.h \
   SpaceWar/libs/extensions/spine/Animation.h \
   SpaceWar/libs/extensions/spine/Atlas.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/spine/Json.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/Json.h \
   SpaceWar/libs/extensions/spine/extension.h \
   SpaceWar/libs/extensions/spine/Skeleton.h \
   SpaceWar/libs/extensions/spine/Slot.h \

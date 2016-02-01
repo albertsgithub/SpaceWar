@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/chipmunk/src/constraints/cpDampedRotarySpring.c \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_private.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/chipmunk/src/constraints/cpDampedRotarySpring.c \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_private.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_types.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/cpVect.h \

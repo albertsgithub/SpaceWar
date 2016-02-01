@@ -40,12 +40,12 @@ bool Menu::init()
         return false;
     }
     // 0.初始化右边飞机显示状态
-    show=true;
+    show = true;
     // 1.开场音乐
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("lady.mp3",true);
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
     // 2.开场背景,主界面
     //创建精灵贴图当菜单背景
-    CCSprite* menuBg = CCSprite::create("menu_bg.png",CCRectMake(ScreenWidth/2, ScreenHeight/2, ScreenWidth, ScreenHeight));
+    CCSprite* menuBg = CCSprite::create("menu_bg.png",CCRectMake(ScreenWidth/2.0, ScreenHeight/2.0, ScreenWidth, ScreenHeight));
     //添加背景子视图
     addChild(menuBg);
     // 3.左边飞机动画
@@ -89,15 +89,12 @@ bool Menu::init()
     //按钮文字
     CCLabelTTF *singleTTF = CCLabelTTF::create("双机模式", font1, 30);
     CCLabelTTF *doubleTTF = CCLabelTTF::create("单机模式", font1, 30);
-    //按钮文字颜色
-    singleTTF->setColor(ccc3(104, 13, 152));
-    doubleTTF->setColor(ccc3(33, 168, 6));
     //选择按钮组件
     CCControlSwitch *modelSwitch = CCControlSwitch::create(
-                            CCSprite::create("menu_handle.png"),
-                            CCSprite::create("menu_handle.png"),
-                            CCSprite::create("menu_handle.png"),
-                            CCSprite::create("menu_music.png"),
+                            CCSprite::create("menu_switch_bg.png"),
+                            CCSprite::create("menu_switch_bg.png"),
+                            CCSprite::create("menu_switch_bg.png"),
+                            CCSprite::create("menu_switch_dot.png"),
                             singleTTF,
                             doubleTTF);
     //按钮组件位置

@@ -1,21 +1,21 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.cpp \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCObject.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCObject.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformMacros.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformConfig.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCBool.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCInteger.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCFloat.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDouble.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCString.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCArray.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCBool.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCInteger.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCFloat.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDouble.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCString.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCArray.h \
   SpaceWar/libs/cocos2dx/support/data_support/ccCArray.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
   SpaceWar/libs/cocos2dx/platform/CCCommon.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDictionary.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCDictionary.h \
   SpaceWar/libs/cocos2dx/support/data_support/uthash.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCSet.h
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/cocoa/CCSet.h

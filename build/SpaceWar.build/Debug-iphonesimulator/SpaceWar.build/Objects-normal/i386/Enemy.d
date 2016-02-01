@@ -1,25 +1,25 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Enemy.cpp \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Enemy.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Prefix.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/include/cocos2d.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Enemy.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Enemy.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Prefix.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/cocos2d.h \
   SpaceWar/libs/cocos2dx/include/ccConfig.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformConfig.h \
   SpaceWar/libs/cocos2dx/actions/CCAction.h \
   SpaceWar/libs/cocos2dx/cocoa/CCObject.h \
   SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformMacros.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
   SpaceWar/libs/cocos2dx/cocoa/CCGeometry.h \
   SpaceWar/libs/cocos2dx/actions/CCActionInterval.h \
   SpaceWar/libs/cocos2dx/base_nodes/CCNode.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
   SpaceWar/libs/cocos2dx/platform/CCCommon.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
   SpaceWar/libs/cocos2dx/cocoa/CCAffineTransform.h \
   SpaceWar/libs/cocos2dx/cocoa/CCArray.h \
   SpaceWar/libs/cocos2dx/support/data_support/ccCArray.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
   SpaceWar/libs/cocos2dx/shaders/ccGLStateCache.h \
   SpaceWar/libs/cocos2dx/shaders/CCGLProgram.h \
   SpaceWar/libs/cocos2dx/kazmath/include/kazmath/kazmath.h \
@@ -33,11 +33,11 @@ dependencies: \
   SpaceWar/libs/cocos2dx/kazmath/include/kazmath/aabb.h \
   SpaceWar/libs/cocos2dx/kazmath/include/kazmath/ray2.h \
   SpaceWar/libs/cocos2dx/script_support/CCScriptSupport.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCAccelerometer.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCAccelerometer.h \
   SpaceWar/libs/cocos2dx/platform/CCAccelerometerDelegate.h \
   SpaceWar/libs/cocos2dx/touch_dispatcher/CCTouch.h \
   SpaceWar/libs/cocos2dx/cocoa/CCSet.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/include/CCProtocols.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/CCProtocols.h \
   SpaceWar/libs/cocos2dx/include/ccTypes.h \
   SpaceWar/libs/cocos2dx/textures/CCTexture2D.h \
   SpaceWar/libs/cocos2dx/sprite_nodes/CCSpriteFrame.h \
@@ -52,7 +52,7 @@ dependencies: \
   SpaceWar/libs/cocos2dx/actions/CCActionGrid3D.h \
   SpaceWar/libs/cocos2dx/actions/CCActionGrid.h \
   SpaceWar/libs/cocos2dx/actions/CCActionInstant.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypeInfo.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypeInfo.h \
   SpaceWar/libs/cocos2dx/actions/CCActionProgressTimer.h \
   SpaceWar/libs/cocos2dx/actions/CCActionTiledGrid.h \
   SpaceWar/libs/cocos2dx/actions/CCActionTween.h \
@@ -68,10 +68,10 @@ dependencies: \
   SpaceWar/libs/cocos2dx/draw_nodes/CCDrawingPrimitives.h \
   SpaceWar/libs/cocos2dx/draw_nodes/CCDrawNode.h \
   SpaceWar/libs/cocos2dx/effects/CCGrabber.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/CCConfiguration.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/CCConfiguration.h \
   SpaceWar/libs/cocos2dx/effects/CCGrid.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/CCCamera.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/CCDirector.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/CCCamera.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/CCDirector.h \
   SpaceWar/libs/cocos2dx/label_nodes/CCLabelAtlas.h \
   SpaceWar/libs/cocos2dx/include/CCEventType.h \
   SpaceWar/libs/cocos2dx/kazmath/include/kazmath/GL/matrix.h \
@@ -132,12 +132,12 @@ dependencies: \
   SpaceWar/libs/cocos2dx/tilemap_parallax_nodes/CCTileMapAtlas.h \
   SpaceWar/libs/cocos2dx/touch_dispatcher/CCTouchDispatcher.h \
   SpaceWar/libs/cocos2dx/touch_dispatcher/CCTouchHandler.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/cocos2dx/CCScheduler.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/CCScheduler.h \
   SpaceWar/libs/cocos2dx/support/component/CCComponent.h \
   SpaceWar/libs/cocos2dx/support/component/CCComponentContainer.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/CocosDenshion/include/SimpleAudioEngine.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/CocosDenshion/include/SimpleAudioEngine.h \
   SpaceWar/libs/CocosDenshion/include/Export.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/cocos-ext.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/cocos-ext.h \
   SpaceWar/libs/extensions/ExtensionMacros.h \
   SpaceWar/libs/extensions/CCBReader/CCBFileLoader.h \
   SpaceWar/libs/extensions/CCBReader/CCNodeLoader.h \
@@ -189,7 +189,7 @@ dependencies: \
   SpaceWar/libs/extensions/network/HttpResponse.h \
   SpaceWar/libs/extensions/network/HttpClient.h \
   SpaceWar/libs/extensions/physics_nodes/CCPhysicsDebugNode.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_types.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/cpVect.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/cpBB.h \
@@ -235,13 +235,12 @@ dependencies: \
   SpaceWar/libs/extensions/Components/CCComAudio.h \
   SpaceWar/libs/extensions/Components/CCComController.h \
   SpaceWar/libs/extensions/Components/CCInputDelegate.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Game.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Tool.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Plane.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Plane0.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/HMap.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Map.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Bullet.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Boss.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/EnemyBullet.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/Menu.h
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Game.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Tool.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Plane.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Plane0.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Map.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Bullet.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Boss.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/EnemyBullet.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/Menu.h

@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/spine/Skin.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/Skin.cpp \
   SpaceWar/libs/extensions/spine/Skin.h \
   SpaceWar/libs/extensions/spine/Attachment.h \
   SpaceWar/libs/extensions/spine/extension.h \

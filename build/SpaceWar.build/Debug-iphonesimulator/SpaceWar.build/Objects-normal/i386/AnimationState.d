@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/spine/AnimationState.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/AnimationState.cpp \
   SpaceWar/libs/extensions/spine/AnimationState.h \
   SpaceWar/libs/extensions/spine/AnimationStateData.h \
   SpaceWar/libs/extensions/spine/Animation.h \

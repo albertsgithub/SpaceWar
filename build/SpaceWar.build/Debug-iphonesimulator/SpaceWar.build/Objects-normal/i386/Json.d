@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/spine/Json.cpp \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/extensions/spine/Json.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/Json.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/Json.h \
   SpaceWar/libs/extensions/spine/extension.h \
   SpaceWar/libs/extensions/spine/Skeleton.h \
   SpaceWar/libs/extensions/spine/SkeletonData.h \

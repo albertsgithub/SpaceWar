@@ -584,7 +584,7 @@ void Game::goHome()
     CCDirector::sharedDirector()->resume();
     //切换到"菜单"场景
     CCDirector::sharedDirector()->replaceScene(Menu::scene());
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("lady.mp3",true);
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
 
 }
 

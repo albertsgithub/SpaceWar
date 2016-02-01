@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/chipmunk/src/cpPolyShape.c \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_private.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/chipmunk/src/cpPolyShape.c \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_private.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_types.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/cpVect.h \
@@ -22,4 +22,4 @@ dependencies: \
   SpaceWar/libs/Chipmunk/include/chipmunk/constraints/cpGearJoint.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/constraints/cpSimpleMotor.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/cpSpace.h \
-  /Users/jxh/Documents/蒋信厚的开发文件/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_unsafe.h
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_unsafe.h
