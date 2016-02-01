@@ -41,13 +41,18 @@ bool Menu::init()
     }
     // 0.初始化右边飞机显示状态
     show = true;
-    // 1.开场音乐
+    
+    // 1.开场背景音乐
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
+    
     // 2.开场背景,主界面
     //创建精灵贴图当菜单背景
-    CCSprite* menuBg = CCSprite::create("menu_bg.png",CCRectMake(ScreenWidth/2.0, ScreenHeight/2.0, ScreenWidth, ScreenHeight));
+    CCSprite* menuBg = CCSprite::create("menu_bg.png");
+    menuBg->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
+    
     //添加背景子视图
     addChild(menuBg);
+    
     // 3.左边飞机动画
     //左边飞机精灵贴图
     CCSprite* planeLeft = CCSprite::create("menu_plane_left0.png");
@@ -67,11 +72,12 @@ bool Menu::init()
     //重新加载起始帧
     animationLeft->setRestoreOriginalFrame(false);
     //创建左边动画
-    auto animateLeft = CCAnimate::create(animationLeft);
+    CCAnimate *animateLeft = CCAnimate::create(animationLeft);
     //左边飞机运行动画
     planeLeft->runAction(animateLeft);
     //左边飞机加入菜单界面
     addChild(planeLeft);
+    
     // 4.右边飞机动画
     //右边飞机贴图
     CCSprite* planeRight = CCSprite::create("menu_plane_right.png");
@@ -79,12 +85,14 @@ bool Menu::init()
     planeRight->setPosition(ccp(ScreenWidth-100, 100));
     //右边飞机加入菜单页面，并为它打上tag
     addChild(planeRight, 1, tagRightPlane);
+    
     // 5.添加离子动画
     CCParticleSystemQuad * particleLight = CCParticleSystemQuad::create("particle_color.plist");
     //离子源位置
     particleLight->setPosition(ScreenWidth/2,ScreenHeight/3);
     //添加离子源
     addChild(particleLight);
+    
     // 6.游戏模式选择按钮
     //按钮文字
     CCLabelTTF *singleTTF = CCLabelTTF::create("双机模式", font1, 30);
@@ -107,6 +115,7 @@ bool Menu::init()
     modelSwitch->setTag(tagSwitchControl);
     //添加按钮组件到菜单界面
     addChild(modelSwitch);
+    
     // 5.菜单按钮
     //开始游戏按钮
     CCMenuItemImage * itemPlay= CCMenuItemImage::create("menu_button0.png", "menu_button_bg.png",this,menu_selector(Menu::playIsPressed));
@@ -126,6 +135,7 @@ bool Menu::init()
     menu->setPosition(ScreenWidth/2,ScreenHeight/2);
     //添加菜单到界面
     addChild(menu);
+    
     // 6.界面系统刷新
     this->scheduleUpdate();
     return true;

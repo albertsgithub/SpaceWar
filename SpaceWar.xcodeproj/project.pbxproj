@@ -119,6 +119,7 @@
 		F73C47181C5F256700D91BC8 /* Tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C470E1C5F256700D91BC8 /* Tool.cpp */; };
 		F73C471B1C5F292800D91BC8 /* menu_switch_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C47191C5F292800D91BC8 /* menu_switch_bg.png */; };
 		F73C471C1C5F292800D91BC8 /* menu_switch_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C471A1C5F292800D91BC8 /* menu_switch_dot.png */; };
+		F73C471E1C5F311600D91BC8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73C471D1C5F311600D91BC8 /* Images.xcassets */; };
 		F77E772C1BCBB1FB006FE304 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77E772B1BCBB1FB006FE304 /* QuartzCore.framework */; };
 		F77E772E1BCBB1FB006FE304 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77E772D1BCBB1FB006FE304 /* OpenGLES.framework */; };
 		F77E77301BCBB1FB006FE304 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77E772F1BCBB1FB006FE304 /* OpenAL.framework */; };
@@ -135,7 +136,7 @@
 		F77E77481BCBB1FB006FE304 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E77471BCBB1FB006FE304 /* Icon-Small-50.png */; };
 		F77E774A1BCBB1FB006FE304 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E77491BCBB1FB006FE304 /* Icon-Small.png */; };
 		F77E774C1BCBB1FB006FE304 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E774B1BCBB1FB006FE304 /* Icon-Small@2x.png */; };
-		F77E774E1BCBB1FB006FE304 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E774D1BCBB1FB006FE304 /* Icon.png */; };
+		F77E774E1BCBB1FB006FE304 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E774D1BCBB1FB006FE304 /* icon.png */; };
 		F77E77501BCBB1FB006FE304 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E774F1BCBB1FB006FE304 /* Icon@2x.png */; };
 		F77E77521BCBB1FB006FE304 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F77E77511BCBB1FB006FE304 /* iTunesArtwork */; };
 		F77E77571BCBB1FB006FE304 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F77E77561BCBB1FB006FE304 /* AppController.mm */; };
@@ -392,7 +393,6 @@
 		F77E7AC91BCBB1FF006FE304 /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F77E7AC81BCBB1FF006FE304 /* libwebsockets.a */; };
 		F77E7ACF1BCBB1FF006FE304 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77E7ACE1BCBB1FF006FE304 /* AppDelegate.cpp */; };
 		F77E7AD91BCBB354006FE304 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F77E7AD81BCBB354006FE304 /* Launch Screen.xib */; };
-		F77E7C1A1BCC9CDF006FE304 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F77E7C191BCC9CDF006FE304 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -518,6 +518,7 @@
 		F73C470F1C5F256700D91BC8 /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		F73C47191C5F292800D91BC8 /* menu_switch_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_switch_bg.png; sourceTree = "<group>"; };
 		F73C471A1C5F292800D91BC8 /* menu_switch_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_switch_dot.png; sourceTree = "<group>"; };
+		F73C471D1C5F311600D91BC8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F77E77281BCBB1FB006FE304 /* SpaceWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77E772B1BCBB1FB006FE304 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F77E772D1BCBB1FB006FE304 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -535,7 +536,7 @@
 		F77E77471BCBB1FB006FE304 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/Icon-Small-50.png"; sourceTree = "<group>"; };
 		F77E77491BCBB1FB006FE304 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Resources/Icon-Small.png"; sourceTree = "<group>"; };
 		F77E774B1BCBB1FB006FE304 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "Resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
-		F77E774D1BCBB1FB006FE304 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		F77E774D1BCBB1FB006FE304 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icon.png; sourceTree = "<group>"; };
 		F77E774F1BCBB1FB006FE304 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		F77E77511BCBB1FB006FE304 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		F77E77531BCBB1FB006FE304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
@@ -1108,7 +1109,6 @@
 		F77E7ACE1BCBB1FF006FE304 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		F77E7AD81BCBB354006FE304 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		F77E7ADE1BCBB82E006FE304 /* Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
-		F77E7C191BCC9CDF006FE304 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1325,6 +1325,10 @@
 		F73C46FD1C5F256700D91BC8 /* GameWorld */ = {
 			isa = PBXGroup;
 			children = (
+				F73C47061C5F256700D91BC8 /* Game.cpp */,
+				F73C47071C5F256700D91BC8 /* Game.h */,
+				F73C47081C5F256700D91BC8 /* Map.cpp */,
+				F73C47091C5F256700D91BC8 /* Map.h */,
 				F73C46FE1C5F256700D91BC8 /* Boss.cpp */,
 				F73C46FF1C5F256700D91BC8 /* Boss.h */,
 				F73C47001C5F256700D91BC8 /* Bullet.cpp */,
@@ -1333,10 +1337,6 @@
 				F73C47031C5F256700D91BC8 /* Enemy.h */,
 				F73C47041C5F256700D91BC8 /* EnemyBullet.cpp */,
 				F73C47051C5F256700D91BC8 /* EnemyBullet.h */,
-				F73C47061C5F256700D91BC8 /* Game.cpp */,
-				F73C47071C5F256700D91BC8 /* Game.h */,
-				F73C47081C5F256700D91BC8 /* Map.cpp */,
-				F73C47091C5F256700D91BC8 /* Map.h */,
 				F73C470A1C5F256700D91BC8 /* Plane.cpp */,
 				F73C470B1C5F256700D91BC8 /* Plane.h */,
 				F73C470C1C5F256700D91BC8 /* Plane0.cpp */,
@@ -1387,6 +1387,7 @@
 				F77E77541BCBB1FB006FE304 /* ios */,
 				F77E775D1BCBB1FB006FE304 /* libs */,
 				F77E7ACC1BCBB1FF006FE304 /* Classes */,
+				F73C471D1C5F311600D91BC8 /* Images.xcassets */,
 				F77E7ACA1BCBB1FF006FE304 /* Supporting Files */,
 			);
 			path = SpaceWar;
@@ -1403,7 +1404,7 @@
 				F77E77471BCBB1FB006FE304 /* Icon-Small-50.png */,
 				F77E77491BCBB1FB006FE304 /* Icon-Small.png */,
 				F77E774B1BCBB1FB006FE304 /* Icon-Small@2x.png */,
-				F77E774D1BCBB1FB006FE304 /* Icon.png */,
+				F77E774D1BCBB1FB006FE304 /* icon.png */,
 				F77E774F1BCBB1FB006FE304 /* Icon@2x.png */,
 				F77E77511BCBB1FB006FE304 /* iTunesArtwork */,
 				F77E77531BCBB1FB006FE304 /* Info.plist */,
@@ -2537,7 +2538,6 @@
 			isa = PBXGroup;
 			children = (
 				F73C46241C5F253400D91BC8 /* Sources */,
-				F77E7C191BCC9CDF006FE304 /* icon.png */,
 				F77E7ACB1BCBB1FF006FE304 /* Prefix.pch */,
 				F77E7ADE1BCBB82E006FE304 /* Prefix.h */,
 				F77E7AD81BCBB354006FE304 /* Launch Screen.xib */,
@@ -2627,9 +2627,10 @@
 				F73C46AD1C5F253400D91BC8 /* bullet_red.png in Resources */,
 				F73C46D41C5F253400D91BC8 /* enemy_blue.png in Resources */,
 				F73C46F01C5F253400D91BC8 /* HP.png in Resources */,
+				F73C471E1C5F311600D91BC8 /* Images.xcassets in Resources */,
 				F73C469A1C5F253400D91BC8 /* 6.png in Resources */,
 				F73C46E01C5F253400D91BC8 /* particle_plane_boom.plist in Resources */,
-				F77E774E1BCBB1FB006FE304 /* Icon.png in Resources */,
+				F77E774E1BCBB1FB006FE304 /* icon.png in Resources */,
 				F73C46C91C5F253400D91BC8 /* menu_plane_left4.png in Resources */,
 				F73C46A81C5F253400D91BC8 /* bossBullet1.png in Resources */,
 				F73C471B1C5F292800D91BC8 /* menu_switch_bg.png in Resources */,
@@ -2690,7 +2691,6 @@
 				F73C46D91C5F253400D91BC8 /* hero_purple1.png in Resources */,
 				F73C46D21C5F253400D91BC8 /* boss2.png in Resources */,
 				F73C46C11C5F253400D91BC8 /* menu_close_button.png in Resources */,
-				F77E7C1A1BCC9CDF006FE304 /* icon.png in Resources */,
 				F73C46981C5F253400D91BC8 /* 4.png in Resources */,
 				F73C46F21C5F253400D91BC8 /* callback.png in Resources */,
 				F73C46F81C5F253400D91BC8 /* toolBox.png in Resources */,
@@ -3070,7 +3070,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3099,7 +3098,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SpaceWar/Prefix.pch;
