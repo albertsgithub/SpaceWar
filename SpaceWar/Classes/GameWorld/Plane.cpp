@@ -56,11 +56,11 @@ void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
     //主机播放帧动画
     this->runAction(createAnimate(fileName));
     //添加无敌状态的保护罩
-    CCSprite *sp_star = CCSprite::create("环.png");
-    this->addChild(sp_star);
-    sp_star->setPosition(ccp(this->getPositionX()+this->getContentSize().width/2+10,this->getPositionY()+this->getContentSize().height/2+10));
+    CCSprite *sp_star = CCSprite::create("game_protect.png");
+    sp_star->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height/2+10));
     sp_star->setVisible(false);
     sp_star->setTag(tagProtect);
+    this->addChild(sp_star);
     //初始化主角出场动作
     //出场塞倍儿曲线
     ccBezierConfig bezier2;

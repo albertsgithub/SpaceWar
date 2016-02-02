@@ -25,6 +25,7 @@ Map* Map::createMap(const char* fileName,int speed){
     CC_SAFE_DELETE(map);
     return NULL;
 }
+
 /**
  *  地图初始化
  *
@@ -35,11 +36,12 @@ void Map::mapInit(const char* fileName)
     //第一张地图背景图
     CCSprite * turnImg = CCSprite::create(fileName,CCRectMake(ScreenWidth*0.5, turnImg->getContentSize().height*0.5, ScreenWidth, turnImg->getContentSize().height));
     this->addChild(turnImg,0,tag_oneImg);
+    
     //第二张地图背景图
     CCSprite * turnImg2 =CCSprite::create(fileName,CCRectMake(ScreenWidth*0.5, turnImg2->getContentSize().height*1.5, ScreenWidth, turnImg2->getContentSize().height));
     this->addChild(turnImg2,0,tag_twoImg);
     //开启按帧更新
-    this->scheduleUpdate();
+    //this->scheduleUpdate();
 }
 /**
  *  地图更新

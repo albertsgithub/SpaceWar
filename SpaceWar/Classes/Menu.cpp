@@ -82,10 +82,11 @@ bool Menu::init()
     // 4.右边飞机动画
     //右边飞机贴图
     CCSprite* planeRight = CCSprite::create("menu_plane_right.png");
+    planeRight->setTag(tagRightPlane);
     //右边飞机位置
     planeRight->setPosition(ccp(ScreenWidth-100, 100));
     //右边飞机加入菜单页面，并为它打上tag
-    addChild(planeRight, 1, tagRightPlane);
+    addChild(planeRight);
     
     // 5.添加离子动画
     CCParticleSystemQuad * particleLight = CCParticleSystemQuad::create("particle_color.plist");

@@ -16,6 +16,7 @@ using namespace cocos2d::extension;
 using namespace CocosDenshion;
 using namespace std;
 using namespace cocos2d;
+
 /**
  * 屏幕尺寸
  */

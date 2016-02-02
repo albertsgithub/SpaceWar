@@ -20,6 +20,7 @@ enum tag
     tagdistanceTTF,
     tagScoreTTF,
     tagKillCountTTF,
+    tagCallBack
 };
 /**
  * 游戏单例
@@ -53,7 +54,7 @@ bool Game::init()
         return false;
     game=this;
     //播放游戏中的音乐
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("gameMusic.mp3",true);
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("game_bg_music.mp3",true);
     //初始化游戏数据
     score=0;//初始化当前积分分数
     diamond_y=0;//黄 初始化当前钻石数目
@@ -84,10 +85,10 @@ bool Game::init()
 //        mapname = "map_yello.png";
 //    else
 //        mapname = "map_night.png";
-    Map * map = Map::createMap("map_night.png",2);
-    addChild(map);
+    //Map * map = Map::createMap("map_night.png",2);
+    //addChild(map);
     //云层
-    Map * clouds = Map::createMap("clouds.png",-2);
+    //Map * clouds = Map::createMap("clouds.png",-2);
     //addChild(clouds);
     //离子
     CCParticleSystemQuad * light = CCParticleSystemQuad::create("particle_color.plist");
@@ -459,15 +460,16 @@ void Game::showMessage()
  */
 void Game::gameOperation()
 {
-    //添加一个按钮用于结束游戏并返回
+    // 1.添加一个按钮用于结束游戏并返回
     auto stopButton=CCMenuItemImage::create("stop.png", "shadow.png", this, menu_selector(Game::goHome));
     stopButton->setPosition(ccp(ScreenWidth/3+50,ScreenHeight/2-100));
     
-    //添加一个按钮用于暂停游戏
+    // 2.添加一个按钮用于暂停游戏
     auto resumeButton=CCMenuItemImage::create("pause.png", "shadow.png", this, menu_selector(Game::pauseGame));
     resumeButton->setPosition(ccp(ScreenWidth/3+50,ScreenHeight/2-200));
     CCMenu* menu =CCMenu::create(stopButton,resumeButton,NULL);
-    addChild(menu);
+    // 添加操作菜单，z轴最高
+    addChild(menu,1);
 }
 
 /**
@@ -541,32 +543,41 @@ void Game::lostGame()
  */
 void Game:: pauseGame()
 {
+    //按钮音效
     SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    //游戏暂停
     CCDirector::sharedDirector()->pause();
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();//暂停背景音乐
-
-    CCMenuItemImage *resumeButton=CCMenuItemImage::create("resume.png", "shadow.png", this, menu_selector(Game::resumeGame));//resume
-    CCMenu *menu =CCMenu::create(resumeButton,NULL);
-    menu->setPosition(ccp(ScreenWidth/2,ScreenHeight/3));
-    CCLayerColor *pauseLayer = CCLayerColor::create(ccc4(0, 0, 0, 190),ScreenWidth,ScreenHeight);//灰色的layer层
-    pauseLayer->addChild(menu);
-    addChild(pauseLayer,1,521);//1为z轴，默认为0，z轴大的覆盖z轴小的
-    //添加返回提示图片
+    //暂停背景音乐
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    
+    // 0.暂停界面灰色layer层
+    CCLayerColor *pauseLayer = CCLayerColor::create(ccc4(0, 0, 0, 190),ScreenWidth,ScreenHeight);
+    pauseLayer->setTag(tagCallBack);
+    // 1.添加返回提示图片
     CCSprite *callback=CCSprite::create("callback.png");
     callback->setPosition(ccp(ScreenWidth/2,ScreenHeight/2));
-    addChild(callback,1,522);
+    pauseLayer->addChild(callback,1);
+    // 1.暂停返回按钮
+    CCMenuItemImage *resumeButton=CCMenuItemImage::create("resume.png", "shadow.png", this, menu_selector(Game::resumeGame));
+    CCMenu *menu =CCMenu::create(resumeButton,NULL);
+    menu->setPosition(ccp(ScreenWidth/2,ScreenHeight/3));
+    pauseLayer->addChild(menu);
+    // 添加暂停界面
+    addChild(pauseLayer,1);//1为z轴，默认为0，z轴大的覆盖z轴小的
 }
 /**
  * 继续游戏
  */
 void Game:: resumeGame()
 {
+    //音效
     SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
-
-    this->removeChildByTag(521, true);
-    this->removeChildByTag(522, true);
+    //移除暂停界面
+    this->removeChildByTag(tagCallBack, true);
+    //游戏继续
     CCDirector::sharedDirector()->resume();
-    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();//继续背景音乐
+    //继续背景音乐
+    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
 /**
  * 返回主菜单
