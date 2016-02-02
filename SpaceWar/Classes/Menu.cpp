@@ -16,6 +16,7 @@ enum tag{
     tagSwitchControl,//模式切换按钮组件
     tagColorLayer,//颜色遮罩层
 };
+
 /**
  * 构造函数
  * 实例化一个菜单页面
@@ -30,6 +31,7 @@ CCScene* Menu::scene()
     scene->addChild(layer);
     return scene;
 }
+
 /**
  * 初始化菜单
  */
@@ -49,7 +51,6 @@ bool Menu::init()
     //创建精灵贴图当菜单背景
     CCSprite* menuBg = CCSprite::create("menu_bg.png");
     menuBg->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
-    
     //添加背景子视图
     addChild(menuBg);
     
@@ -140,6 +141,7 @@ bool Menu::init()
     this->scheduleUpdate();
     return true;
 }
+
 /**
  * 控制右边飞机的显示与隐藏
  */
@@ -158,6 +160,7 @@ void Menu::update(float time)
         show=true;
     }
 }
+
 /**
  * 按下开始游戏按钮
  */
@@ -177,8 +180,9 @@ void Menu::playIsPressed(){
     //切换到游戏场景
     CCDirector::sharedDirector()->replaceScene(transition::create(turnTime, Game::scene()));
 }
+
 /**
- *按下战绩按钮
+ * 按下战绩按钮
  */
 void Menu::scoreIsPressed(){
     // 1.播放点击按钮音效
@@ -189,7 +193,7 @@ void Menu::scoreIsPressed(){
     //标记颜色层
     aboutLayer->setTag(tagColorLayer);
     //关闭按钮
-    CCMenuItemImage *_return = CCMenuItemImage::create("menu_close_purple.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
+    CCMenuItemImage *_return = CCMenuItemImage::create("menu_close_button.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
     //按钮位置
     _return->setPosition(ccp(220, 120));
     //创建承载按钮的菜单
@@ -245,57 +249,64 @@ void Menu::scoreIsPressed(){
     aboutLayer->addChild(ttfSkillNum);
     aboutLayer->addChild(ttfDistance);
 }
-//按下关于我们
+
+/*
+ * 按下关于我们
+ */
 void Menu::aboutIsPressed(){
     //播放点击按钮音效
     SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
-    //颜色层
-    CCLayerColor *aboutLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
-    //标记颜色层
-    aboutLayer->setTag(tagColorLayer);
-    //关闭按钮
-    CCMenuItemImage *_return=CCMenuItemImage::create("menu_close_blue.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
-    _return->setPosition(ccp(170, 190));
-    CCMenu *us_menu = CCMenu::create(_return,NULL);
-    us_menu->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
-    //对话框
-    CCSprite *sprtDialog = CCSprite::create("menu_dialog_about.png");
+    
+    // 0.颜色层
+    CCLayerColor *grayLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
+    //标记
+    grayLayer->setTag(tagColorLayer);
+    addChild(grayLayer);
+    // 1.对话框
+    CCSprite *sprtDialog = CCSprite::create("menu_pop_bg.png");
     sprtDialog->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
-    //开发者信息
+    grayLayer->addChild(sprtDialog);
+    // 2.关闭按钮
+    CCMenuItemImage *closeButton=CCMenuItemImage::create("menu_close_button.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
+    closeButton->setPosition(ccp(sprtDialog->getContentSize().width-closeButton->getContentSize().width, sprtDialog->getContentSize().height-closeButton->getContentSize().height));
+    CCMenu *us_menu = CCMenu::create(closeButton,NULL);
+    us_menu->setPosition(ccp(0, 0));
+    sprtDialog->addChild(us_menu);
+    // 2.开发者信息
     CCLabelTTF *about=CCLabelTTF::create("开发者：\n蒋信厚",font2,40);
     about->setColor(ccc3(102, 0, 153));
     about->setPosition(ccp(sprtDialog->getContentSize().width/2,sprtDialog->getContentSize().height/2));
     sprtDialog->addChild(about);
-    aboutLayer->addChild(sprtDialog);
-    aboutLayer->addChild(us_menu);
-    addChild(aboutLayer);
 }
-//按下设置
+
+/*
+ * 按下设置
+ */
 void Menu::setIsPressed(){
     //播放点击按钮音效
     SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
-    //颜色层
-    CCLayerColor *aboutLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
-    //标记颜色层
-    aboutLayer->setTag(tagColorLayer);
-    //关闭按钮
-    CCMenuItemImage *_return = CCMenuItemImage::create("menu_close_blue.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
-    _return->setPosition(ccp(-125, 155));
-    //音乐开关
+    // 0.颜色层
+    CCLayerColor *grayLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
+    //标记
+    grayLayer->setTag(tagColorLayer);
+    addChild(grayLayer);
+    // 1.对话框
+    CCSprite *sprtDialog = CCSprite::create("menu_pop_bg.png");
+    sprtDialog->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
+    grayLayer->addChild(sprtDialog);
+    // 2.关闭按钮
+    CCMenuItemImage *closeButton=CCMenuItemImage::create("menu_close_button.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
+    closeButton->setPosition(ccp(sprtDialog->getContentSize().width-closeButton->getContentSize().width, sprtDialog->getContentSize().height-closeButton->getContentSize().height));
+    // 2.音乐开关
     CCMenuItemImage *music_off = CCMenuItemImage::create("menu_music_on.png", "menu_shadow.png",this,menu_selector(Menu::musicOff));
     CCMenuItemImage *music_on = CCMenuItemImage::create("menu_music_off.png", "menu_shadow.png",this,menu_selector(
         Menu::musicOn));
-    music_on->setPosition(ccp(-50,0));
-    music_off->setPosition(ccp(50,0));
-    CCMenu *us_menu = CCMenu::create(_return,music_on,music_off,NULL);
-    us_menu->setPosition(ccp(ScreenWidth/2,ScreenHeight/2));
-    //对话框
-    CCSprite *sprtDialog = CCSprite::create("menu_set_bg.png");
-    sprtDialog->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
-    //将音量滑动条放到对话框上
-    aboutLayer->addChild(sprtDialog);
-    aboutLayer->addChild(us_menu);
-    addChild(aboutLayer);
+    music_on->setPosition(ccp(sprtDialog->getContentSize().width/2-50,sprtDialog->getContentSize().height/2));
+    music_off->setPosition(ccp(sprtDialog->getContentSize().width/2+50,sprtDialog->getContentSize().height/2));
+    
+    CCMenu *set_menu = CCMenu::create(closeButton,music_on,music_off,NULL);
+    set_menu->setPosition(ccp(0, 0));
+    sprtDialog->addChild(set_menu);
 }
 /**
  *关闭关于我们
