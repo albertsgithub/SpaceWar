@@ -41,6 +41,9 @@ bool Menu::init()
     {
         return false;
     }
+    // 打印屏幕尺寸
+    cout<<"screenWidth:"<<ScreenWidth<<endl;
+    cout<<"screenHeight:"<<ScreenHeight<<endl;
     // 0.初始化右边飞机显示状态
     show = true;
     
@@ -274,8 +277,7 @@ void Menu::aboutIsPressed(){
     us_menu->setPosition(ccp(0, 0));
     sprtDialog->addChild(us_menu);
     // 2.开发者信息
-    CCLabelTTF *about=CCLabelTTF::create("开发者：\n蒋信厚",font2,40);
-    about->setColor(ccc3(102, 0, 153));
+    CCLabelTTF *about=CCLabelTTF::create("开发者(Developer)：\n蒋信厚(JiangXinhou)",font2,40);
     about->setPosition(ccp(sprtDialog->getContentSize().width/2,sprtDialog->getContentSize().height/2));
     sprtDialog->addChild(about);
 }

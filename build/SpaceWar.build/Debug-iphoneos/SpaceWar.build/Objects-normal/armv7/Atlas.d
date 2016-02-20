@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub项目托管/SpaceWar/SpaceWar/libs/extensions/spine/Atlas.cpp \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/Atlas.cpp \
   SpaceWar/libs/extensions/spine/Atlas.h \
   SpaceWar/libs/extensions/spine/extension.h \
   SpaceWar/libs/extensions/spine/Skeleton.h \

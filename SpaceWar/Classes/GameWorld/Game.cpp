@@ -77,19 +77,19 @@ bool Game::init()
     CC_SAFE_RETAIN(arrayEnemy);//增加敌人数组的一次引用
     
     //随机初始化地图
-//    char *mapname;
-//    int maptag = CCRANDOM_0_1()*10;
-//    if (maptag<5)
-//        mapname = "map_green.png";
-//    else if(maptag<7)
-//        mapname = "map_yello.png";
-//    else
-//        mapname = "map_night.png";
-    //Map * map = Map::createMap("map_night.png",2);
-    //addChild(map);
+    char *mapname;
+    int maptag = CCRANDOM_0_1()*10;
+    if (maptag<5)
+        mapname = "map_green.png";
+    else if(maptag<7)
+        mapname = "map_yello.png";
+    else
+        mapname = "map_night.png";
+    Map * map = Map::createMap(mapname,3);
+    addChild(map);
     //云层
-    //Map * clouds = Map::createMap("clouds.png",-2);
-    //addChild(clouds);
+    Map * clouds = Map::createMap("clouds.png",1);
+    addChild(clouds);
     //离子
     CCParticleSystemQuad * light = CCParticleSystemQuad::create("particle_color.plist");
     light->setPosition(ScreenWidth/2,ScreenHeight/1.5);

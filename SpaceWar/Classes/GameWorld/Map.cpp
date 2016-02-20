@@ -34,41 +34,44 @@ Map* Map::createMap(const char* fileName,int speed){
 void Map::mapInit(const char* fileName)
 {
     //第一张地图背景图
-    CCSprite * turnImg = CCSprite::create(fileName,CCRectMake(ScreenWidth*0.5, turnImg->getContentSize().height*0.5, ScreenWidth, turnImg->getContentSize().height));
+    CCSprite * turnImg = CCSprite::create(fileName);
+    turnImg->setPosition(ccp(ScreenWidth*0.5, turnImg->getContentSize().height*0.5));
     this->addChild(turnImg,0,tag_oneImg);
     
     //第二张地图背景图
-    CCSprite * turnImg2 =CCSprite::create(fileName,CCRectMake(ScreenWidth*0.5, turnImg2->getContentSize().height*1.5, ScreenWidth, turnImg2->getContentSize().height));
+    CCSprite * turnImg2 =CCSprite::create(fileName);
+    turnImg2->setPosition(ccp(ScreenWidth*0.5, turnImg2->getContentSize().height*1.5));
     this->addChild(turnImg2,0,tag_twoImg);
     //开启按帧更新
-    //this->scheduleUpdate();
+    this->scheduleUpdate();
 }
 /**
  *  地图更新
  *
- *  @param time <#time description#>
+ *  @param time
  */
 void Map::update(float time){
     CCSprite* sp1 = (CCSprite*)this->getChildByTag(tag_oneImg);
     CCSprite* sp2 = (CCSprite*)this->getChildByTag(tag_twoImg);
+    
     //当第一张地图超出屏幕外，将其重置坐标,接在最顶的图片上
     if(sp1->getPositionY()<=-sp1->getContentSize().height*0.5)
     {
-        sp1->setPosition(ccp(ScreenWidth*0.5,sp1->getContentSize().height*1.5));
+        sp1->setPosition(ccp(ScreenWidth*0.5,sp1->getContentSize().height*1.5-speed));
     }
     else
     {
-        sp1->setPosition(ccpAdd(sp1->getPosition(), ccp(0,speed)));
+        sp1->setPosition(ccpAdd(sp1->getPosition(), ccp(0,-speed)));
     }
-    //当第二张地图超出屏幕外，将其重置坐标,接在最顶的图片上
     
+    //当第二张地图超出屏幕外，将其重置坐标,接在最顶的图片上
     if(sp2->getPositionY()<=-sp2->getContentSize().height*0.5)
     {
-        sp2->setPosition(ccp(ScreenWidth*0.5,sp2->getContentSize().height*1.5));
+        sp2->setPosition(ccp(ScreenWidth*0.5,sp2->getContentSize().height*1.5-speed));
     }
     else
     {
-        sp2->setPosition(ccpAdd(sp2->getPosition(), ccp(0,speed)));
+        sp2->setPosition(ccpAdd(sp2->getPosition(), ccp(0,-speed)));
     }
 }
 /**
