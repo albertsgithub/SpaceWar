@@ -7,7 +7,7 @@
 //
 #include "EnemyBullet.h"
 /**
- * 子弹运动方式(向上)
+ * 子弹运动方式(向下)
  */
 void EnemyBullet::update(float time)
 {

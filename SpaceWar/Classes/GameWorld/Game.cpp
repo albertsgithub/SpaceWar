@@ -6,28 +6,22 @@
 //
 //
 #include "Game.h"
+
 /**
  * 枚举tag
  */
 enum tag
 {
-    tagPlayerMajor,//主机
-    tagPlayerAuxiliary,//辅机
-    tagBoss1,//boss1
-    tagDiamondTTF,
-    tagDiamondTTF1,
-    tagDiamondTTF2,
-    tagdistanceTTF,
-    tagScoreTTF,
-    tagKillCountTTF,
     tagCallBack
 };
+
 /**
  * 游戏单例
  */
 static Game * game;
+
 /**
- * 构造函数
+ * 游戏场景共享实例
  */
 Game * Game::sharedWorld()
 {
@@ -35,6 +29,7 @@ Game * Game::sharedWorld()
         return game;
     return NULL;
 }
+
 /**
  * 创建一个游戏场景
  */
@@ -45,6 +40,7 @@ CCScene* Game::scene()
     scene->addChild(layer);
     return scene;
 }
+
 /**
  * 游戏画面初始化
  */
@@ -52,10 +48,12 @@ bool Game::init()
 {
     if (!CCLayer::init())
         return false;
+    // 游戏场景实例
     game=this;
-    //播放游戏中的音乐
+    
+    // 播放游戏中的音乐
     SimpleAudioEngine::sharedEngine()->playBackgroundMusic("game_bg_music.mp3",true);
-    //初始化游戏数据
+    // 初始化游戏数据
     score=0;//初始化当前积分分数
     diamond_y=0;//黄 初始化当前钻石数目
     diamond_c=0;//水晶
@@ -76,15 +74,18 @@ bool Game::init()
     
     CC_SAFE_RETAIN(arrayEnemy);//增加敌人数组的一次引用
     
-    //随机初始化地图
+    // 随机初始化地图
     char *mapname;
+    string map_green = "map_green.png";
+    string map_yello = "map_yello.png";
+    string map_night = "map_night.png";
     int maptag = CCRANDOM_0_1()*10;
     if (maptag<5)
-        mapname = "map_green.png";
+        strlcpy(mapname, map_green.c_str(), map_green.length()+1);
     else if(maptag<7)
-        mapname = "map_yello.png";
+        strlcpy(mapname, map_yello.c_str(), map_yello.length()+1);
     else
-        mapname = "map_night.png";
+        strlcpy(mapname, map_night.c_str(), map_night.length()+1);
     Map * map = Map::createMap(mapname,3);
     addChild(map);
     //云层
@@ -95,7 +96,7 @@ bool Game::init()
     light->setPosition(ScreenWidth/2,ScreenHeight/1.5);
     addChild(light);
 
-    //道具槽
+    // 道具槽
     CCSprite *toolBox = CCSprite::create("toolBox.png");
     toolBox->setPosition(ccp(toolBox->getContentSize().width/2,toolBox->getContentSize().height/2+52));
     addChild(toolBox);
@@ -113,18 +114,20 @@ bool Game::init()
     addChild(toolPross2);
     toolPross2->runAction(CCRepeatForever::create(CCProgressTo::create(3,100)));
     toolPross2->setReverseDirection(true);
-    //主机
+    
+    //主机，根据辅机存不存在设置初始化出场位置
     if (plane0IsExist) {
-    Plane * playerMajor=Plane::createPlayer("plane_one.png",10,10,ScreenWidth/3,100);//精灵贴图、最大血量、初始化血量、初始位置
-        addChild(playerMajor,0,tagPlayerMajor);
+    playerMajor=Plane::createPlayer("plane_one.png",10,10,ScreenWidth/3,100);//精灵贴图、最大血量、初始化血量、初始位置
+        addChild(playerMajor,0);
     }else{
-    Plane * playerMajor=Plane::createPlayer("plane_second.png",15,15,ScreenWidth/2,100);//精灵贴图、最大血量、初始化血量、初始位置
-        addChild(playerMajor,0,tagPlayerMajor);
+    playerMajor=Plane::createPlayer("plane_second.png",15,15,ScreenWidth/2,100);//精灵贴图、最大血量、初始化血量、初始位置
+        addChild(playerMajor,0);
     }
+    
     //辅助机
     if (plane0IsExist) {
-        Plane0 * playerAuxiliary=Plane0::createPlayer("hero_purple1.png",5,5,ScreenWidth/3*2, 100);
-        addChild(playerAuxiliary,0,tagPlayerAuxiliary);
+        playerAuxiliary=Plane0::createPlayer("hero_purple1.png",5,5,ScreenWidth/3*2, 100);
+        addChild(playerAuxiliary,0);
     }
 
     setTouchEnabled(true);//开启多触点监听
@@ -133,15 +136,17 @@ bool Game::init()
     //游戏中的操作(暂停、结束)
     gameOperation();
 
+    // 计时器
     this->scheduleUpdate();
     this->schedule(schedule_selector(Game::createEnemy), 1,-1,5);//每1秒产生一次敌机,无限重复，第一次延迟5s
-    this->schedule(schedule_selector(Game::createBullet), 0.2,-1,3);//每0.5秒产生一次子弹，无限重复，第一次延迟3s
+    this->schedule(schedule_selector(Game::createBullet), 0.2,-1,3);//每0.2秒产生一次子弹，无限重复，第一次延迟3s
     this->schedule(schedule_selector(Game::createBullet0), 0.3, -1, 3);
     //更新距离
     this->schedule(schedule_selector(Game::setDistance), 0.1);//0.1s更新一次
 
     return true;
 }
+
 /**
  * 更新不断产生敌机
  */
@@ -150,43 +155,46 @@ void Game::createEnemy()
     Enemy *enemy0=NULL;
     enemy0->autoCreateEnemy();
 }
+
 /**
  * 产生主机子弹
  */
 void Game::createBullet()
 {
-    auto player = (Plane*)getChildByTag(tagPlayerMajor);
     if(planeIsExist)
     {
-        addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(player->getPosition().x+13,player->getPosition().y)
+        addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(playerMajor->getPosition().x+13,playerMajor->getPosition().y)
                                     ));
-        addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(player->getPosition().x-13,player->getPosition().y)
+        addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(playerMajor->getPosition().x-13,playerMajor->getPosition().y)
                                     ));
         //子弹音效
         SimpleAudioEngine::sharedEngine()->playEffect("effect_bullet.mp3");
     }
    }
+
 /**
  * 产生辅机子弹
  */
 void Game::createBullet0()
 {
-    Plane0* player0 = (Plane0*)getChildByTag(tagPlayerAuxiliary);
     if(Game::sharedWorld()->plane0IsExist)
     {//子弹参数：图片-x速度-y速度-初始位置
-        addChild(Bullet::createBullet("bullet_blue.png",5,15,ccp(player0->getPosition().x+5,player0->getPosition().y+20)));
-        addChild(Bullet::createBullet("bullet_blue.png",-5,15,ccp(player0->getPosition().x-5,player0->getPosition().y+20)));
-        addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(player0->getPosition().x-10,player0->getPosition().y+20)));
-        addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(player0->getPosition().x+10,player0->getPosition().y+20)));
+        addChild(Bullet::createBullet("bullet_blue.png",5,15,ccp(playerAuxiliary->getPosition().x+5,playerAuxiliary->getPosition().y+20)));
+        addChild(Bullet::createBullet("bullet_blue.png",-5,15,ccp(playerAuxiliary->getPosition().x-5,playerAuxiliary->getPosition().y+20)));
+        addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x-10,playerAuxiliary->getPosition().y+20)));
+        addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x+10,playerAuxiliary->getPosition().y+20)));
     }
 }
+
 /**
  * 隐藏提示
  */
 void Game::showWarn()
 {
     //击杀boss提示
-    char *warn="YOU HAVE KILLED THE BOSS!";
+    string warn_str="YOU HAVE KILLED THE BOSS!";
+    char *warn;
+    strlcpy(warn, warn_str.c_str(),warn_str.length()+1);
     CCLabelTTF *message=CCLabelTTF::create(warn, font1, 30);
     message->setPosition(ccp(ScreenWidth/2, ScreenHeight/3*2));
     message->setColor(ccc3(255, 0, 0));
@@ -200,56 +208,53 @@ void Game::update(float time)
 {
     //设置boss的登场
     //当到达一定距离并且当前不存在boss时，添加boss
-    if(instance>1000&&instance<2000&&bossIsExist==false)
-    {
-    Boss *boss1=Boss::createBoss("boss.png",0);
-    addChild(boss1,0,tagBoss1);
-    bossIsExist=true;
-    }
-    if(instance>4000&&instance<6000&&bossIsExist==false)
-    {
-        Boss *boss1=Boss::createBoss("menu_plane_left1.png",1);
-        addChild(boss1,0,tagBoss1);
-        bossIsExist=true;
-    }
-    if(instance>7000&&bossIsExist==false)
-    {
-        Boss *boss1=Boss::createBoss("purple1.png",2);
-        addChild(boss1,0,tagBoss1);
-        bossIsExist=true;
-    }
+//    //1.boss1
+//    if(instance>1000&&instance<2000&&bossIsExist==false)
+//    {
+//    boss=Boss::createBoss("boss.png",0);
+//    addChild(boss,0);
+//    bossIsExist=true;
+//    }
+//    //2.boss2
+//    if(instance>4000&&instance<6000&&bossIsExist==false)
+//    {
+//        boss=Boss::createBoss("menu_plane_left1.png",1);
+//        addChild(boss,0);
+//        bossIsExist=true;
+//    }
+//    //3.boss3
+//    if(instance>7000&&bossIsExist==false)
+//    {
+//        boss=Boss::createBoss("purple1.png",2);
+//        addChild(boss,0);
+//        bossIsExist=true;
+//    }
     //更新钻石数目
-    //黄钻
-    std::string strDiamond=Convert2String(diamond_y);
-    CCLabelTTF* ttfa = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(tagDiamondTTF1);
-    ttfa->setString(strDiamond.c_str());
     //水晶钻
-    std::string strDiamond1=Convert2String(diamond_c);
-    CCLabelTTF* ttfb = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(tagDiamondTTF);
-    ttfb->setString(strDiamond1.c_str());
+    string strDiamond1=Convert2String(diamond_c);
+    labelDiamond->setString(strDiamond1.c_str());
+    //黄钻
+    string strDiamond=Convert2String(diamond_y);
+    labelDiamond1->setString(strDiamond.c_str());
     //红钻
-    std::string strDiamond2=Convert2String(diamond_r);
-    CCLabelTTF* ttfc =(CCLabelTTF*)Game::sharedWorld()->getChildByTag(tagDiamondTTF2);
-    ttfc->setString(strDiamond2.c_str());
+    string strDiamond2=Convert2String(diamond_r);
+    labelDiamond2->setString(strDiamond2.c_str());
     //更新血量
     //boss
-//    if (bossIsExist) {
-//        Boss *tBoss=(Boss*)getChildByTag(tag_boss1);
-//        std::string strBossHp=Convert2String(tBoss->bossHp-1);
-//        CCLabelTTF* ttfa1 = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(111);
-//        ttfa1->setString(strBossHp.c_str());
-//    }
+    if (bossIsExist) {
+        string strBossHp=Convert2String(boss->bossHp-1);
+        CCLabelTTF* ttfa1 = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(111);
+        ttfa1->setString(strBossHp.c_str());
+    }
     //plane
     if (planeIsExist) {
-        Plane *tPlane=(Plane*)getChildByTag(tagPlayerMajor);
-        std::string strPlaneHp=Convert2String(tPlane->hp-1);
+        string strPlaneHp=Convert2String(playerMajor->hp-1);
         CCLabelTTF* ttfb2 = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(222);
         ttfb2->setString(strPlaneHp.c_str());
     }
     //plane0
     if (plane0IsExist) {
-        Plane0 *tPlane0=(Plane0*)getChildByTag(tagPlayerAuxiliary);
-        std::string strPlane0Hp=Convert2String(tPlane0->hp-1);
+        string strPlane0Hp=Convert2String(playerAuxiliary->hp-1);
         CCLabelTTF* ttfc3 =(CCLabelTTF*)Game::sharedWorld()->getChildByTag(333);
         ttfc3->setString(strPlane0Hp.c_str());
     }
@@ -267,8 +272,7 @@ void Game::setDistance()
 {
     instance+=10;
     std::string strInstance=Convert2String(instance);
-    CCLabelTTF* ttf = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(tagdistanceTTF);
-    ttf->setString(strInstance.c_str());
+    labelDistance->setString(strInstance.c_str());
 }
 
 /**
@@ -278,8 +282,7 @@ void Game::addScore(float _value)
 {
     score+=_value;
     std::string strScore=Convert2String(score);
-    CCLabelTTF* ttf = (CCLabelTTF*)getChildByTag(tagScoreTTF);
-    ttf->setString(strScore.c_str());
+    labelScores->setString(strScore.c_str());
 }
 
 /**
@@ -289,64 +292,9 @@ void Game::addKillCount(float _value)
 {
     killNum+=_value;
     std::string strKillNum=Convert2String(killNum);
-    CCLabelTTF* ttf=(CCLabelTTF*)getChildByTag(tagKillCountTTF);
-    ttf->setString(strKillNum.c_str());
+    labelKillCount->setString(strKillNum.c_str());
 }
-/**
- * 显示血量,红蓝各五个,默认都不可见
- */
-void Game::showHp(){
-    CCSprite* redHp1=CCSprite::create("red_hp.png");
-    redHp1->setTag(1);
-    redHp1->setPosition(ccp(50*(0.5), 25));
-    redHp1->setVisible(false);
-    addChild(redHp1);
-    CCSprite* redHp2=CCSprite::create("red_hp.png");
-    redHp2->setTag(2);
-    redHp2->setPosition(ccp(50*(1+0.5), 25));
-    redHp2->setVisible(false);
-    addChild(redHp2);
-    CCSprite* redHp3=CCSprite::create("red_hp.png");
-    redHp3->setTag(3);
-    redHp3->setPosition(ccp(50*(2+0.5), 25));
-    redHp3->setVisible(false);
-    addChild(redHp3);
-    CCSprite* redHp4=CCSprite::create("red_hp.png");
-    redHp4->setTag(4);
-    redHp4->setPosition(ccp(50*(3+0.5), 25));
-    redHp4->setVisible(false);
-    addChild(redHp4);
-    CCSprite* redHp5=CCSprite::create("red_hp.png");
-    redHp5->setTag(5);
-    redHp5->setPosition(ccp(50*(4+0.5), 25));
-    redHp5->setVisible(false);
-    addChild(redHp5);
-    CCSprite* blueHp1=CCSprite::create("blue_hp.png");
-    blueHp1->setTag(6);
-    blueHp1->setPosition(ccp(ScreenWidth-50*(0.5), 25));
-    blueHp1->setVisible(false);
-    addChild(blueHp1);
-    CCSprite* blueHp2=CCSprite::create("blue_hp.png");
-    blueHp2->setTag(7);
-    blueHp2->setPosition(ccp(ScreenWidth-50*(1+0.5), 25));
-    blueHp2->setVisible(false);
-    addChild(blueHp2);
-    CCSprite* blueHp3=CCSprite::create("blue_hp.png");
-    blueHp3->setTag(8);
-    blueHp3->setPosition(ccp(ScreenWidth-50*(2+0.5), 25));
-    blueHp3->setVisible(false);
-    addChild(blueHp3);
-    CCSprite* blueHp4=CCSprite::create("blue_hp.png");
-    blueHp4->setTag(9);
-    blueHp4->setPosition(ccp(ScreenWidth-50*(3+0.5), 25));
-    blueHp4->setVisible(false);
-    addChild(blueHp4);
-    CCSprite* blueHp5=CCSprite::create("blue_hp.png");
-    blueHp5->setTag(10);
-    blueHp5->setPosition(ccp(ScreenWidth-50*(4+0.5), 25));
-    blueHp5->setVisible(false);
-    addChild(blueHp5);
-}
+
 /**
  * 显示数据信息
  */
@@ -355,8 +303,7 @@ void Game::showMessage()
     //显示血量
     //boss
     if (bossIsExist) {
-        Boss *tBoss=(Boss*)getChildByTag(tagBoss1);
-        std::string strBossHp=Convert2String(tBoss->bossHp);
+        string strBossHp=Convert2String(boss->bossHp);
         CCLabelTTF* labelBossHp = CCLabelTTF::create(strBossHp.c_str(), font1, 30);
         labelBossHp->setPosition(ccp(30,ScreenHeight-250));
         labelBossHp->setColor(ccc3(255, 0, 0));
@@ -364,8 +311,7 @@ void Game::showMessage()
     }
     //plane
     if (planeIsExist) {
-        Plane *tPlane=(Plane*)getChildByTag(tagPlayerMajor);
-        std::string strPlaneHp=Convert2String(tPlane->hp);
+        string strPlaneHp=Convert2String(playerMajor->hp);
         CCLabelTTF* labelPlaneHp = CCLabelTTF::create(strPlaneHp.c_str(), font1, 30);
         labelPlaneHp->setPosition(ccp(30,ScreenHeight-300));
         labelPlaneHp->setColor(ccc3(0, 0, 255));
@@ -373,8 +319,7 @@ void Game::showMessage()
     }
     //plane0
     if (plane0IsExist) {
-        Plane0 *tPlane0=(Plane0*)getChildByTag(tagPlayerMajor);
-        std::string strPlane0Hp=Convert2String(tPlane0->hp);
+        string strPlane0Hp=Convert2String(playerMajor->hp);
         CCLabelTTF* labelPlane0Hp = CCLabelTTF::create(strPlane0Hp.c_str(), font1, 30);
         labelPlane0Hp->setPosition(ccp(30,ScreenHeight-350));
         labelPlane0Hp->setColor(ccc3(0,225, 0));
@@ -387,10 +332,10 @@ void Game::showMessage()
     
     //分数
     std::string strScore=Convert2String(score);
-    CCLabelTTF* labelScores = CCLabelTTF::create(strScore.c_str(), font1, 20);
+    labelScores = CCLabelTTF::create(strScore.c_str(), font1, 20);
     labelScores->setPosition(ccp(110,ScreenHeight-52));
     labelScores->setColor(ccc3(255, 0, 255));
-    this->addChild(labelScores,10,tagScoreTTF);
+    this->addChild(labelScores,10);
     
     //杀敌人数
     CCLabelTTF* labelKill = CCLabelTTF::create("杀敌:", font1, 20);
@@ -399,10 +344,10 @@ void Game::showMessage()
     
     //杀敌数字加入layer中
     std::string strKillCount=Convert2String(killNum);
-    CCLabelTTF* labelKillCount = CCLabelTTF::create(strKillCount.c_str(), font2, 20);
+    labelKillCount = CCLabelTTF::create(strKillCount.c_str(), font2, 20);
     labelKillCount->setPosition(ccp(110,ScreenHeight-82));
     labelKillCount->setColor(ccc3(255, 0, 255));
-    this->addChild(labelKillCount,10,tagKillCountTTF);
+    this->addChild(labelKillCount,10);
     
     //距离
     CCLabelTTF* labelDis = CCLabelTTF::create("距离:", font1, 20);
@@ -411,10 +356,10 @@ void Game::showMessage()
     
     //距离数字加入layer中
     std::string strDistance=Convert2String(instance);
-    CCLabelTTF* labelDistance = CCLabelTTF::create(strDistance.c_str(), font2, 20);
+    labelDistance = CCLabelTTF::create(strDistance.c_str(), font2, 20);
     labelDistance->setPosition(ccp(110,ScreenHeight-112));
     labelDistance->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDistance,10,tagdistanceTTF);
+    this->addChild(labelDistance,10);
     
     //钻石
     auto diamond0 =CCSprite::create("diamond_crystal.png");
@@ -437,23 +382,23 @@ void Game::showMessage()
     
     
     //钻石数字加入layer中
-    std::string strDiamond=Convert2String(diamond_c);
-    CCLabelTTF* labelDiamond = CCLabelTTF::create(strDiamond.c_str(), font2, 20);
+    string strDiamond=Convert2String(diamond_c);
+    labelDiamond = CCLabelTTF::create(strDiamond.c_str(), font2, 20);
     labelDiamond->setPosition(ccp(110,ScreenHeight-142));
     labelDiamond->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDiamond,10,tagDiamondTTF);
+    this->addChild(labelDiamond,10);
     
-    std::string strDiamond1=Convert2String(diamond_y);
-    CCLabelTTF* labelDiamond1 = CCLabelTTF::create(strDiamond1.c_str(), font2, 20);
+    string strDiamond1=Convert2String(diamond_y);
+    labelDiamond1 = CCLabelTTF::create(strDiamond1.c_str(), font2, 20);
     labelDiamond1->setPosition(ccp(110,ScreenHeight-172));
     labelDiamond1->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDiamond1,10,tagDiamondTTF1);
+    this->addChild(labelDiamond1,10);
     
-    std::string strDiamond2=Convert2String(diamond_r);
-    CCLabelTTF* labelDiamond2 = CCLabelTTF::create(strDiamond2.c_str(), font2, 20);
+    string strDiamond2=Convert2String(diamond_r);
+    labelDiamond2 = CCLabelTTF::create(strDiamond2.c_str(), font2, 20);
     labelDiamond2->setPosition(ccp(110,ScreenHeight-202));
     labelDiamond2->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDiamond2,10,tagDiamondTTF2);
+    this->addChild(labelDiamond2,10);
 }
 /**
  * 游戏中的操作
@@ -510,12 +455,7 @@ void Game::lostGame()
     int oldDiamond_r =atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_diamond_r","0").c_str());
         CCUserDefault::sharedUserDefault()->setStringForKey("user_diamond_r", Convert2String(oldDiamond_r+diamond_r));
         CCUserDefault::sharedUserDefault()->flush();
-    cout<<"分数"<<endl;
-    cout<<oldScore<<"/"<<score<<endl;
-    cout<<"杀敌数"<<endl;
-    cout<<oldKillNum<<"/"<<killNum<<endl;
-    cout<<"距离"<<endl;
-    cout<<oldInstance<<"/"<<instance<<endl;
+
     //添加失败界面
     auto layer = CCLayerColor::create(ccc4(0, 0, 0, 190), ScreenWidth, ScreenHeight);
     CCSprite* sp = CCSprite::create("game_lost.png");
@@ -600,24 +540,6 @@ void Game::goHome()
 }
 
 /**
- * 获取主角
- */
-Plane* Game::getPlayer()
-{
-    Plane* player = (Plane*)Game::sharedWorld()->getChildByTag(tagPlayerMajor);
-    return player;
-}
-Plane* Game::getPlayer0()
-{
-    Plane* player0 = (Plane*)Game::sharedWorld()->getChildByTag(tagPlayerAuxiliary);
-    return player0;
-}
-//Boss* Game::getBoss()
-//{
-//    auto theBoss=(Boss*)getChildByTag(tag_boss1);
-//    return theBoss;
-//}
-/**
  * 计算两点之间的距离
  */
 float Game::Distance(CCPoint point1,CCPoint point2)
@@ -643,10 +565,8 @@ void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
     for (; iter !=pTouches->end(); iter++)
     {
         //获取两个飞机对象
-        CCSprite *sp2 = (CCSprite*)this->getChildByTag(tagPlayerAuxiliary);
-        CCSprite *sp1 = (CCSprite*)this->getChildByTag(tagPlayerMajor);
-        CCPoint point1=sp1->getPosition();
-        CCPoint point2=sp2->getPosition();
+        CCPoint point1=playerMajor->getPosition();
+        CCPoint point2=playerAuxiliary->getPosition();
         CCTouch *pTouch = (CCTouch*)(*iter);
         CCPoint location = pTouch->getLocation();
         //根据触点与两个飞机之间的距离判断触控情况
@@ -655,27 +575,26 @@ void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
         if (pTouch->getID()==0)
         {
             if (Distance(location, point1)<Distance(location, point2)&&Distance(location, point1)<100.0) {
-                sp1->setPosition(location);
+                playerMajor->setPosition(location);
             }
             else if(Distance(location, point2)<100.0)
-                sp2->setPosition(location);
+                playerAuxiliary->setPosition(location);
         }
         else if (pTouch->getID()==1)
         {
             if (Distance(location, point2)<Distance(location, point1)&&Distance(location, point2)<100.0) {
-                sp2->setPosition(location);
+                playerAuxiliary->setPosition(location);
             }
             else if(Distance(location, point1)<100.0)
-                sp1->setPosition(location);
+                playerMajor->setPosition(location);
         }
     }
     }else{
-        CCSprite *sp1 = (CCSprite*)this->getChildByTag(tagPlayerMajor);
-        CCPoint point1=sp1->getPosition();
+        CCPoint point1=playerMajor->getPosition();
         CCTouch *pTouch = (CCTouch*)(*iter);
         CCPoint location = pTouch->getLocation();
-        if (Distance(point1, location)<=sp1->getContentSize().width){
-            sp1->setPosition(location);
+        if (Distance(point1, location)<=playerMajor->getContentSize().width){
+            playerMajor->setPosition(location);
         }
     }
 }
@@ -687,10 +606,6 @@ void Game::onExit()
 {
     this->unscheduleUpdate();
     this->unscheduleAllSelectors();
-//    this->unschedule(schedule_selector(Game::createEnemy));
-//    this->unschedule(schedule_selector(Game::createBullet));
-//    this->unschedule(schedule_selector(Game::createBullet0));
-//    this->unschedule(schedule_selector(Game::setDistance));
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CCLayer::onExit();
 }

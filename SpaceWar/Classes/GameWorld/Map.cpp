@@ -34,14 +34,14 @@ Map* Map::createMap(const char* fileName,int speed){
 void Map::mapInit(const char* fileName)
 {
     //第一张地图背景图
-    CCSprite * turnImg = CCSprite::create(fileName);
+    turnImg = CCSprite::create(fileName);
     turnImg->setPosition(ccp(ScreenWidth*0.5, turnImg->getContentSize().height*0.5));
-    this->addChild(turnImg,0,tag_oneImg);
+    this->addChild(turnImg,0);
     
     //第二张地图背景图
-    CCSprite * turnImg2 =CCSprite::create(fileName);
+    turnImg2 =CCSprite::create(fileName);
     turnImg2->setPosition(ccp(ScreenWidth*0.5, turnImg2->getContentSize().height*1.5));
-    this->addChild(turnImg2,0,tag_twoImg);
+    this->addChild(turnImg2,0);
     //开启按帧更新
     this->scheduleUpdate();
 }
@@ -51,27 +51,25 @@ void Map::mapInit(const char* fileName)
  *  @param time
  */
 void Map::update(float time){
-    CCSprite* sp1 = (CCSprite*)this->getChildByTag(tag_oneImg);
-    CCSprite* sp2 = (CCSprite*)this->getChildByTag(tag_twoImg);
     
     //当第一张地图超出屏幕外，将其重置坐标,接在最顶的图片上
-    if(sp1->getPositionY()<=-sp1->getContentSize().height*0.5)
+    if(turnImg->getPositionY()<=-turnImg->getContentSize().height*0.5)
     {
-        sp1->setPosition(ccp(ScreenWidth*0.5,sp1->getContentSize().height*1.5-speed));
+        turnImg->setPosition(ccp(ScreenWidth*0.5,turnImg->getContentSize().height*1.5-speed));
     }
     else
     {
-        sp1->setPosition(ccpAdd(sp1->getPosition(), ccp(0,-speed)));
+        turnImg->setPosition(ccpAdd(turnImg->getPosition(), ccp(0,-speed)));
     }
     
     //当第二张地图超出屏幕外，将其重置坐标,接在最顶的图片上
-    if(sp2->getPositionY()<=-sp2->getContentSize().height*0.5)
+    if(turnImg2->getPositionY()<=-turnImg2->getContentSize().height*0.5)
     {
-        sp2->setPosition(ccp(ScreenWidth*0.5,sp2->getContentSize().height*1.5-speed));
+        turnImg2->setPosition(ccp(ScreenWidth*0.5,turnImg2->getContentSize().height*1.5-speed));
     }
     else
     {
-        sp2->setPosition(ccpAdd(sp2->getPosition(), ccp(0,-speed)));
+        turnImg2->setPosition(ccpAdd(turnImg2->getPosition(), ccp(0,-speed)));
     }
 }
 /**

@@ -11,18 +11,15 @@
 
 #include "Prefix.h"
 
-//枚举两张地图背景的交替出现
-enum
-{
-    tag_oneImg,
-    tag_twoImg,
-};
-
 class Map : public cocos2d::CCLayer
 {
 public:
     //地图滚动速度
     int speed;
+    
+    //两张地图
+    CCSprite * turnImg;
+    CCSprite * turnImg2;
     
     //实例化函数
     static Map* createMap(const char* fileName,int speed);

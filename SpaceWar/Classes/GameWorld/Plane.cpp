@@ -14,7 +14,6 @@
  */
 enum tag
 {
-    tagProtect,//护罩
     tagBoss1,//boss1
     tagPlayerMajor,//主机
     tagPlayerAuxiliary,//辅机
@@ -56,10 +55,9 @@ void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
     //主机播放帧动画
     this->runAction(createAnimate(fileName));
     //添加无敌状态的保护罩
-    CCSprite *sp_star = CCSprite::create("game_protect.png");
+    sp_star = CCSprite::create("game_protect.png");
     sp_star->setPosition(ccp(this->getContentSize().width/2,this->getContentSize().height/2+10));
     sp_star->setVisible(false);
-    sp_star->setTag(tagProtect);
     this->addChild(sp_star);
     //初始化主角出场动作
     //出场塞倍儿曲线
@@ -80,6 +78,7 @@ void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
     //检测碰撞、吃道具的更新
     this->scheduleUpdate();
 }
+
 /**
  * 系统帧更新，检测与敌机碰撞
  */
@@ -106,6 +105,7 @@ void Plane::update(float time)
         }
     }
 }
+
 /**
  *碰撞处理函数
  */
@@ -118,7 +118,7 @@ void Plane::collideWithEnemy()
     hp--;
     if(hp<=0)
     {
-        Plane0 *plane0_temp=(Plane0*)Game::sharedWorld()->getChildByTag(tagPlayerAuxiliary);
+        Plane0 *plane0_temp= Game::sharedWorld()->playerAuxiliary;
         if (CCUserDefault::sharedUserDefault()->getBoolForKey("choosedModel",true)){
             plane0_temp->playerWasDead();
         }
@@ -142,6 +142,7 @@ void Plane::collideWithEnemy()
         Plane::startStrong(5);
     }
 }
+
 /**
  * 制作主机动画
  */
@@ -159,33 +160,34 @@ CCAnimate* Plane::createAnimate(const char* fileName)
     auto animate_wellcome = CCAnimate::create(animation_plane);
     return animate_wellcome;
 }
+
 /**
  * 开始无敌状态
  */
 void Plane::startStrong(float strongTime)
 {
     isStrong=true;
-    auto sp_temp = getChildByTag(tagProtect);
     //显示无敌标志
-    sp_temp->setVisible(true);
+    sp_star->setVisible(true);
     //闪烁
     this->schedule(schedule_selector(Plane::shine), 0.05, -1, 0);
     //三秒后结束无敌状态
     this->schedule(schedule_selector(Plane::endStrong), 1, 1, strongTime);
 }
+
 /**
  * 结束无敌
  */
 void Plane::endStrong()
 {
-    auto sp_temp1 =getChildByTag(tagProtect);
     //隐藏无敌标志
-    sp_temp1->setVisible(false);
+    sp_star->setVisible(false);
     this->unschedule(schedule_selector(Plane::shine));
     this->setVisible(true);
     isStrong=false;
     this->unschedule(schedule_selector(Plane::endStrong));
 }
+
 /**
  * 无敌时的闪烁
  */

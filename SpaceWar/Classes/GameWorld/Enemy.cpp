@@ -90,7 +90,7 @@ void Enemy::autoCreateEnemy()
 void Enemy::update(float time)
 {
    // CCSize size = CCDirector::sharedDirector()->getWinSize();
-    CCMoveTo *action_moveToPlayer =CCMoveTo::create(700, ccp(Game::sharedWorld()->getPlayer()->getPosition().x,-100));//炸弹移动向主机的动作
+    CCMoveTo *action_moveToPlayer =CCMoveTo::create(700, ccp(Game::sharedWorld()->playerMajor->getPosition().x,-100));//炸弹移动向主机的动作
     CCEaseExponentialOut *action_speedMoveToPlayer =CCEaseExponentialOut::create(action_moveToPlayer);//变速动作
     
     switch (type)

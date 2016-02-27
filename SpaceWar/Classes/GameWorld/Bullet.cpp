@@ -10,13 +10,7 @@
 #include "Enemy.h"
 #include "Boss.h"
 #include "Tool.h"
-/**
- * 枚举tag
- */
-enum tag
-{
-    tagBoss1,//boss1
-};
+
 /**
  * 子弹实例化函数，惨数：贴图资源，x轴水平速度，y轴竖直速度，出现位置
  */
@@ -54,8 +48,8 @@ void Bullet::update(float time)
     if (this->getPositionY()>=ScreenHeight)
         Game::sharedWorld()->removeChild(this,true);
     //子弹与boss碰撞
-    Boss* theBoss=(Boss*)Game::sharedWorld()->getChildByTag(tagBoss1);
-    if (Game::sharedWorld()->bossIsExist==true&&theBoss->boundingBox().intersectsRect(this->boundingBox())&&theBoss->getPositionY()>=ScreenHeight/2-10)
+    Boss* theBoss=Game::sharedWorld()->boss;
+    if (theBoss&&theBoss->boundingBox().intersectsRect(this->boundingBox())&&theBoss->getPositionY()>=ScreenHeight/2-10)
     {
         Game::sharedWorld()->removeChild(this, true);
         //爆炸粒子效果

@@ -78,7 +78,7 @@ void Tool::update(float time)
  */
 void Tool::beGeted()
 {
-    Plane *planex=Game::sharedWorld()->getPlayer();
+    Plane *planex=Game::sharedWorld()->playerMajor;
     if (!Game::sharedWorld()->planeIsExist) {
         return;
     }

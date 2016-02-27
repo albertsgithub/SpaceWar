@@ -23,6 +23,8 @@ public:
     bool isStrong;
     //闪烁变量
     bool show;
+    //保护罩
+    CCSprite *sp_star;
     
     //主机静态单例
     static Plane* createPlayer(const char* fileName,int _hpMax,int _hp,float x,float y);

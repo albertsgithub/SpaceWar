@@ -6,6 +6,7 @@
 //
 //
 #include "Boss.h"
+
 /**
  * boss静态单例
  */
@@ -21,6 +22,7 @@
     CC_SAFE_DELETE(boss);
     return NULL;
 }
+
 /**
  * boss初始化
  */
@@ -58,6 +60,7 @@ void Boss::bossInit(const char* fileName,int _type)
     //boss子弹
     this->schedule(schedule_selector(Boss::createBullet), 1.5, -1, 3);//每1.5产生一次，无限循环，延时3s
 }
+
 /**
  * 产生boss子弹
  */
@@ -68,6 +71,7 @@ void Boss::createBullet()
     if(type==2)
     Game::sharedWorld()->addChild(EnemyBullet::createBullet("bossBullet1.png",0,-6,ccp(this->getPosition().x,this->getPosition().y)));
 }
+
 /**
  * 制作boss动画
  */
@@ -88,6 +92,7 @@ CCAnimate* Boss::createAnimate2(const char* fileName)
     auto animate_wellcome = CCAnimate::create(animation_boss);
     return animate_wellcome;
 }
+
 CCAnimate* Boss::createAnimate3(const char* fileName)
 {
     auto animation_boss = CCAnimation::create();
@@ -108,6 +113,7 @@ CCAnimate* Boss::createAnimate3(const char* fileName)
     auto animate_wellcome = CCAnimate::create(animation_boss);
     return animate_wellcome;
 }
+
 /**
  * 退出生命周期
  */
