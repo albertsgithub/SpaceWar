@@ -242,5 +242,5 @@ dependencies: \
   /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Plane0.h \
   /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Map.h \
   /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Enemy.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/Boss.h \
+  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/GameWorld/EnemyBoss.h \
   /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/Classes/Menu.h

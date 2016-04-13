@@ -85,12 +85,12 @@ void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
 void Plane::update(float time)
 {
     //检测与boss碰撞
-    Boss* theBoss=(Boss*)Game::sharedWorld()->getChildByTag(tagBoss1);
-    if (Game::sharedWorld()->bossIsExist&&theBoss->boundingBox().intersectsRect(this->boundingBox()))
-    {
-        this->collideWithEnemy();
-        theBoss->bossHp--;
-    }
+//    Boss* theBoss=(Boss*)Game::sharedWorld()->getChildByTag(tagBoss1);
+//    if (Game::sharedWorld()->bossIsExist&&theBoss->boundingBox().intersectsRect(this->boundingBox()))
+//    {
+//        this->collideWithEnemy();
+//        theBoss->bossHp--;
+//    }
     //检测与敌机碰撞
     CCArray * array = Game::sharedWorld()->arrayEnemy;
     for (int i =0; i<array->count(); i++)

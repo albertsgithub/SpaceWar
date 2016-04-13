@@ -14,7 +14,7 @@
 #include "Map.h"
 #include "Bullet.h"
 #include "Enemy.h"
-#include "Boss.h"
+#include "EnemyBoss.h"
 #include "Menu.h"
 #include "Prefix.h"
 
@@ -25,25 +25,26 @@ public:
      *  游戏数据变量
      */
     int score;
-    int killNum;// 杀敌数
-    int instance;// 距离
-    int record;// 距离存储器
-    int diamond_c;// 水晶钻石数量
-    int diamond_y;// 黄钻石数量
-    int diamond_r;// 红钻石数量
+    int killNum;                   // 杀敌数
+    int instance;                  // 距离
+    int record;                    // 距离存储器
+    int diamond_c;                 // 水晶钻石数量
+    int diamond_y;                 // 黄钻石数量
+    int diamond_r;                 // 红钻石数量
     
-    CCLabelTTF* labelScores;//分数标签
-    CCLabelTTF* labelDistance;//距离标签
-    CCLabelTTF* labelKillCount;//杀敌数标签
-    CCLabelTTF* labelDiamond;//水晶钻石标签
-    CCLabelTTF* labelDiamond1;//黄钻石标签
-    CCLabelTTF* labelDiamond2;//红钻石标签
+    CCLabelTTF* labelScores;       //分数标签
+    CCLabelTTF* labelDistance;     //距离标签
+    CCLabelTTF* labelKillCount;    //杀敌数标签
+    CCLabelTTF* labelDiamond;      //水晶钻石标签
+    CCLabelTTF* labelDiamond1;     //黄钻石标签
+    CCLabelTTF* labelDiamond2;     //红钻石标签
     
-    //主机
+    //飞机
     Plane *playerMajor;
     Plane0 *playerAuxiliary;
+    
     //boss
-    Boss *boss;
+    //EnemyBoss *boss;
     
     // boss是否存在
     bool bossIsExist;

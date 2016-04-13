@@ -108,7 +108,7 @@
 		F73C46F81C5F253400D91BC8 /* toolBox.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C46931C5F253400D91BC8 /* toolBox.png */; };
 		F73C46F91C5F253400D91BC8 /* game_protect.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C46941C5F253400D91BC8 /* game_protect.png */; };
 		F73C46FC1C5F255A00D91BC8 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C46FA1C5F255A00D91BC8 /* Menu.cpp */; };
-		F73C47101C5F256700D91BC8 /* Boss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C46FE1C5F256700D91BC8 /* Boss.cpp */; };
+		F73C47101C5F256700D91BC8 /* EnemyBoss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C46FE1C5F256700D91BC8 /* EnemyBoss.cpp */; };
 		F73C47111C5F256700D91BC8 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C47001C5F256700D91BC8 /* Bullet.cpp */; };
 		F73C47121C5F256700D91BC8 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C47021C5F256700D91BC8 /* Enemy.cpp */; };
 		F73C47131C5F256700D91BC8 /* EnemyBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C47041C5F256700D91BC8 /* EnemyBullet.cpp */; };
@@ -498,8 +498,8 @@
 		F73C46941C5F253400D91BC8 /* game_protect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_protect.png; sourceTree = "<group>"; };
 		F73C46FA1C5F255A00D91BC8 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Menu.cpp; path = Classes/Menu.cpp; sourceTree = "<group>"; };
 		F73C46FB1C5F255A00D91BC8 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = Classes/Menu.h; sourceTree = "<group>"; };
-		F73C46FE1C5F256700D91BC8 /* Boss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Boss.cpp; sourceTree = "<group>"; };
-		F73C46FF1C5F256700D91BC8 /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
+		F73C46FE1C5F256700D91BC8 /* EnemyBoss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyBoss.cpp; sourceTree = "<group>"; };
+		F73C46FF1C5F256700D91BC8 /* EnemyBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyBoss.h; sourceTree = "<group>"; };
 		F73C47001C5F256700D91BC8 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 		F73C47011C5F256700D91BC8 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		F73C47021C5F256700D91BC8 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
@@ -1329,8 +1329,8 @@
 				F73C47071C5F256700D91BC8 /* Game.h */,
 				F73C47081C5F256700D91BC8 /* Map.cpp */,
 				F73C47091C5F256700D91BC8 /* Map.h */,
-				F73C46FE1C5F256700D91BC8 /* Boss.cpp */,
-				F73C46FF1C5F256700D91BC8 /* Boss.h */,
+				F73C46FE1C5F256700D91BC8 /* EnemyBoss.cpp */,
+				F73C46FF1C5F256700D91BC8 /* EnemyBoss.h */,
 				F73C47001C5F256700D91BC8 /* Bullet.cpp */,
 				F73C47011C5F256700D91BC8 /* Bullet.h */,
 				F73C47021C5F256700D91BC8 /* Enemy.cpp */,
@@ -2744,7 +2744,7 @@
 				F77E79901BCBB1FE006FE304 /* CCLabelTTFLoader.cpp in Sources */,
 				F77E794C1BCBB1FD006FE304 /* CCTouchHandler.cpp in Sources */,
 				F77E79811BCBB1FE006FE304 /* CCBValue.cpp in Sources */,
-				F73C47101C5F256700D91BC8 /* Boss.cpp in Sources */,
+				F73C47101C5F256700D91BC8 /* EnemyBoss.cpp in Sources */,
 				F77E77891BCBB1FC006FE304 /* CCAtlasNode.cpp in Sources */,
 				F77E7A131BCBB1FE006FE304 /* LocalStorageAndroid.cpp in Sources */,
 				F77E7A621BCBB1FE006FE304 /* spine-cocos2dx.cpp in Sources */,

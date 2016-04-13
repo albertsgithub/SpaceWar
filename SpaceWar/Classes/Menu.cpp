@@ -8,6 +8,7 @@
 #include "Menu.h"
 #include "Map.h"
 #include "Game.h"
+
 /**
  * 枚举tag
  */
@@ -311,6 +312,7 @@ void Menu::setIsPressed(){
     set_menu->setPosition(ccp(0, 0));
     sprtDialog->addChild(set_menu);
 }
+
 /**
  *关闭关于我们
  */
@@ -319,6 +321,7 @@ void Menu::closeUs(){
     SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     this->removeChildByTag(tagColorLayer);
 }
+
 /**
  *音乐开关
  */

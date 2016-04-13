@@ -42,7 +42,7 @@ AppDelegate::~AppDelegate()
 }
 
 /**
- * 完成启动后的处理
+ * 程序启动入口
  */
 bool AppDelegate::applicationDidFinishLaunching()
 {
