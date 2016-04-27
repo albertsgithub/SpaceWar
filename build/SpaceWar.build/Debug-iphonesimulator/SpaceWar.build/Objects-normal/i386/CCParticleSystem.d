@@ -1,21 +1,21 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/particle_nodes/CCParticleSystem.cpp \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/particle_nodes/CCParticleSystem.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/CCProtocols.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/particle_nodes/CCParticleSystem.cpp \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/particle_nodes/CCParticleSystem.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/CCProtocols.h \
   SpaceWar/libs/cocos2dx/include/ccTypes.h \
   SpaceWar/libs/cocos2dx/cocoa/CCGeometry.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformMacros.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformConfig.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
   SpaceWar/libs/cocos2dx/cocoa/CCObject.h \
   SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
   SpaceWar/libs/cocos2dx/textures/CCTexture2D.h \
   SpaceWar/libs/cocos2dx/base_nodes/CCNode.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
   SpaceWar/libs/cocos2dx/platform/CCCommon.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
   SpaceWar/libs/cocos2dx/cocoa/CCAffineTransform.h \
   SpaceWar/libs/cocos2dx/cocoa/CCArray.h \
   SpaceWar/libs/cocos2dx/support/data_support/ccCArray.h \
@@ -32,25 +32,25 @@ dependencies: \
   SpaceWar/libs/cocos2dx/kazmath/include/kazmath/aabb.h \
   SpaceWar/libs/cocos2dx/kazmath/include/kazmath/ray2.h \
   SpaceWar/libs/cocos2dx/script_support/CCScriptSupport.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCAccelerometer.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCAccelerometer.h \
   SpaceWar/libs/cocos2dx/platform/CCAccelerometerDelegate.h \
   SpaceWar/libs/cocos2dx/touch_dispatcher/CCTouch.h \
   SpaceWar/libs/cocos2dx/cocoa/CCSet.h \
   SpaceWar/libs/cocos2dx/cocoa/CCDictionary.h \
   SpaceWar/libs/cocos2dx/support/data_support/uthash.h \
   SpaceWar/libs/cocos2dx/cocoa/CCString.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/particle_nodes/CCParticleBatchNode.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/particle_nodes/CCParticleBatchNode.h \
   SpaceWar/libs/cocos2dx/textures/CCTextureCache.h \
   SpaceWar/libs/cocos2dx/textures/CCTextureAtlas.h \
   SpaceWar/libs/cocos2dx/support/base64.h \
   SpaceWar/libs/cocos2dx/support/CCPointExtension.h \
   SpaceWar/libs/cocos2dx/platform/CCFileUtils.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypeInfo.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypeInfo.h \
   SpaceWar/libs/cocos2dx/platform/CCImage.h \
   SpaceWar/libs/cocos2dx/platform/platform.h \
   SpaceWar/libs/cocos2dx/platform/CCThread.h \
   SpaceWar/libs/cocos2dx/support/zip_support/ZipUtils.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/CCDirector.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/CCDirector.h \
   SpaceWar/libs/cocos2dx/label_nodes/CCLabelAtlas.h \
   SpaceWar/libs/cocos2dx/base_nodes/CCAtlasNode.h \
   SpaceWar/libs/cocos2dx/support/CCProfiling.h

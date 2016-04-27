@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/chipmunk/src/cpVect.c \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_private.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/chipmunk/src/cpVect.c \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_private.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/chipmunk_types.h \
   SpaceWar/libs/Chipmunk/include/chipmunk/cpVect.h \

@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/Simulation/AccelerometerSimulation.m \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/Simulation/AccelerometerSimulation.h
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/Simulation/AccelerometerSimulation.m \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/Simulation/AccelerometerSimulation.h

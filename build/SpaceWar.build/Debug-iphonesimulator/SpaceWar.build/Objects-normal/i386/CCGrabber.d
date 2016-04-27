@@ -1,20 +1,20 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/effects/CCGrabber.cpp \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/effects/CCGrabber.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/CCConfiguration.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/effects/CCGrabber.cpp \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/effects/CCGrabber.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/CCConfiguration.h \
   SpaceWar/libs/cocos2dx/cocoa/CCObject.h \
   SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformMacros.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformConfig.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
   SpaceWar/libs/cocos2dx/cocoa/CCString.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
   SpaceWar/libs/cocos2dx/platform/CCCommon.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
   SpaceWar/libs/cocos2dx/textures/CCTexture2D.h \
   SpaceWar/libs/cocos2dx/cocoa/CCGeometry.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypes.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypes.h \
   SpaceWar/libs/cocos2dx/platform/platform.h \
   SpaceWar/libs/cocos2dx/platform/CCThread.h
