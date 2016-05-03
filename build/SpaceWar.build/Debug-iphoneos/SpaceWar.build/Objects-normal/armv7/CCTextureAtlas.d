@@ -1,26 +1,26 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/textures/CCTextureAtlas.cpp \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/textures/CCTextureAtlas.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypes.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/textures/CCTextureAtlas.cpp \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/textures/CCTextureAtlas.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccTypes.h \
   SpaceWar/libs/cocos2dx/cocoa/CCGeometry.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformMacros.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccConfig.h \
   SpaceWar/libs/cocos2dx/platform/CCPlatformConfig.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCPlatformDefine.h \
   SpaceWar/libs/cocos2dx/cocoa/CCObject.h \
   SpaceWar/libs/cocos2dx/cocoa/CCDataVisitor.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/textures/CCTextureCache.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCGL.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/textures/CCTextureCache.h \
   SpaceWar/libs/cocos2dx/cocoa/CCDictionary.h \
   SpaceWar/libs/cocos2dx/support/data_support/uthash.h \
   SpaceWar/libs/cocos2dx/cocoa/CCArray.h \
   SpaceWar/libs/cocos2dx/support/data_support/ccCArray.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/ccMacros.h \
   SpaceWar/libs/cocos2dx/platform/CCCommon.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/platform/ios/CCStdC.h \
   SpaceWar/libs/cocos2dx/cocoa/CCString.h \
   SpaceWar/libs/cocos2dx/textures/CCTexture2D.h \
   SpaceWar/libs/cocos2dx/shaders/CCGLProgram.h \
   SpaceWar/libs/cocos2dx/shaders/ccGLStateCache.h \
   SpaceWar/libs/cocos2dx/support/CCNotificationCenter.h \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/cocos2dx/include/CCEventType.h
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/cocos2dx/include/CCEventType.h

@@ -396,6 +396,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F702DD3D1CD78A6700879E43 /* libWAPI.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libWAPI.tbd; path = usr/lib/libWAPI.tbd; sourceTree = SDKROOT; };
 		F73C46261C5F253400D91BC8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		F73C46271C5F253400D91BC8 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		F73C46281C5F253400D91BC8 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -1368,6 +1369,7 @@
 		F77E772A1BCBB1FB006FE304 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F702DD3D1CD78A6700879E43 /* libWAPI.tbd */,
 				F77E772B1BCBB1FB006FE304 /* QuartzCore.framework */,
 				F77E772D1BCBB1FB006FE304 /* OpenGLES.framework */,
 				F77E772F1BCBB1FB006FE304 /* OpenAL.framework */,
@@ -3089,7 +3091,7 @@
 					"-lz",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SpaceWar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoxigame.iostest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"SpaceWar/libs/Chipmunk/include/chipmunk\"";
@@ -3119,7 +3121,7 @@
 					"-lz",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SpaceWar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoxigame.iostest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"SpaceWar/libs/Chipmunk/include/chipmunk\"";

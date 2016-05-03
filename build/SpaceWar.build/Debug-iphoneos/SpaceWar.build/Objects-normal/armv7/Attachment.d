@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/Attachment.cpp \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/extensions/spine/Attachment.cpp \
   SpaceWar/libs/extensions/spine/Attachment.h \
   SpaceWar/libs/extensions/spine/extension.h \
   SpaceWar/libs/extensions/spine/Skeleton.h \

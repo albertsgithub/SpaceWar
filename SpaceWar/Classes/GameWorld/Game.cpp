@@ -8,7 +8,7 @@
 #include "Game.h"
 
 /**
- * 枚举tag
+ * 枚举
  */
 enum tag
 {
@@ -93,8 +93,8 @@ bool Game::init()
     addChild(map);
     
     //云层
-    Map * clouds = Map::createMap("clouds.png",1);
-    addChild(clouds);
+    //Map * clouds = Map::createMap("clouds.png",1);
+    //addChild(clouds);
     
     //离子
     CCParticleSystemQuad * light = CCParticleSystemQuad::create("particle_color.plist");

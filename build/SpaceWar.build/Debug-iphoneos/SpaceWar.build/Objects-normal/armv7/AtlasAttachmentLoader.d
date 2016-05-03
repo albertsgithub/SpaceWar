@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/AtlasAttachmentLoader.cpp \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/extensions/spine/AtlasAttachmentLoader.cpp \
   SpaceWar/libs/extensions/spine/AtlasAttachmentLoader.h \
   SpaceWar/libs/extensions/spine/AttachmentLoader.h \
   SpaceWar/libs/extensions/spine/Attachment.h \

@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jxh/Desktop/GitHub/SpaceWar/SpaceWar/libs/extensions/spine/BoneData.cpp \
+  /Users/jxh/Documents/Git/SpaceWar/SpaceWar/libs/extensions/spine/BoneData.cpp \
   SpaceWar/libs/extensions/spine/BoneData.h \
   SpaceWar/libs/extensions/spine/extension.h \
   SpaceWar/libs/extensions/spine/Skeleton.h \
