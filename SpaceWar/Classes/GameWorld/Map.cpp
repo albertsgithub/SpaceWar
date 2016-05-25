@@ -55,7 +55,7 @@ void Map::update(float time){
     //当第一张地图超出屏幕外，将其重置坐标,接在最顶的图片上
     if(turnImg->getPositionY()<=-turnImg->getContentSize().height*0.5)
     {
-        turnImg->setPosition(ccp(ScreenWidth*0.5,turnImg->getContentSize().height*1.5-speed));
+        turnImg->setPosition(ccp(ScreenWidth*0.5,turnImg->getContentSize().height*1.5-speed-1));
     }
     else
     {
@@ -65,7 +65,7 @@ void Map::update(float time){
     //当第二张地图超出屏幕外，将其重置坐标,接在最顶的图片上
     if(turnImg2->getPositionY()<=-turnImg2->getContentSize().height*0.5)
     {
-        turnImg2->setPosition(ccp(ScreenWidth*0.5,turnImg2->getContentSize().height*1.5-speed));
+        turnImg2->setPosition(ccp(ScreenWidth*0.5,turnImg2->getContentSize().height*1.5-speed-3));
     }
     else
     {
