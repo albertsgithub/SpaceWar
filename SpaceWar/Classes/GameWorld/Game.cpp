@@ -375,19 +375,19 @@ void Game::showMessage()
     this->addChild(labelDistance,10);
     
     //钻石
-    auto diamond0 =CCSprite::create("diamond_crystal.png");
+    CCSprite *diamond0 =CCSprite::create("diamond_crystal.png");
     diamond0->setPosition(ccp(30,ScreenHeight-142));
     diamond0->setScale(0.4);
     diamond0->setRotation(30);
     this->addChild(diamond0,200);
     
-    auto diamond1 =CCSprite::create("diamond_yellow.png");
+    CCSprite *diamond1 =CCSprite::create("diamond_yellow.png");
     diamond1->setPosition(ccp(30,ScreenHeight-172));
     diamond1->setScale(0.4);
     diamond1->setRotation(30);
     this->addChild(diamond1,200);
     
-    auto diamond2 =CCSprite::create("diamond_red.png");
+    CCSprite *diamond2 =CCSprite::create("diamond_red.png");
     diamond2->setPosition(ccp(30,ScreenHeight-202));
     diamond2->setScale(0.4);
     diamond2->setRotation(30);
@@ -420,11 +420,11 @@ void Game::showMessage()
 void Game::gameOperation()
 {
     // 1.添加一个按钮用于结束游戏并返回
-    auto stopButton=CCMenuItemImage::create("stop.png", "shadow.png", this, menu_selector(Game::goHome));
+    CCMenuItemImage *stopButton=CCMenuItemImage::create("stop.png", "shadow.png", this, menu_selector(Game::goHome));
     stopButton->setPosition(ccp(ScreenWidth/3+50,ScreenHeight/2-100));
     
     // 2.添加一个按钮用于暂停游戏
-    auto resumeButton=CCMenuItemImage::create("pause.png", "shadow.png", this, menu_selector(Game::pauseGame));
+    CCMenuItemImage *resumeButton=CCMenuItemImage::create("pause.png", "shadow.png", this, menu_selector(Game::pauseGame));
     resumeButton->setPosition(ccp(ScreenWidth/3+50,ScreenHeight/2-200));
     CCMenu* menu =CCMenu::create(stopButton,resumeButton,NULL);
     // 添加操作菜单，z轴最高
@@ -471,7 +471,7 @@ void Game::lostGame()
         CCUserDefault::sharedUserDefault()->flush();
 
     //添加失败界面
-    auto layer = CCLayerColor::create(ccc4(0, 0, 0, 190), ScreenWidth, ScreenHeight);
+    CCLayerColor *layer = CCLayerColor::create(ccc4(0, 0, 0, 190), ScreenWidth, ScreenHeight);
     CCSprite* sp = CCSprite::create("game_lost.png");
     sp->setPosition(ccp(ScreenWidth/2,ScreenHeight/2));
     layer->addChild(sp);

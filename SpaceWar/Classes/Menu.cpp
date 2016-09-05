@@ -45,6 +45,7 @@ bool Menu::init()
     // 打印屏幕尺寸
     cout<<"screenWidth:"<<ScreenWidth<<endl;
     cout<<"screenHeight:"<<ScreenHeight<<endl;
+    
     // 0.初始化右边飞机显示状态
     show = true;
     
@@ -122,7 +123,7 @@ bool Menu::init()
     //添加按钮组件到菜单界面
     addChild(modelSwitch);
     
-    // 5.菜单按钮
+    // 7.菜单按钮
     //开始游戏按钮
     CCMenuItemImage * itemPlay= CCMenuItemImage::create("menu_button0.png", "menu_button_bg.png",this,menu_selector(Menu::playIsPressed));
     itemPlay->setPosition(ccp(0,-200));
@@ -190,49 +191,39 @@ void Menu::playIsPressed(){
  * 按下战绩按钮
  */
 void Menu::scoreIsPressed(){
-    // 1.播放点击按钮音效
+    // 0.播放点击按钮音效
     SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     
-    // 2.颜色遮罩层
-    CCLayerColor *aboutLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
-    //标记颜色层
-    aboutLayer->setTag(tagColorLayer);
-    //关闭按钮
-    CCMenuItemImage *_return = CCMenuItemImage::create("menu_close_button.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
-    //按钮位置
-    _return->setPosition(ccp(220, 120));
-    //创建承载按钮的菜单
-    CCMenu *us_menu = CCMenu::create(_return,NULL);
-    //菜单的位置
-    us_menu->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
-    //对话框背景贴图
-    CCSprite *sprtDialog = CCSprite::create("menu_ranking.png");
-    //对话框背景位置
+    // 1.颜色层
+    CCLayerColor *grayLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
+    //标记
+    grayLayer->setTag(tagColorLayer);
+    addChild(grayLayer);
+    // 1.对话框
+    CCSprite *sprtDialog = CCSprite::create("menu_pop_bg.png");
     sprtDialog->setPosition(ccp(ScreenWidth/2, ScreenHeight/2));
-    //皇冠图片
-    CCSprite *crown=CCSprite::create("menu_crown.png");
-    //皇冠图片位置
-    crown->setPosition(ccp(ScreenWidth/2, ScreenHeight/1.3));
-    //添加各图片组件到遮罩层
-    aboutLayer->addChild(crown);
-    aboutLayer->addChild(sprtDialog);
-    aboutLayer->addChild(us_menu);
-    //遮罩层添加到界面
-    addChild(aboutLayer);
+    grayLayer->addChild(sprtDialog);
+    // 2.关闭按钮
+    CCMenuItemImage *closeButton=CCMenuItemImage::create("menu_close_button.png","menu_shadow.png",this,menu_selector(Menu::closeUs));
+    closeButton->setPosition(ccp(sprtDialog->getContentSize().width-closeButton->getContentSize().width, sprtDialog->getContentSize().height-closeButton->getContentSize().height));
+    CCMenu *us_menu = CCMenu::create(closeButton,NULL);
+    us_menu->setPosition(ccp(0, 0));
+    sprtDialog->addChild(us_menu);
+    
     // 3.最高分、最高杀敌数、最远距离
     //标签字符串
     CCLabelTTF *ttfShow = CCLabelTTF::create("最高分数：",font1,30);
-    ttfShow->setPosition(ccp(ScreenWidth/2-100,ScreenHeight/2+100));
+    ttfShow->setPosition(ccp(ScreenWidth/2-100,300));
     ttfShow->setColor(ccc3(255,255,255));
-    aboutLayer->addChild(ttfShow);
+    sprtDialog->addChild(ttfShow);
     CCLabelTTF *ttfShow1 = CCLabelTTF::create("最高杀敌：",font1, 30);
-    ttfShow1->setPosition(ccp(ScreenWidth/2-100,ScreenHeight/2+50));
+    ttfShow1->setPosition(ccp(ScreenWidth/2-100,200));
     ttfShow1->setColor(ccc3(255, 255, 255));
-    aboutLayer->addChild(ttfShow1);
+    sprtDialog->addChild(ttfShow1);
     CCLabelTTF *ttfShow2 = CCLabelTTF::create("最远距离：", font1, 30);
-    ttfShow2->setPosition(ccp(ScreenWidth/2-100,ScreenHeight/2));
+    ttfShow2->setPosition(ccp(ScreenWidth/2-100,100));
     ttfShow2->setColor(ccc3(255, 255, 255));
-    aboutLayer->addChild(ttfShow2);
+    sprtDialog->addChild(ttfShow2);
     //获取数据
     std::string score =CCUserDefault::sharedUserDefault()->getStringForKey("user_score","0");
     std::string skillNum =CCUserDefault::sharedUserDefault()->getStringForKey("user_killNum","0");
@@ -242,17 +233,17 @@ void Menu::scoreIsPressed(){
     CCLabelTTF* ttfSkillNum = CCLabelTTF::create(skillNum.c_str(),font2, 30);
     CCLabelTTF* ttfDistance = CCLabelTTF::create(instance.c_str(), font2, 30);
     //数据字符位置
-    ttfScore->setPosition(ccp(ScreenWidth/2+50,ScreenHeight/2+100));
-    ttfSkillNum->setPosition(ccp(ScreenWidth/2+50,ScreenHeight/2+50));
-    ttfDistance->setPosition(ccp(ScreenWidth/2+50,ScreenHeight/2));
+    ttfScore->setPosition(ccp(ScreenWidth/2+50,300));
+    ttfSkillNum->setPosition(ccp(ScreenWidth/2+50,200));
+    ttfDistance->setPosition(ccp(ScreenWidth/2+50,100));
     //数据字符颜色
     ttfScore->setColor(ccc3(255, 0, 225));
     ttfSkillNum->setColor(ccc3(255, 0, 225));
     ttfDistance->setColor(ccc3(255,0,225));
     //数据字符添加到界面
-    aboutLayer->addChild(ttfScore);
-    aboutLayer->addChild(ttfSkillNum);
-    aboutLayer->addChild(ttfDistance);
+    sprtDialog->addChild(ttfScore);
+    sprtDialog->addChild(ttfSkillNum);
+    sprtDialog->addChild(ttfDistance);
 }
 
 /*
@@ -277,7 +268,7 @@ void Menu::aboutIsPressed(){
     CCMenu *us_menu = CCMenu::create(closeButton,NULL);
     us_menu->setPosition(ccp(0, 0));
     sprtDialog->addChild(us_menu);
-    // 2.开发者信息
+    // 3.开发者信息
     CCLabelTTF *about=CCLabelTTF::create("开发者(Developer)：\n蒋信厚(JiangXinhou)",font2,40);
     about->setPosition(ccp(sprtDialog->getContentSize().width/2,sprtDialog->getContentSize().height/2));
     sprtDialog->addChild(about);

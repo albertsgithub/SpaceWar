@@ -41,6 +41,7 @@ public:
     void musicOn();
     //关闭音乐音效
     void musicOff();
+    
     //按帧更新
     void update(float time);
 };
