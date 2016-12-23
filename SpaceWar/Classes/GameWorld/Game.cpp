@@ -6,6 +6,17 @@
 //
 //
 #include "Game.h"
+#include "SimpleAudioEngine.h"
+#include <iostream>
+using namespace std;
+//转换成string类型
+template<typename T>
+string Convert2String(const T &value)
+{
+    stringstream ss;
+    ss << value;
+    return ss.str();
+}
 
 /**
  * 枚举
@@ -52,7 +63,7 @@ bool Game::init()
     game = this;
     
     // 播放游戏中的音乐
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("game_bg_music.mp3",true);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("game_bg_music.mp3",true);
     
     // 初始化游戏数据
     score = 0;        //初始化当前积分分数
@@ -159,7 +170,7 @@ void Game::createBullet()
         addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(playerMajor->getPosition().x-13,playerMajor->getPosition().y)
                                     ));
         //子弹音效
-        SimpleAudioEngine::sharedEngine()->playEffect("effect_bullet.mp3");
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("effect_bullet.mp3");
     }
    }
 
@@ -464,8 +475,8 @@ void Game::lostGame()
     CCMenu* menu =CCMenu::create(menuLabel,NULL);
     this->addChild(menu);
     //暂停游戏
-    SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();//停背景音乐
-    SimpleAudioEngine::sharedEngine()->playEffect("end.mp3");//播放失败音效
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();//停背景音乐
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("end.mp3");//播放失败音效
     //释放所有的贴图
     CCTextureCache::sharedTextureCache()->removeAllTextures();
     CCDirector::sharedDirector()->pause();
@@ -477,11 +488,11 @@ void Game::lostGame()
 void Game:: pauseGame()
 {
     //按钮音效
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     //游戏暂停
     CCDirector::sharedDirector()->pause();
     //暂停背景音乐
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
     
     // 0.暂停界面灰色layer层
     CCLayerColor *pauseLayer = CCLayerColor::create(ccc4(0, 0, 0, 190),ScreenWidth,ScreenHeight);
@@ -505,13 +516,13 @@ void Game:: pauseGame()
 void Game:: resumeGame()
 {
     //音效
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     //移除暂停界面
     this->removeChildByTag(tagCallBack, true);
     //游戏继续
     CCDirector::sharedDirector()->resume();
     //继续背景音乐
-    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
 
 /**
@@ -519,18 +530,18 @@ void Game:: resumeGame()
  */
 void Game::goHome()
 {
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
 
     //this->removeAllComponents();
     //停止所有计时器
     this->unscheduleAllSelectors();
     //停止所有音效
-    SimpleAudioEngine::sharedEngine()->stopAllEffects();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
     //继续游戏
     CCDirector::sharedDirector()->resume();
     //切换到"菜单"场景
     CCDirector::sharedDirector()->replaceScene(Menu::scene());
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
 
 }
 

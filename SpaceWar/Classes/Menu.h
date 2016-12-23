@@ -10,15 +10,15 @@
  ****************************/
 #ifndef ________Menu__
 #define ________Menu__
+#include "cocos2d.h"
+using namespace cocos2d;
 
-#include "Prefix.h"
-
-class Menu:public cocos2d::CCLayer
+class Menu:public CCLayer
 {
 public:
     
     //创建菜单场景
-    static cocos2d::CCScene* scene();
+    static CCScene* scene();
     //初始化菜单
     bool init();
     //按帧更新

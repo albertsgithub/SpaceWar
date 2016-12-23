@@ -7,10 +7,10 @@
 //
 #ifndef ________Enemy__
 #define ________Enemy__
+#include "cocos2d.h"
+using namespace cocos2d;
 
-#include "Prefix.h"
-
-class Enemy : public cocos2d::CCSprite
+class Enemy : public CCSprite
 {
 public:
     //敌机的价值

@@ -9,10 +9,10 @@
  ******************************/
 #ifndef __PlaneDemo__Prop__
 #define __PlaneDemo__Prop__
+#include "cocos2d.h"
+using namespace cocos2d;
 
-#include "Prefix.h"
-
-class Tool:public cocos2d::CCSprite
+class Tool:public CCSprite
 {
 public:
     //道具类型:钻石、补血、无敌武器

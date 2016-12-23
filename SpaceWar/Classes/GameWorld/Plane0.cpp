@@ -8,6 +8,7 @@
 #include "Plane0.h"
 #include "Game.h"
 #include "Enemy.h"
+#include "SimpleAudioEngine.h"
 /**
  * 枚举tag
  */
@@ -42,7 +43,7 @@ void Plane0::collideWithEnemy()
     {
         Game::sharedWorld()->plane0IsExist=false;
         this->setVisible(false);
-        SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
         this->unscheduleUpdate();
         //爆炸离子
         auto boomparticle= CCParticleExplosion::create();
@@ -63,7 +64,7 @@ void Plane0::playerWasDead()
 {
     Game::sharedWorld()->plane0IsExist=false;
     removeChildByTag(tagPlayerAuxiliary);
-    SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
     this->unscheduleUpdate();
     //爆炸离子
     auto boomparticle= CCParticleExplosion::create();

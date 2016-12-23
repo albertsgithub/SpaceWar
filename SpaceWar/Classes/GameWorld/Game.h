@@ -16,9 +16,10 @@
 #include "Enemy.h"
 #include "EnemyBoss.h"
 #include "Menu.h"
-#include "Prefix.h"
+#include "cocos2d.h"
+using namespace cocos2d;
 
-class Game : public cocos2d::CCLayer
+class Game : public CCLayer
 {
 public:
     /**
@@ -57,7 +58,7 @@ public:
 
 public:
     // 创建一个游戏场景
-    static cocos2d::CCScene* scene();
+    static CCScene* scene();
     // 获取当前Game的静态实例
     static Game * sharedWorld();
     CREATE_FUNC(Game);

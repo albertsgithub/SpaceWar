@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "Enemy.h"
 #include "Tool.h"
+#include "SimpleAudioEngine.h"
 /**
  * 枚举tag
  */
@@ -114,7 +115,7 @@ void Plane::collideWithEnemy()
     if(isStrong||Game::sharedWorld()->planeIsExist==false)
         return;
     //手机振动
-    SimpleAudioEngine::sharedEngine()->vibrate();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->vibrate();
     hp--;
     if(hp<=0)
     {
@@ -124,7 +125,7 @@ void Plane::collideWithEnemy()
         }
         Game::sharedWorld()->planeIsExist=false;
         //爆炸
-        SimpleAudioEngine::sharedEngine()->playEffect("plane.wav");
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane.wav");
         CCParticleSystemQuad * particle11 = CCParticleSystemQuad::create("particle_plane_boom.plist");
         //主机位置
         particle11->setPosition(this->getPosition());

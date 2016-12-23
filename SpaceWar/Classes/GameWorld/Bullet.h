@@ -7,10 +7,10 @@
 //
 #ifndef ________Bullet__
 #define ________Bullet__
+#include "cocos2d.h"
+using namespace cocos2d;
 
-#include "Prefix.h"
-
-class Bullet :public cocos2d::CCSprite
+class Bullet :public CCSprite
 {
 public:
     //子弹水平速度

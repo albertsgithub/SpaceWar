@@ -8,11 +8,12 @@
 #ifndef ________EnemyBullet__
 #define ________EnemyBullet__
 
-#include "Prefix.h"
 #include "Bullet.h"
 #include "Game.h"
 #include "Plane.h"
 #include "Plane0.h"
+#include "cocos2d.h"
+using namespace cocos2d;
 
 class EnemyBullet :public Bullet
 {

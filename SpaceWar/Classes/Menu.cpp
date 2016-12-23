@@ -8,7 +8,9 @@
 #include "Menu.h"
 #include "Map.h"
 #include "Game.h"
-
+#include "SimpleAudioEngine.h"
+#include "cocos-ext.h"
+using namespace cocos2d::extension;
 /**
  * 枚举tag
  */
@@ -50,7 +52,7 @@ bool Menu::init()
     show = true;
     
     // 1.开场背景音乐
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
     
     // 2.开场背景,主界面
     //创建精灵贴图当菜单背景
@@ -173,7 +175,7 @@ void Menu::update(float time)
  */
 void Menu::playIsPressed(){
     //播放点击按钮音效
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     //获取模式切换按钮组件
     CCControlSwitch *modelSwitch = (CCControlSwitch*)getChildByTag(tagSwitchControl);
     //判断模式切换按钮组件状态设置不同游戏模式
@@ -193,7 +195,7 @@ void Menu::playIsPressed(){
  */
 void Menu::scoreIsPressed(){
     // 0.播放点击按钮音效
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     
     // 1.颜色层
     CCLayerColor *grayLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
@@ -252,7 +254,7 @@ void Menu::scoreIsPressed(){
  */
 void Menu::aboutIsPressed(){
     //播放点击按钮音效
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     
     // 0.颜色层
     CCLayerColor *grayLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
@@ -280,7 +282,7 @@ void Menu::aboutIsPressed(){
  */
 void Menu::setIsPressed(){
     //播放点击按钮音效
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     // 0.颜色层
     CCLayerColor *grayLayer = CCLayerColor::create(ccc4(0, 0, 0, 180), ScreenWidth, ScreenHeight);
     //标记
@@ -310,7 +312,7 @@ void Menu::setIsPressed(){
  */
 void Menu::closeUs(){
     //播放点击按钮音效
-    SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     this->removeChildByTag(tagColorLayer);
 }
 
@@ -319,9 +321,9 @@ void Menu::closeUs(){
  */
 void Menu::musicOn(){
     //暂停播放背景音乐
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 void Menu::musicOff(){
     //继续播放背景音乐
-    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }

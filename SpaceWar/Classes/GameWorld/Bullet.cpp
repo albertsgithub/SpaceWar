@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "EnemyBoss.h"
 #include "Tool.h"
+#include "SimpleAudioEngine.h"
 
 /**
  * 子弹实例化函数，惨数：贴图资源，x轴水平速度，y轴竖直速度，出现位置
@@ -103,7 +104,7 @@ void Bullet::update(float time)
                     if (enemy->enemyHp==0)
                     {
                         //爆炸音效
-                        SimpleAudioEngine::sharedEngine()->playEffect("effect_boom.mp3");
+                        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("effect_boom.mp3");
                         //一定几率产生道具
                         int randomTool=CCRANDOM_0_1()*10;
                         if (randomTool>5)

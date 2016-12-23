@@ -8,10 +8,10 @@
 
 #ifndef ________Map__
 #define ________Map__
+#include "cocos2d.h"
+using namespace cocos2d;
 
-#include "Prefix.h"
-
-class Map : public cocos2d::CCLayer
+class Map : public CCLayer
 {
 public:
     //地图滚动速度

@@ -7,8 +7,9 @@
 //
 #ifndef ________Plane0__
 #define ________Plane0__
+#include "cocos2d.h"
+using namespace cocos2d;
 
-#include "Prefix.h"
 #include "Plane.h"
 
 class Plane0 : public Plane

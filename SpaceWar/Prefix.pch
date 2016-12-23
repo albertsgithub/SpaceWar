@@ -6,5 +6,25 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#endif
+
+#ifdef __cplusplus
 
 #endif
+
+/**
+ * 屏幕尺寸
+ */
+#define ScreenSize CCDirector::sharedDirector()->getWinSize()
+#define ScreenHeight CCDirector::sharedDirector()->getWinSize().height
+#define ScreenWidth CCDirector::sharedDirector()->getWinSize().width
+
+//字体宏
+#define font1 "迷你简萝卜.ttf"
+#define font2 "PAGANINI.TTF"
+//转场时间
+#define turnTime 0.2
+//转场类型
+#define transition CCTransitionCrossFade
+//点击音效
+#define clickEffect "clickEffect.mp3"

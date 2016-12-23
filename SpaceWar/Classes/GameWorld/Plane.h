@@ -7,12 +7,13 @@
 //
 #ifndef ________Plane__
 #define ________Plane__
+#include "cocos2d.h"
+using namespace cocos2d;
 
-#include "Prefix.h"
 /**
  * 主机精灵类
  */
-class Plane : public cocos2d::CCSprite
+class Plane : public CCSprite
 {
 public:
     //血量
