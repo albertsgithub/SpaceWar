@@ -101,26 +101,6 @@ bool Game::init()
     light->setPosition(ScreenWidth/2,ScreenHeight/1.5);
     addChild(light);
 
-    // 道具槽
-    /*
-    CCSprite *toolBox = CCSprite::create("toolBox.png");
-    toolBox->setPosition(ccp(toolBox->getContentSize().width/2,toolBox->getContentSize().height/2+52));
-    addChild(toolBox);
-    CCProgressTimer *toolPross1 = CCProgressTimer::create(CCSprite::create("radar.png"));
-    toolPross1->setPosition(ccp(toolBox->getContentSize().width/2,toolBox->getContentSize().height/4+52));
-    toolPross1->setType(kCCProgressTimerTypeRadial);
-    toolPross1->setPercentage(100);
-    addChild(toolPross1);
-    toolPross1->runAction(CCRepeatForever::create(CCProgressTo::create(3,100)));
-    
-    CCProgressTimer *toolPross2 = CCProgressTimer::create(CCSprite::create("radar.png"));
-    toolPross2->setPosition(ccp(toolBox->getContentSize().width/2,toolBox->getContentSize().height*0.75+52));
-    toolPross2->setType(kCCProgressTimerTypeRadial);
-    toolPross2->setPercentage(100);
-    addChild(toolPross2);
-    toolPross2->runAction(CCRepeatForever::create(CCProgressTo::create(3,100)));
-    toolPross2->setReverseDirection(true);
-    */
     //主机，根据辅机存不存在设置初始化出场位置
     if (plane0IsExist) {
         //精灵贴图、最大血量、初始化血量、初始位置
@@ -147,12 +127,12 @@ bool Game::init()
 
     // 计时器
     this->scheduleUpdate();
-    //每1秒产生一次敌机,无限重复，第一次延迟5s
+    // 每1秒产生一次敌机,无限重复，第一次延迟5s
     this->schedule(schedule_selector(Game::createEnemy), 1,-1,5);
-    //每0.2秒产生一次子弹，无限重复，第一次延迟3s
+    // 每0.2秒产生一次子弹，无限重复，第一次延迟3s
     this->schedule(schedule_selector(Game::createBullet), 0.2,-1,3);
     this->schedule(schedule_selector(Game::createBullet0), 0.3, -1, 3);
-    //更新距离,0.1s更新一次
+    // 更新距离,0.1s更新一次
     this->schedule(schedule_selector(Game::setDistance), 0.1);
 
     return true;
@@ -188,14 +168,12 @@ void Game::createBullet()
  */
 void Game::createBullet0()
 {
-    if(Game::sharedWorld()->plane0IsExist)
-    {
-        //子弹参数：图片-x速度-y速度-初始位置
-        addChild(Bullet::createBullet("bullet_blue.png",5,15,ccp(playerAuxiliary->getPosition().x+5,playerAuxiliary->getPosition().y+20)));
-        addChild(Bullet::createBullet("bullet_blue.png",-5,15,ccp(playerAuxiliary->getPosition().x-5,playerAuxiliary->getPosition().y+20)));
-        addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x-10,playerAuxiliary->getPosition().y+20)));
-        addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x+10,playerAuxiliary->getPosition().y+20)));
-    }
+    if(!Game::sharedWorld()->plane0IsExist) return;
+    //子弹参数：图片-x速度-y速度-初始位置
+    addChild(Bullet::createBullet("bullet_blue.png",5,15,ccp(playerAuxiliary->getPosition().x+5,playerAuxiliary->getPosition().y+20)));
+    addChild(Bullet::createBullet("bullet_blue.png",-5,15,ccp(playerAuxiliary->getPosition().x-5,playerAuxiliary->getPosition().y+20)));
+    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x-10,playerAuxiliary->getPosition().y+20)));
+    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x+10,playerAuxiliary->getPosition().y+20)));
 }
 
 /**

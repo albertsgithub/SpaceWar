@@ -13,9 +13,9 @@
  * 枚举tag
  */
 enum tag{
-    tagRightPlane,//右边飞机的tag
-    tagSwitchControl,//模式切换按钮组件
-    tagColorLayer,//颜色遮罩层
+    tagRightPlane,     //右边飞机的tag
+    tagSwitchControl,  //模式切换按钮组件
+    tagColorLayer,     //颜色遮罩层
 };
 
 /**
@@ -43,8 +43,8 @@ bool Menu::init()
         return false;
     }
     // 打印屏幕尺寸
-    cout<<"screenWidth:"<<ScreenWidth<<endl;
-    cout<<"screenHeight:"<<ScreenHeight<<endl;
+    //cout<<"screenWidth:"<<ScreenWidth<<endl;
+    //cout<<"screenHeight:"<<ScreenHeight<<endl;
     
     // 0.初始化右边飞机显示状态
     show = true;
@@ -66,11 +66,12 @@ bool Menu::init()
     planeLeft->setPosition(ccp(100,100));
     //左边飞机动画
     CCAnimation *animationLeft = CCAnimation::create();
-    animationLeft->addSpriteFrameWithFileName("menu_plane_left1.png");
-    animationLeft->addSpriteFrameWithFileName("menu_plane_left2.png");
-    animationLeft->addSpriteFrameWithFileName("menu_plane_left3.png");
-    animationLeft->addSpriteFrameWithFileName("menu_plane_left4.png");
-    animationLeft->addSpriteFrameWithFileName("menu_plane_left5.png");
+    // 添加帧
+    for (int i = 1; i <= 5; i++) {
+        CCString *filename = CCString::create("");
+        filename->initWithFormat("menu_plane_left%d.png", i);
+        animationLeft->addSpriteFrameWithFileName(filename->getCString());
+    }
     //每张帧图停留的时间
     animationLeft->setDelayPerUnit(0.03f);
     //设置无限循环播放
@@ -125,19 +126,19 @@ bool Menu::init()
     
     // 7.菜单按钮
     //开始游戏按钮
-    CCMenuItemImage * itemPlay= CCMenuItemImage::create("menu_button0.png", "menu_button_bg.png",this,menu_selector(Menu::playIsPressed));
+    CCMenuItemImage *itemPlay= CCMenuItemImage::create("menu_button0.png", "menu_button_bg.png",this,menu_selector(Menu::playIsPressed));
     itemPlay->setPosition(ccp(0,-200));
     //战绩按钮
-    CCMenuItemImage * itemScore= CCMenuItemImage::create("menu_button1.png", "menu_button_bg.png",this,menu_selector(Menu::scoreIsPressed));
+    CCMenuItemImage *itemScore= CCMenuItemImage::create("menu_button1.png", "menu_button_bg.png",this,menu_selector(Menu::scoreIsPressed));
     itemScore->setPosition(ccp(0,100));
     //关于我们按钮
-    CCMenuItemImage * itemAbout= CCMenuItemImage::create("menu_button2.png", "menu_button_bg.png",this,menu_selector(Menu::aboutIsPressed));
+    CCMenuItemImage *itemAbout= CCMenuItemImage::create("menu_button2.png", "menu_button_bg.png",this,menu_selector(Menu::aboutIsPressed));
     itemAbout->setPosition(ccp(0,0));
     //设置按钮
-    CCMenuItemImage * itemSet= CCMenuItemImage::create("menu_button3.png", "menu_button_bg.png",this,menu_selector(Menu::setIsPressed));
+    CCMenuItemImage *itemSet= CCMenuItemImage::create("menu_button3.png", "menu_button_bg.png",this,menu_selector(Menu::setIsPressed));
     itemSet->setPosition(ccp(0,-100));
     //创建Menu菜单，加入各按钮
-    CCMenu * menu = CCMenu::create(itemPlay,itemScore,itemAbout,itemSet,NULL);
+    CCMenu *menu = CCMenu::create(itemPlay,itemScore,itemAbout,itemSet,NULL);
     //菜单组位置
     menu->setPosition(ScreenWidth/2,ScreenHeight/2);
     //添加菜单到界面
@@ -153,9 +154,9 @@ bool Menu::init()
  */
 void Menu::update(float time)
 {
-    //获取右边的飞机贴图
+    // 获取右边的飞机贴图
     CCSprite *planeRight=(CCSprite*)getChildByTag(tagRightPlane);
-    //每一帧切换右边飞机显示、隐藏状态
+    // 每一帧切换右边飞机显示、隐藏状态
     if (show==true) {
         planeRight->setVisible(false);
         show=false;

@@ -78,14 +78,12 @@ void EnemyBoss::createBullet()
 CCAnimate* EnemyBoss::createAnimate2(const char* fileName)
 {
     auto animation_boss = CCAnimation::create();
-    animation_boss->addSpriteFrameWithFileName("1.png");
-    animation_boss->addSpriteFrameWithFileName("2.png");
-    animation_boss->addSpriteFrameWithFileName("3.png");
-    animation_boss->addSpriteFrameWithFileName("4.png");
-    animation_boss->addSpriteFrameWithFileName("5.png");
-    animation_boss->addSpriteFrameWithFileName("6.png");
-    animation_boss->addSpriteFrameWithFileName("7.png");
-    animation_boss->addSpriteFrameWithFileName("8.png");
+    // 添加帧
+    for (int i = 1; i <= 8; i++) {
+        CCString *filename = CCString::create("");
+        filename->initWithFormat("%d.png", i);
+        animation_boss->addSpriteFrameWithFileName(filename->getCString());
+    }
     animation_boss->setDelayPerUnit(0.2f);
     animation_boss->setLoops(-1);
     animation_boss->setRestoreOriginalFrame(false);
@@ -96,17 +94,12 @@ CCAnimate* EnemyBoss::createAnimate2(const char* fileName)
 CCAnimate* EnemyBoss::createAnimate3(const char* fileName)
 {
     auto animation_boss = CCAnimation::create();
-    animation_boss->addSpriteFrameWithFileName("purple1.png");
-    animation_boss->addSpriteFrameWithFileName("purple2.png");
-    animation_boss->addSpriteFrameWithFileName("purple3.png");
-    animation_boss->addSpriteFrameWithFileName("purple4.png");
-    animation_boss->addSpriteFrameWithFileName("purple5.png");
-    animation_boss->addSpriteFrameWithFileName("purple6.png");
-    animation_boss->addSpriteFrameWithFileName("purple7.png");
-    animation_boss->addSpriteFrameWithFileName("purple8.png");
-    animation_boss->addSpriteFrameWithFileName("purple9.png");
-    animation_boss->addSpriteFrameWithFileName("purple10.png");
-    animation_boss->addSpriteFrameWithFileName("purple11.png");
+    // 添加帧
+    for (int i = 1; i <= 11; i++) {
+        CCString *filename = CCString::create("");
+        filename->initWithFormat("purple%d.png", i);
+        animation_boss->addSpriteFrameWithFileName(filename->getCString());
+    }
     animation_boss->setDelayPerUnit(0.2f);
     animation_boss->setLoops(-1);
     animation_boss->setRestoreOriginalFrame(false);
