@@ -88,8 +88,7 @@ public:
     void showMessage();
     
     //注册多点触控监听
-    void registerWithTouchDispatcher(void);
-    void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
+    virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
     
     //游戏中的操作
     void gameOperation();

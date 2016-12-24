@@ -131,6 +131,7 @@ bool Game::init()
 
     //开启多触点监听
     setTouchEnabled(true);
+    
     //显示杀敌、分数等信息
     showMessage();
     //游戏中的操作(暂停、结束)
@@ -554,18 +555,12 @@ float Game::Distance(CCPoint point1,CCPoint point2)
 }
 
 /**
- * 注册多触点的委托监听
- */
-void Game::registerWithTouchDispatcher(void)
-{
-    CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, 0);
-}
-
-/**
  * 用户手指进行移动或者拖拽
  */
 void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
 {
+    int c = pTouches->count();
+    cout<<"触点个数："<<c<<endl;
     CCSetIterator iter = pTouches->begin();
     if(plane0IsExist)
     {

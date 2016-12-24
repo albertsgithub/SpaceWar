@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D2FA9F1F1E0D5927005657DB /* EnemyBoss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2FA9F1D1E0D5927005657DB /* EnemyBoss.cpp */; };
+		D2FA9F221E0D5F13005657DB /* Demon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2FA9F201E0D5F13005657DB /* Demon.cpp */; };
 		F73C46951C5F253400D91BC8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C46261C5F253400D91BC8 /* 1.png */; };
 		F73C46961C5F253400D91BC8 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C46271C5F253400D91BC8 /* 2.png */; };
 		F73C46971C5F253400D91BC8 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C46281C5F253400D91BC8 /* 3.png */; };
@@ -398,6 +399,8 @@
 /* Begin PBXFileReference section */
 		D2FA9F1D1E0D5927005657DB /* EnemyBoss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyBoss.cpp; sourceTree = "<group>"; };
 		D2FA9F1E1E0D5927005657DB /* EnemyBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyBoss.h; sourceTree = "<group>"; };
+		D2FA9F201E0D5F13005657DB /* Demon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Demon.cpp; sourceTree = "<group>"; };
+		D2FA9F211E0D5F13005657DB /* Demon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demon.h; sourceTree = "<group>"; };
 		F702DD3D1CD78A6700879E43 /* libWAPI.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libWAPI.tbd; path = usr/lib/libWAPI.tbd; sourceTree = SDKROOT; };
 		F73C46261C5F253400D91BC8 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		F73C46271C5F253400D91BC8 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
@@ -1343,6 +1346,8 @@
 				F73C470D1C5F256700D91BC8 /* Plane0.h */,
 				F73C470E1C5F256700D91BC8 /* Tool.cpp */,
 				F73C470F1C5F256700D91BC8 /* Tool.h */,
+				D2FA9F201E0D5F13005657DB /* Demon.cpp */,
+				D2FA9F211E0D5F13005657DB /* Demon.h */,
 			);
 			name = GameWorld;
 			path = Classes/GameWorld;
@@ -2854,6 +2859,7 @@
 				F77E7A061BCBB1FE006FE304 /* CCSorting.cpp in Sources */,
 				F77E79701BCBB1FE006FE304 /* CCBFileLoader.cpp in Sources */,
 				F77E7A871BCBB1FF006FE304 /* chipmunk.c in Sources */,
+				D2FA9F221E0D5F13005657DB /* Demon.cpp in Sources */,
 				F77E78701BCBB1FC006FE304 /* CCDevice.mm in Sources */,
 				F77E7A9D1BCBB1FF006FE304 /* cpSimpleMotor.c in Sources */,
 				F77E77981BCBB1FC006FE304 /* ccFPSImages.c in Sources */,
