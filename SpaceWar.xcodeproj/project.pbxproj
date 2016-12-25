@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D2FA9F1F1E0D5927005657DB /* EnemyBoss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2FA9F1D1E0D5927005657DB /* EnemyBoss.cpp */; };
 		D2FA9F221E0D5F13005657DB /* Demon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2FA9F201E0D5F13005657DB /* Demon.cpp */; };
 		F73C46951C5F253400D91BC8 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C46261C5F253400D91BC8 /* 1.png */; };
 		F73C46961C5F253400D91BC8 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C46271C5F253400D91BC8 /* 2.png */; };
@@ -116,7 +115,7 @@
 		F73C47141C5F256700D91BC8 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C47061C5F256700D91BC8 /* Game.cpp */; };
 		F73C47151C5F256700D91BC8 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C47081C5F256700D91BC8 /* Map.cpp */; };
 		F73C47161C5F256700D91BC8 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C470A1C5F256700D91BC8 /* Plane.cpp */; };
-		F73C47171C5F256700D91BC8 /* Plane0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C470C1C5F256700D91BC8 /* Plane0.cpp */; };
+		F73C47171C5F256700D91BC8 /* PlaneAs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C470C1C5F256700D91BC8 /* PlaneAs.cpp */; };
 		F73C47181C5F256700D91BC8 /* Tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73C470E1C5F256700D91BC8 /* Tool.cpp */; };
 		F73C471B1C5F292800D91BC8 /* menu_switch_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C47191C5F292800D91BC8 /* menu_switch_bg.png */; };
 		F73C471C1C5F292800D91BC8 /* menu_switch_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C471A1C5F292800D91BC8 /* menu_switch_dot.png */; };
@@ -397,8 +396,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D2FA9F1D1E0D5927005657DB /* EnemyBoss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyBoss.cpp; sourceTree = "<group>"; };
-		D2FA9F1E1E0D5927005657DB /* EnemyBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyBoss.h; sourceTree = "<group>"; };
 		D2FA9F201E0D5F13005657DB /* Demon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Demon.cpp; sourceTree = "<group>"; };
 		D2FA9F211E0D5F13005657DB /* Demon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demon.h; sourceTree = "<group>"; };
 		F702DD3D1CD78A6700879E43 /* libWAPI.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libWAPI.tbd; path = usr/lib/libWAPI.tbd; sourceTree = SDKROOT; };
@@ -516,8 +513,8 @@
 		F73C47091C5F256700D91BC8 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		F73C470A1C5F256700D91BC8 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		F73C470B1C5F256700D91BC8 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
-		F73C470C1C5F256700D91BC8 /* Plane0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane0.cpp; sourceTree = "<group>"; };
-		F73C470D1C5F256700D91BC8 /* Plane0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane0.h; sourceTree = "<group>"; };
+		F73C470C1C5F256700D91BC8 /* PlaneAs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlaneAs.cpp; sourceTree = "<group>"; };
+		F73C470D1C5F256700D91BC8 /* PlaneAs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneAs.h; sourceTree = "<group>"; };
 		F73C470E1C5F256700D91BC8 /* Tool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tool.cpp; sourceTree = "<group>"; };
 		F73C470F1C5F256700D91BC8 /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		F73C47191C5F292800D91BC8 /* menu_switch_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_switch_bg.png; sourceTree = "<group>"; };
@@ -1328,8 +1325,6 @@
 		F73C46FD1C5F256700D91BC8 /* GameWorld */ = {
 			isa = PBXGroup;
 			children = (
-				D2FA9F1D1E0D5927005657DB /* EnemyBoss.cpp */,
-				D2FA9F1E1E0D5927005657DB /* EnemyBoss.h */,
 				F73C47061C5F256700D91BC8 /* Game.cpp */,
 				F73C47071C5F256700D91BC8 /* Game.h */,
 				F73C47081C5F256700D91BC8 /* Map.cpp */,
@@ -1342,8 +1337,8 @@
 				F73C47051C5F256700D91BC8 /* EnemyBullet.h */,
 				F73C470A1C5F256700D91BC8 /* Plane.cpp */,
 				F73C470B1C5F256700D91BC8 /* Plane.h */,
-				F73C470C1C5F256700D91BC8 /* Plane0.cpp */,
-				F73C470D1C5F256700D91BC8 /* Plane0.h */,
+				F73C470C1C5F256700D91BC8 /* PlaneAs.cpp */,
+				F73C470D1C5F256700D91BC8 /* PlaneAs.h */,
 				F73C470E1C5F256700D91BC8 /* Tool.cpp */,
 				F73C470F1C5F256700D91BC8 /* Tool.h */,
 				D2FA9F201E0D5F13005657DB /* Demon.cpp */,
@@ -2758,7 +2753,7 @@
 				F77E77C11BCBB1FC006FE304 /* CCZone.cpp in Sources */,
 				F77E791E1BCBB1FD006FE304 /* CCTextFieldTTF.cpp in Sources */,
 				F77E7AA31BCBB1FF006FE304 /* cpArray.c in Sources */,
-				F73C47171C5F256700D91BC8 /* Plane0.cpp in Sources */,
+				F73C47171C5F256700D91BC8 /* PlaneAs.cpp in Sources */,
 				F77E78821BCBB1FD006FE304 /* CCLock.cpp in Sources */,
 				F77E7A411BCBB1FE006FE304 /* CCSkeleton.cpp in Sources */,
 				F77E79321BCBB1FD006FE304 /* CCParallaxNode.cpp in Sources */,
@@ -2792,7 +2787,6 @@
 				F77E77EF1BCBB1FC006FE304 /* aabb.c in Sources */,
 				F77E783F1BCBB1FC006FE304 /* CCRenderTexture.cpp in Sources */,
 				F77E78791BCBB1FC006FE304 /* CCES2Renderer.m in Sources */,
-				D2FA9F1F1E0D5927005657DB /* EnemyBoss.cpp in Sources */,
 				F77E7A561BCBB1FE006FE304 /* SkeletonJson.cpp in Sources */,
 				F77E79841BCBB1FE006FE304 /* CCControlButtonLoader.cpp in Sources */,
 				F77E79411BCBB1FD006FE304 /* CCTMXXMLParser.cpp in Sources */,

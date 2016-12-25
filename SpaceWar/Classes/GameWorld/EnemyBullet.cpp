@@ -6,9 +6,8 @@
 //
 //
 #include "EnemyBullet.h"
-/**
- * 子弹运动方式(向下)
- */
+#include "SimpleAudioEngine.h"
+
 void EnemyBullet::update(float time)
 {
    // CCSize size=CCDirector::sharedDirector()->getWinSize();
@@ -17,10 +16,10 @@ void EnemyBullet::update(float time)
     //子弹超出屏幕则移除
     if (this->getPositionY()<0)
         Game::sharedWorld()->removeChild(this,true);
-    /*
+
     //子弹与boss碰撞
-    Boss* theBoss=(Boss*)Game::sharedWorld()->getChildByTag(tag_boss1);
-    if (Game::sharedWorld()->bossIsExist==true&&theBoss->boundingBox().intersectsRect(this->boundingBox())&&theBoss->getPositionY()>=ScreenHeight/2-10)
+    Demon* theBoss=Game::sharedWorld()->demon;
+    if (Game::sharedWorld()->demon && theBoss->boundingBox().intersectsRect(this->boundingBox())&&theBoss->getPositionY()>=ScreenHeight/2-10)
     {
         Game::sharedWorld()->removeChild(this, true);
         //爆炸粒子效果
@@ -30,7 +29,7 @@ void EnemyBullet::update(float time)
         Game::sharedWorld()->addChild(particle);
         theBoss->bossHp--;
         if (theBoss->bossHp<=0) {
-            Game::sharedWorld()->bossIsExist=false;
+            Game::sharedWorld()->demon = nullptr;
             //爆炸粒子效果
             CCParticleSystemQuad * particle = CCParticleSystemQuad::create("particle_boom.plist");
             particle->setPosition(ccp(theBoss->getPositionX()-10,theBoss->getPositionY()));//子弹位置
@@ -42,7 +41,7 @@ void EnemyBullet::update(float time)
             particle2->setAutoRemoveOnFinish(true);//自动释放
             Game::sharedWorld()->addChild(particle2);
             //爆炸音效
-            SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
+            CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
             Game::sharedWorld()->removeChild(theBoss, true);
             //显示击杀提示
             Game::sharedWorld()->record=Game::sharedWorld()->instance;
@@ -75,7 +74,7 @@ void EnemyBullet::update(float time)
                 if (enemy->enemyHp==0)
                 {
                     //爆炸音效
-                    SimpleAudioEngine::sharedEngine()->playEffect("effect_boom.mp3");
+                    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("effect_boom.mp3");
                     //一定几率产生道具
                     int randomTool=CCRANDOM_0_1()*10;
                     if (randomTool>5)
@@ -97,5 +96,4 @@ void EnemyBullet::update(float time)
             
         }
     }
-     */
 }

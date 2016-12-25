@@ -12,24 +12,11 @@ using namespace cocos2d;
 
 #include "Plane.h"
 
-class Plane0 : public Plane
+class PlaneAs : public Plane
 {
 public:
-    /**
-     * 辅机静态单例
-     */
-    static Plane0* createPlayer(const char* fileName,int _hpMax,int _hp,float x,float y);
-    /**
-     * 重载主机碰撞检测函数
-     */
+    static PlaneAs* createPlayer(const char* fileName,int _hpMax,int _hp,float x,float y);
     void collideWithEnemy();
-    /**
-     * 主机已经死亡
-     */
-    void playerWasDead();
-    /**
-     * 重载制作动画函数
-     */
     CCAnimate* createAnimate(const char *fileName);
 };
 #endif /* defined(________Plane0__) */

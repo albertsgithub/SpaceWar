@@ -30,9 +30,5 @@ public:
      * 系统安帧更新，改变子弹运动轨迹
      */
     virtual void update(float time);
-    /**
-     * 生命周期结束
-     */
-    void onExit();
 };
 #endif /* defined(________Bullet__) */

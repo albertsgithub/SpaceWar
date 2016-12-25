@@ -14,7 +14,7 @@ using namespace cocos2d::extension;
 /**
  * 枚举tag
  */
-enum tag{
+enum tag_menu{
     tagRightPlane,     //右边飞机的tag
     tagSwitchControl,  //模式切换按钮组件
     tagColorLayer,     //颜色遮罩层

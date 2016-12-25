@@ -78,10 +78,8 @@ void Tool::update(float time)
  */
 void Tool::beGeted()
 {
-    Plane *planex=Game::sharedWorld()->playerMajor;
-    if (!Game::sharedWorld()->planeIsExist) {
-        return;
-    }
+    Plane *planex = Game::sharedWorld()->player;
+    if (!planex) return;
     if (this->boundingBox().intersectsRect(planex->boundingBox()))
     {
         switch (this->type)
@@ -96,7 +94,7 @@ void Tool::beGeted()
                 Game::sharedWorld()->diamond_r++;
                 break;
             case 4:
-                planex->hp=planex->hpMax;
+                planex->hp++;
                 break;
             case 5:
                 //秘密武器(暂定无敌状态5s)
@@ -105,14 +103,6 @@ void Tool::beGeted()
             default:
                 break;
         }
-    Game::sharedWorld()->removeChild(this,true);//移除当前道具
+    this->removeFromParent();//移除当前道具
     }
-}
-/**
- * 取消更新,生命周期结束
- */
-void Tool::onExit()
-{
-    CCSprite::onExit();
-    this->unscheduleUpdate();
 }

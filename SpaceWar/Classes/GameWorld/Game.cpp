@@ -9,6 +9,14 @@
 #include "SimpleAudioEngine.h"
 #include <iostream>
 using namespace std;
+
+enum tag_game
+{
+    tagCallBack,
+    tagWarn,
+    tagColorLayer
+};
+
 //转换成string类型
 template<typename T>
 string Convert2String(const T &value)
@@ -17,23 +25,10 @@ string Convert2String(const T &value)
     ss << value;
     return ss.str();
 }
-
-/**
- * 枚举
- */
-enum tag
-{
-    tagCallBack
-};
-
-/**
- * 游戏静态单例
- */
+// 游戏静态单例
 static Game * game;
 
-/**
- * 游戏场景单例get函数
- */
+//游戏场景单例
 Game * Game::sharedWorld()
 {
     if(game)
@@ -41,9 +36,6 @@ Game * Game::sharedWorld()
     return NULL;
 }
 
-/**
- * 创建一个游戏场景
- */
 CCScene* Game::scene()
 {
     CCScene *scene = CCScene::create();
@@ -61,82 +53,38 @@ bool Game::init()
         return false;
     // 游戏场景实例
     game = this;
-    
     // 播放游戏中的音乐
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("game_bg_music.mp3",true);
     
-    // 初始化游戏数据
-    score = 0;        //初始化当前积分分数
-    diamond_y = 0;    //黄 初始化当前钻石数目
-    diamond_c = 0;    //水晶
-    diamond_r = 0;    //红
-    instance = 0;     //初始化当前距离
-    record = 100000;  //距离存储器
-    killNum = 0;      //初始化杀敌数
-    
     //如果是单机模式让辅机直接处于死亡状态,不产生子弹
     if (CCUserDefault::sharedUserDefault()->getBoolForKey("choosedModel",true)) {
-        plane0IsExist = true;
+        gameType = GAME_DOUBLE;
     }else{
-        plane0IsExist = false;
+        gameType = GAME_SINGLE;
     }
     
-    planeIsExist = true;                //初始化飞机状态
-    bossIsExist = false;                //初始化boss不存在
     arrayEnemy = CCArray::create();     //初始化敌人数组
-    
     CC_SAFE_RETAIN(arrayEnemy);         //增加敌人数组的一次引用
-    /*
-    // 随机初始化地图
-    char *mapname;
-    string map_green = "map_green.png";
-    string map_yello = "map_yello.png";
-    string map_night = "map_night.png";
-    int maptag = CCRANDOM_0_1()*10;
-    if (maptag<5)
-        strlcpy(mapname, map_green.c_str(), map_green.length()+1);
-    else if(maptag<7)
-        strlcpy(mapname, map_yello.c_str(), map_yello.length()+1);
-    else
-        strlcpy(mapname, map_night.c_str(), map_night.length()+1);
-    */
-    Map * map = Map::createMap("map_green.png",3);
-    addChild(map);
     
-    //云层
-    //Map * clouds = Map::createMap("clouds.png",1);
-    //addChild(clouds);
+    // UI
+    initUI();
     
-    //离子
-    CCParticleSystemQuad * light = CCParticleSystemQuad::create("particle_color.plist");
-    light->setPosition(ScreenWidth/2,ScreenHeight/1.5);
-    addChild(light);
-
-    //主机，根据辅机存不存在设置初始化出场位置
-    if (plane0IsExist) {
+    // 根据游戏模式添加玩家
+    if (gameType == GAME_DOUBLE) {
         //精灵贴图、最大血量、初始化血量、初始位置
-        playerMajor=Plane::createPlayer("plane_one.png",10,10,ScreenWidth/3,100);
-        addChild(playerMajor,0);
+        player=Plane::createPlayer("plane_one.png",5,5,ScreenWidth/3,100);
+        addChild(player,0);
+        playerAs=PlaneAs::createPlayer("hero_purple1.png",5,5,ScreenWidth/3*2, 100);
+        addChild(playerAs,0);
     }else{
         //精灵贴图、最大血量、初始化血量、初始位置
-        playerMajor=Plane::createPlayer("plane_second.png",15,15,ScreenWidth/2,100);
-        addChild(playerMajor,0);
+        player=Plane::createPlayer("plane_second.png",15,15,ScreenWidth/2,100);
+        addChild(player,0);
     }
     
-    //辅助机
-    if (plane0IsExist) {
-        playerAuxiliary=Plane0::createPlayer("hero_purple1.png",5,5,ScreenWidth/3*2, 100);
-        addChild(playerAuxiliary,0);
-    }
-
     //开启多触点监听
     setTouchEnabled(true);
     
-    //显示杀敌、分数等信息
-    showMessage();
-    //游戏中的操作(暂停、结束)
-    gameOperation();
-
     // 计时器
     this->scheduleUpdate();
     // 每1秒产生一次敌机,无限重复，第一次延迟5s
@@ -144,9 +92,6 @@ bool Game::init()
     // 每0.2秒产生一次子弹，无限重复，第一次延迟3s
     this->schedule(schedule_selector(Game::createBullet), 0.2,-1,3);
     this->schedule(schedule_selector(Game::createBullet0), 0.3, -1, 3);
-    // 更新距离,0.1s更新一次
-    this->schedule(schedule_selector(Game::setDistance), 0.1);
-
     return true;
 }
 
@@ -155,8 +100,8 @@ bool Game::init()
  */
 void Game::createEnemy()
 {
-    Enemy *enemy0=NULL;
-    enemy0->autoCreateEnemy();
+    Enemy *enemy = NULL;
+    enemy->autoCreateEnemy();
 }
 
 /**
@@ -164,43 +109,37 @@ void Game::createEnemy()
  */
 void Game::createBullet()
 {
-    if(planeIsExist)
-    {
-        addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(playerMajor->getPosition().x+13,playerMajor->getPosition().y)
-                                    ));
-        addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(playerMajor->getPosition().x-13,playerMajor->getPosition().y)
-                                    ));
-        //子弹音效
-        CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("effect_bullet.mp3");
-    }
-   }
+    if(!player) return;
+    addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(player->getPosition().x+13,player->getPosition().y)));
+    addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(player->getPosition().x-13,player->getPosition().y)));
+    //子弹音效
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("effect_bullet.mp3");
+}
 
 /**
  * 产生辅机子弹
  */
 void Game::createBullet0()
 {
-    if(!Game::sharedWorld()->plane0IsExist) return;
+    if(!playerAs) return;
     //子弹参数：图片-x速度-y速度-初始位置
-    addChild(Bullet::createBullet("bullet_blue.png",5,15,ccp(playerAuxiliary->getPosition().x+5,playerAuxiliary->getPosition().y+20)));
-    addChild(Bullet::createBullet("bullet_blue.png",-5,15,ccp(playerAuxiliary->getPosition().x-5,playerAuxiliary->getPosition().y+20)));
-    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x-10,playerAuxiliary->getPosition().y+20)));
-    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAuxiliary->getPosition().x+10,playerAuxiliary->getPosition().y+20)));
+    addChild(Bullet::createBullet("bullet_blue.png",5,15,ccp(playerAs->getPosition().x+5,playerAs->getPosition().y+20)));
+    addChild(Bullet::createBullet("bullet_blue.png",-5,15,ccp(playerAs->getPosition().x-5,playerAs->getPosition().y+20)));
+    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAs->getPosition().x-10,playerAs->getPosition().y+20)));
+    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAs->getPosition().x+10,playerAs->getPosition().y+20)));
 }
 
 /**
- * 隐藏提示
+ * 提示
  */
 void Game::showWarn()
 {
     //击杀boss提示
     string warn_str="YOU HAVE KILLED THE BOSS!";
-    char *warn;
-    strlcpy(warn, warn_str.c_str(),warn_str.length()+1);
-    CCLabelTTF *message=CCLabelTTF::create(warn, font1, 30);
+    CCLabelTTF *message = CCLabelTTF::create(warn_str.c_str(), font1, 30);
     message->setPosition(ccp(ScreenWidth/2, ScreenHeight/3*2));
     message->setColor(ccc3(255, 0, 0));
-    message->setTag(555);
+    message->setTag(tagWarn);
     addChild(message);
 }
 
@@ -209,30 +148,28 @@ void Game::showWarn()
  */
 void Game::update(float time)
 {
-    //设置boss的登场
+    // 1.设置boss的登场
     //当到达一定距离并且当前不存在boss时，添加boss
-//    //1.boss1
-//    if(instance>1000&&instance<2000&&bossIsExist==false)
-//    {
-//    boss=Boss::createBoss("boss.png",0);
-//    addChild(boss,0);
-//    bossIsExist=true;
-//    }
-//    //2.boss2
-//    if(instance>4000&&instance<6000&&bossIsExist==false)
-//    {
-//        boss=Boss::createBoss("menu_plane_left1.png",1);
-//        addChild(boss,0);
-//        bossIsExist=true;
-//    }
-//    //3.boss3
-//    if(instance>7000&&bossIsExist==false)
-//    {
-//        boss=Boss::createBoss("purple1.png",2);
-//        addChild(boss,0);
-//        bossIsExist=true;
-//    }
-    //更新钻石数目
+    //1.boss1
+    if(instance>1000 && instance<2000 && !demon)
+    {
+        demon = Demon::createDemon("boss.png",0);
+        addChild(demon,0);
+    }
+    //2.boss2
+    if(instance>4000 && instance<6000 && !demon)
+    {
+        demon = Demon::createDemon("menu_plane_left1.png",1);
+        addChild(demon,0);
+    }
+    //3.boss3
+    if(instance>7000 && !demon)
+    {
+        demon = Demon::createDemon("purple1.png",2);
+        addChild(demon,0);
+    }
+    
+    // 1.更新钻石数目
     //水晶钻
     string strDiamond1=Convert2String(diamond_c);
     labelDiamond->setString(strDiamond1.c_str());
@@ -242,38 +179,32 @@ void Game::update(float time)
     //红钻
     string strDiamond2=Convert2String(diamond_r);
     labelDiamond2->setString(strDiamond2.c_str());
-    //更新血量
+    
+    // 2.更新血量
     //boss
-//    if (bossIsExist) {
-//        string strBossHp=Convert2String(boss->bossHp-1);
-//        CCLabelTTF* ttfa1 = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(111);
-//        ttfa1->setString(strBossHp.c_str());
-//    }
+    if (demon) {
+        string strBossHp=Convert2String(demon->bossHp-1);
+        Game::sharedWorld()->labelBossHP->setString(strBossHp.c_str());
+    }
     //plane
-    if (planeIsExist) {
-        string strPlaneHp=Convert2String(playerMajor->hp-1);
-        CCLabelTTF* ttfb2 = (CCLabelTTF*)Game::sharedWorld()->getChildByTag(222);
-        ttfb2->setString(strPlaneHp.c_str());
+    if (player) {
+        string strPlaneHp=Convert2String(player->hp-1);
+        Game::sharedWorld()->labelPlayerHP->setString(strPlaneHp.c_str());
     }
-    //plane0
-    if (plane0IsExist) {
-        string strPlane0Hp=Convert2String(playerAuxiliary->hp-1);
-        CCLabelTTF* ttfc3 =(CCLabelTTF*)Game::sharedWorld()->getChildByTag(333);
-        ttfc3->setString(strPlane0Hp.c_str());
+    //planeas
+    if (playerAs) {
+        string strPlane0Hp=Convert2String(playerAs->hp-1);
+        Game::sharedWorld()->labelPlayerAsHP->setString(strPlane0Hp.c_str());
     }
+    
     //200m后隐藏提示
     if (instance>record+200){
-        Game::sharedWorld()->getChildByTag(555)->setVisible(false);
-        record=100000;
+        Game::sharedWorld()->getChildByTag(tagWarn)->setVisible(false);
+        record = instance + 100000;
     }
-}
-
-/**
- * 刷新距离
- */
-void Game::setDistance()
-{
-    instance+=10;
+    
+    // 3.更新距离
+    instance++;
     std::string strInstance=Convert2String(instance);
     labelDistance->setString(strInstance.c_str());
 }
@@ -301,186 +232,193 @@ void Game::addKillCount(float _value)
 /**
  * 显示数据信息
  */
-void Game::showMessage()
+void Game::initUI()
 {
-    //显示血量
+    /*
+     // 随机初始化地图
+     char *mapname;
+     string map_green = "map_green.png";
+     string map_yello = "map_yello.png";
+     string map_night = "map_night.png";
+     int maptag = CCRANDOM_0_1()*10;
+     if (maptag<5)
+     strlcpy(mapname, map_green.c_str(), map_green.length()+1);
+     else if(maptag<7)
+     strlcpy(mapname, map_yello.c_str(), map_yello.length()+1);
+     else
+     strlcpy(mapname, map_night.c_str(), map_night.length()+1);
+     */
+    Map * map = Map::createMap("map_green.png",3);
+    addChild(map);
+    
+    //云层
+    //Map * clouds = Map::createMap("clouds.png",1);
+    //addChild(clouds);
+    
+    //离子
+    CCParticleSystemQuad * light = CCParticleSystemQuad::create("particle_color.plist");
+    light->setPosition(ScreenWidth/2,ScreenHeight/1.5);
+    addChild(light);
+
+    
+    // UI层级
+    int UIZOrder = 100;
+    // 0.血量
     //boss
-//    if (bossIsExist) {
-//        string strBossHp=Convert2String(boss->bossHp);
-//        CCLabelTTF* labelBossHp = CCLabelTTF::create(strBossHp.c_str(), font1, 30);
-//        labelBossHp->setPosition(ccp(30,ScreenHeight-250));
-//        labelBossHp->setColor(ccc3(255, 0, 0));
-//        this->addChild(labelBossHp,10,111);
-//    }
+    labelBossHP = CCLabelTTF::create("", font1, 30);
+    labelBossHP->setPosition(ccp(30,ScreenHeight-250));
+    labelBossHP->setColor(ccc3(255, 0, 0));
+    this->addChild(labelBossHP,UIZOrder);
     //plane
-    if (planeIsExist) {
-        string strPlaneHp=Convert2String(playerMajor->hp);
-        CCLabelTTF* labelPlaneHp = CCLabelTTF::create(strPlaneHp.c_str(), font1, 30);
-        labelPlaneHp->setPosition(ccp(30,ScreenHeight-300));
-        labelPlaneHp->setColor(ccc3(0, 0, 255));
-        this->addChild(labelPlaneHp,10,222);
-    }
-    //plane0
-    if (plane0IsExist) {
-        string strPlane0Hp=Convert2String(playerMajor->hp);
-        CCLabelTTF* labelPlane0Hp = CCLabelTTF::create(strPlane0Hp.c_str(), font1, 30);
-        labelPlane0Hp->setPosition(ccp(30,ScreenHeight-350));
-        labelPlane0Hp->setColor(ccc3(0,225, 0));
-        this->addChild(labelPlane0Hp,10,333);
-    }
-    //初始化"分数"文字加入layer中
+    labelPlayerHP = CCLabelTTF::create("", font1, 30);
+    labelPlayerHP->setPosition(ccp(30,ScreenHeight-300));
+    labelPlayerHP->setColor(ccc3(0, 0, 255));
+    this->addChild(labelPlayerHP,UIZOrder);
+    //planeas
+    labelPlayerAsHP = CCLabelTTF::create("", font1, 30);
+    labelPlayerAsHP->setPosition(ccp(30,ScreenHeight-350));
+    labelPlayerAsHP->setColor(ccc3(0,225, 0));
+    this->addChild(labelPlayerAsHP,UIZOrder);
+    
+    // 1.分数
     CCLabelTTF * label = CCLabelTTF::create("分数:", font1, 20);
     label->setPosition(ccp(30,ScreenHeight-52));
     this->addChild(label,10);
-    
-    //分数
     std::string strScore=Convert2String(score);
     labelScores = CCLabelTTF::create(strScore.c_str(), font1, 20);
     labelScores->setPosition(ccp(110,ScreenHeight-52));
     labelScores->setColor(ccc3(255, 0, 255));
-    this->addChild(labelScores,10);
+    this->addChild(labelScores,UIZOrder);
     
-    //杀敌人数
+    // 2.杀敌人数
     CCLabelTTF* labelKill = CCLabelTTF::create("杀敌:", font1, 20);
     labelKill->setPosition(ccp(30,ScreenHeight-82));
     this->addChild(labelKill,10);
-    
-    //杀敌数字加入layer中
     std::string strKillCount=Convert2String(killNum);
     labelKillCount = CCLabelTTF::create(strKillCount.c_str(), font2, 20);
     labelKillCount->setPosition(ccp(110,ScreenHeight-82));
     labelKillCount->setColor(ccc3(255, 0, 255));
-    this->addChild(labelKillCount,10);
+    this->addChild(labelKillCount,UIZOrder);
     
-    //距离
+    // 3.距离
     CCLabelTTF* labelDis = CCLabelTTF::create("距离:", font1, 20);
     labelDis->setPosition(ccp(30,ScreenHeight-112));
     this->addChild(labelDis,10);
-    
-    //距离数字加入layer中
     std::string strDistance=Convert2String(instance);
     labelDistance = CCLabelTTF::create(strDistance.c_str(), font2, 20);
     labelDistance->setPosition(ccp(110,ScreenHeight-112));
     labelDistance->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDistance,10);
+    this->addChild(labelDistance,UIZOrder);
     
-    //钻石
+    // 4.钻石
     CCSprite *diamond0 =CCSprite::create("diamond_crystal.png");
     diamond0->setPosition(ccp(30,ScreenHeight-142));
     diamond0->setScale(0.4);
     diamond0->setRotation(30);
-    this->addChild(diamond0,200);
+    this->addChild(diamond0,UIZOrder);
     
     CCSprite *diamond1 =CCSprite::create("diamond_yellow.png");
     diamond1->setPosition(ccp(30,ScreenHeight-172));
     diamond1->setScale(0.4);
     diamond1->setRotation(30);
-    this->addChild(diamond1,200);
+    this->addChild(diamond1,UIZOrder);
     
     CCSprite *diamond2 =CCSprite::create("diamond_red.png");
     diamond2->setPosition(ccp(30,ScreenHeight-202));
     diamond2->setScale(0.4);
     diamond2->setRotation(30);
-    this->addChild(diamond2,200);
+    this->addChild(diamond2,UIZOrder);
     
-    
-    //钻石数字加入layer中
     string strDiamond=Convert2String(diamond_c);
     labelDiamond = CCLabelTTF::create(strDiamond.c_str(), font2, 20);
     labelDiamond->setPosition(ccp(110,ScreenHeight-142));
     labelDiamond->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDiamond,10);
+    this->addChild(labelDiamond,UIZOrder);
     
     string strDiamond1=Convert2String(diamond_y);
     labelDiamond1 = CCLabelTTF::create(strDiamond1.c_str(), font2, 20);
     labelDiamond1->setPosition(ccp(110,ScreenHeight-172));
     labelDiamond1->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDiamond1,10);
+    this->addChild(labelDiamond1,UIZOrder);
     
     string strDiamond2=Convert2String(diamond_r);
     labelDiamond2 = CCLabelTTF::create(strDiamond2.c_str(), font2, 20);
     labelDiamond2->setPosition(ccp(110,ScreenHeight-202));
     labelDiamond2->setColor(ccc3(255, 0, 255));
-    this->addChild(labelDiamond2,10);
-}
-
-/**
- * 游戏中的操作
- */
-void Game::gameOperation()
-{
-    // 1.添加一个按钮用于结束游戏并返回
+    this->addChild(labelDiamond2,UIZOrder);
+    
+    // 5.游戏操作
+    // 结束游戏按钮
     CCMenuItemImage *stopButton=CCMenuItemImage::create("stop.png", "shadow.png", this, menu_selector(Game::goHome));
     stopButton->setPosition(ccp(ScreenWidth/3+50,ScreenHeight/2-100));
     
-    // 2.添加一个按钮用于暂停游戏
+    // 暂停游戏按钮
     CCMenuItemImage *resumeButton=CCMenuItemImage::create("pause.png", "shadow.png", this, menu_selector(Game::pauseGame));
     resumeButton->setPosition(ccp(ScreenWidth/3+50,ScreenHeight/2-200));
     CCMenu* menu =CCMenu::create(stopButton,resumeButton,NULL);
     // 添加操作菜单，z轴最高
-    addChild(menu,1);
+    addChild(menu,UIZOrder);
+
 }
 
-/**
- * 游戏失败
- */
-void Game::lostGame()
-{
+void Game::dataStore() {
     //存储最高分数
     int oldScore = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_score","-1").c_str());
-    if(score>oldScore)
+    if(score > oldScore)
     {
         CCUserDefault::sharedUserDefault()->setStringForKey("user_score", Convert2String(score));
         CCUserDefault::sharedUserDefault()->flush();
     }
     //存储最高杀敌数
-    int oldKillNum =atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_killNum","-1").c_str());
-   if(killNum>oldKillNum)
+    int oldKillNum = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_killNum","-1").c_str());
+    if(killNum > oldKillNum)
     {
         CCUserDefault::sharedUserDefault()->setStringForKey("user_killNum", Convert2String(killNum));
         CCUserDefault::sharedUserDefault()->flush();
     }
     //存储最远距离
-    int oldInstance =atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_distance","-1").c_str());
-   if(instance>oldInstance)
+    int oldInstance = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_distance","-1").c_str());
+    if(instance > oldInstance)
     {
         CCUserDefault::sharedUserDefault()->setStringForKey("user_distance", Convert2String(instance));
         CCUserDefault::sharedUserDefault()->flush();
     }
     //存储钻石数据
-    int oldDiamond_cry =atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_diamond_cry","0").c_str());
-        CCUserDefault::sharedUserDefault()->setStringForKey("user_diamond_cry", Convert2String(oldDiamond_cry+diamond_c));
-        CCUserDefault::sharedUserDefault()->flush();
+    int oldDiamond_cry = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_diamond_cry","0").c_str());
+    CCUserDefault::sharedUserDefault()->setStringForKey("user_diamond_cry", Convert2String(oldDiamond_cry+diamond_c));
+    CCUserDefault::sharedUserDefault()->flush();
     
-    int oldDiamond_y =atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_diamond_y","0").c_str());
-        CCUserDefault::sharedUserDefault()->setStringForKey("user_diamond_y", Convert2String(oldDiamond_y+diamond_y));
-        CCUserDefault::sharedUserDefault()->flush();
+    int oldDiamond_y = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_diamond_y","0").c_str());
+    CCUserDefault::sharedUserDefault()->setStringForKey("user_diamond_y", Convert2String(oldDiamond_y+diamond_y));
+    CCUserDefault::sharedUserDefault()->flush();
     
-    int oldDiamond_r =atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_diamond_r","0").c_str());
-        CCUserDefault::sharedUserDefault()->setStringForKey("user_diamond_r", Convert2String(oldDiamond_r+diamond_r));
-        CCUserDefault::sharedUserDefault()->flush();
+    int oldDiamond_r = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_diamond_r","0").c_str());
+    CCUserDefault::sharedUserDefault()->setStringForKey("user_diamond_r", Convert2String(oldDiamond_r+diamond_r));
+    CCUserDefault::sharedUserDefault()->flush();
 
-    //添加失败界面
+}
+
+void Game::showGameOver()
+{
     CCLayerColor *layer = CCLayerColor::create(ccc4(0, 0, 0, 190), ScreenWidth, ScreenHeight);
+    this->addChild(layer);
+    
     CCSprite* sp = CCSprite::create("game_lost.png");
     sp->setPosition(ccp(ScreenWidth/2,ScreenHeight/2));
     layer->addChild(sp);
-    this->addChild(layer);
-    //addChild(layer,255);
-    //添加一个按钮用于返回Menu
+    
     CCLabelTTF* ttback =CCLabelTTF::create("返回", font1, 53);
     ttback->setColor(ccc3(0, 255, 255));
-    //CCLabelTTF* ttback0 =CCLabelTTF::create("返回", font1, 43);
     CCMenuItemLabel* menuLabel= CCMenuItemLabel::create(ttback,this, menu_selector(Game::goHome));
     menuLabel->setPosition(ccp(0,-200));
     CCMenu* menu =CCMenu::create(menuLabel,NULL);
     this->addChild(menu);
     //暂停游戏
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();//停背景音乐
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("end.mp3");//播放失败音效
-    //释放所有的贴图
-    CCTextureCache::sharedTextureCache()->removeAllTextures();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("end.mp3",false);
     CCDirector::sharedDirector()->pause();
+    
+    // 游戏结算
+    dataStore();
 }
 
 /**
@@ -532,17 +470,9 @@ void Game:: resumeGame()
 void Game::goHome()
 {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
-
-    //this->removeAllComponents();
-    //停止所有计时器
-    this->unscheduleAllSelectors();
-    //停止所有音效
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
-    //继续游戏
-    CCDirector::sharedDirector()->resume();
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     //切换到"菜单"场景
     CCDirector::sharedDirector()->replaceScene(Menu::scene());
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
 
 }
 
@@ -559,16 +489,15 @@ float Game::Distance(CCPoint point1,CCPoint point2)
  */
 void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
 {
-    int c = pTouches->count();
-    cout<<"触点个数："<<c<<endl;
+    //int c = pTouches->count();
+    //cout<<"触点个数："<<c<<endl;
+    if (!player) return;
     CCSetIterator iter = pTouches->begin();
-    if(plane0IsExist)
-    {
-    for (; iter !=pTouches->end(); iter++)
-    {
+    if(playerAs) {
+    for (; iter !=pTouches->end(); iter++) {
         //获取两个飞机对象
-        CCPoint point1=playerMajor->getPosition();
-        CCPoint point2=playerAuxiliary->getPosition();
+        CCPoint point1=player->getPosition();
+        CCPoint point2=playerAs->getPosition();
         CCTouch *pTouch = (CCTouch*)(*iter);
         CCPoint location = pTouch->getLocation();
         //根据触点与两个飞机之间的距离判断触控情况
@@ -577,44 +506,37 @@ void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
         if (pTouch->getID()==0)
         {
             if (Distance(location, point1)<Distance(location, point2)&&Distance(location, point1)<100.0) {
-                playerMajor->setPosition(location);
+                player->setPosition(location);
             }
             else if(Distance(location, point2)<100.0)
-                playerAuxiliary->setPosition(location);
+                playerAs->setPosition(location);
         }
         else if (pTouch->getID()==1)
         {
             if (Distance(location, point2)<Distance(location, point1)&&Distance(location, point2)<100.0) {
-                playerAuxiliary->setPosition(location);
+                playerAs->setPosition(location);
             }
             else if(Distance(location, point1)<100.0)
-                playerMajor->setPosition(location);
+                player->setPosition(location);
         }
     }
     }else{
-        CCPoint point1=playerMajor->getPosition();
+        CCPoint point1=player->getPosition();
         CCTouch *pTouch = (CCTouch*)(*iter);
         CCPoint location = pTouch->getLocation();
-        if (Distance(point1, location)<=playerMajor->getContentSize().width){
-            playerMajor->setPosition(location);
+        if (Distance(point1, location)<=player->getContentSize().width){
+            player->setPosition(location);
         }
     }
-}
-
-/**
- * 删除多触点的委托监听
- */
-void Game::onExit()
-{
-    this->unscheduleUpdate();
-    this->unscheduleAllSelectors();
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    CCLayer::onExit();
 }
 
 /**
  * 析构函数
  */
 Game::~Game(){
+    CCTextureCache::sharedTextureCache()->removeAllTextures();
+    this->unscheduleUpdate();
+    this->unscheduleAllSelectors();
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CC_SAFE_RELEASE(arrayEnemy);
 }

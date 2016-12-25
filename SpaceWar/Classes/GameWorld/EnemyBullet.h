@@ -11,20 +11,16 @@
 #include "Bullet.h"
 #include "Game.h"
 #include "Plane.h"
-#include "Plane0.h"
+#include "PlaneAs.h"
 #include "cocos2d.h"
 using namespace cocos2d;
 
 class EnemyBullet :public Bullet
 {
 public:
-    //实例化函数
-    //static EnemyBullet* createBullet(const char* _fileName,float _speedx,CCPoint _position);
-    //void bulletInit(float _speed,CCPoint _position);
-    /**
-     * 运动方式
-     */
+
+    static EnemyBullet* createBullet(const char* _fileName,float _speedx,CCPoint _position);
+    void bulletInit(float _speed,CCPoint _position);
     void update(float time);
-    //void onExit();
 };
 #endif

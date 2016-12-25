@@ -55,10 +55,10 @@ void Enemy::enemyInit(const char* fileName,int _type)
 void Enemy::autoCreateEnemy()
 {
     //一次创建2个敌机
-    for (int i =0; i<2; i++)
+    for (int i = 0; i < 2; i++)
     {
         Enemy* enemy=NULL;
-        int random=CCRANDOM_0_1()*10;
+        int random=CCRANDOM_0_1() * 10;
         int randomType;
         
         const char* name;
@@ -76,51 +76,44 @@ void Enemy::autoCreateEnemy()
         else if(random>=9 && random<=10)
         {
             name="cohete_on.png";
-            //enemy->runAction(Enemy::createAnimate());
             randomType=2;
         }
-        enemy=Enemy::createEnemy(name, randomType);
+        enemy = Enemy::createEnemy(name, randomType);
         Game::sharedWorld()->arrayEnemy->addObject(enemy);
         Game::sharedWorld()->addChild(enemy);
     }
 }
+
 /**
  * 三种不同的运动路径
  */
 void Enemy::update(float time)
 {
-   // CCSize size = CCDirector::sharedDirector()->getWinSize();
-    CCMoveTo *action_moveToPlayer =CCMoveTo::create(700, ccp(Game::sharedWorld()->playerMajor->getPosition().x,-100));//炸弹移动向主机的动作
-    CCEaseExponentialOut *action_speedMoveToPlayer =CCEaseExponentialOut::create(action_moveToPlayer);//变速动作
+    //如果敌机超出屏幕则移除
+    if(this->getPositionY() < (-this->getContentSize().height/2))
+    {
+        Game::sharedWorld()->arrayEnemy->removeObject(this);
+        this->removeFromParent();
+    }
+    
+    if (!Game::sharedWorld()->player) return;
+    CCMoveTo *action_moveToPlayer = CCMoveTo::create(700, ccp(Game::sharedWorld()->player->getPosition().x,-100));//炸弹移动向主机的动作
+    CCEaseExponentialOut *action_speedMoveToPlayer = CCEaseExponentialOut::create(action_moveToPlayer);           //变速动作
     
     switch (type)
     {
         case 0:
-        {
             this->setPosition(ccpAdd(this->getPosition(), ccp(0.5,-3)));
             break;
-        }
         case 1:
-        {
-            if(Game::sharedWorld()->planeIsExist)
-                this->runAction(action_moveToPlayer);
+            this->runAction(action_moveToPlayer);
             break;
-        }
         case 2:
-        {
-            if(Game::sharedWorld()->planeIsExist)
-                this->runAction(action_speedMoveToPlayer);
-        }
+            this->runAction(action_speedMoveToPlayer);
+            break;
         default:
             break;
     }
-    //如果敌机超出屏幕则移除
-    if(this->getPositionY()< (-this->getContentSize().height/2))
-    {
-        Game::sharedWorld()->arrayEnemy->removeObject(this);
-        this->getParent()->removeChild(this, true);
-    }
-    
 }
 
 /**
@@ -136,12 +129,4 @@ CCAnimate* Enemy::createAnimate()
 //    animation_enemy->setRestoreOriginalFrame(true);
 //    auto animate_boss = CCAnimate::create(animation_enemy);
 //    return animate_boss;
-}
-/**
- * 生命周期结束
- */
-void Enemy::onExit()
-{
-    this->unscheduleUpdate();
-    CCSprite::onExit();
 }

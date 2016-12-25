@@ -13,12 +13,12 @@
 /**
  * 枚举tag
  */
-enum tag
-{
-    tagBoss1,//boss1
-    tagPlayerMajor,//主机
-    tagPlayerAuxiliary,//辅机
-};
+//enum tag
+//{
+//    tagBoss1,//boss1
+//    tagPlayerMajor,//主机
+//    tagPlayerAuxiliary,//辅机
+//};
 /**
  *  主机静态单例
  *
@@ -51,8 +51,7 @@ Plane* Plane::createPlayer(const char* fileName,int _hpMax,int _hp,float x,float
  *  @param x        起始坐标 x
  *  @param y        起始坐标 y
  */
-void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
-{
+void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y) {
     //主机播放帧动画
     this->runAction(createAnimate(fileName));
     //添加无敌状态的保护罩
@@ -83,22 +82,18 @@ void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y)
 /**
  * 系统帧更新，检测与敌机碰撞
  */
-void Plane::update(float time)
-{
+void Plane::update(float time) {
     //检测与boss碰撞
-//    Boss* theBoss=(Boss*)Game::sharedWorld()->getChildByTag(tagBoss1);
-//    if (Game::sharedWorld()->bossIsExist&&theBoss->boundingBox().intersectsRect(this->boundingBox()))
-//    {
-//        this->collideWithEnemy();
-//        theBoss->bossHp--;
-//    }
+    Demon* theBoss = Game::sharedWorld()->demon;
+    if (theBoss && theBoss->boundingBox().intersectsRect(this->boundingBox())) {
+        this->collideWithEnemy();
+        theBoss->bossHp--;
+    }
     //检测与敌机碰撞
     CCArray * array = Game::sharedWorld()->arrayEnemy;
-    for (int i =0; i<array->count(); i++)
-    {
+    for (int i =0; i<array->count(); i++) {
         Enemy* enemy = (Enemy*)array->objectAtIndex(i);
-        if (enemy->boundingBox().intersectsRect(this->boundingBox()))
-        {
+        if (enemy->boundingBox().intersectsRect(this->boundingBox())) {
             //从敌人数组将被攻击的敌怪删除
             array->removeObject(enemy);
             Game::sharedWorld()->removeChild(enemy, true);
@@ -110,51 +105,45 @@ void Plane::update(float time)
 /**
  *碰撞处理函数
  */
-void Plane::collideWithEnemy()
-{
-    if(isStrong||Game::sharedWorld()->planeIsExist==false)
-        return;
+void Plane::collideWithEnemy() {
+    if(isStrong) return;
     //手机振动
     CocosDenshion::SimpleAudioEngine::sharedEngine()->vibrate();
     hp--;
-    if(hp<=0)
-    {
-        Plane0 *plane0_temp= Game::sharedWorld()->playerAuxiliary;
-        if (CCUserDefault::sharedUserDefault()->getBoolForKey("choosedModel",true)){
-            plane0_temp->playerWasDead();
+    if(hp <= 0) {
+        if (Game::sharedWorld()->playerAs){
+            Game::sharedWorld()->playerAs->removeFromParent();
+            Game::sharedWorld()->playerAs = NULL;
         }
-        Game::sharedWorld()->planeIsExist=false;
         //爆炸
         CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane.wav");
         CCParticleSystemQuad * particle11 = CCParticleSystemQuad::create("particle_plane_boom.plist");
-        //主机位置
         particle11->setPosition(this->getPosition());
-        //自动释放
         particle11->setAutoRemoveOnFinish(true);
         Game::sharedWorld()->addChild(particle11);
-        removeChildByTag(tagPlayerMajor);
+        
+        this->removeFromParent();
+        Game::sharedWorld()->player = NULL;
+        
         //调用失败界面
-        Game::sharedWorld()->lostGame();
+        Game::sharedWorld()->showGameOver();
         this->unscheduleUpdate();
-    }
-    else
-    {
+    }else {
         //碰撞后没死保护5s
-        Plane::startStrong(5);
+        startStrong(5);
     }
 }
 
 /**
  * 制作主机动画
  */
-CCAnimate* Plane::createAnimate(const char* fileName)
-{
+CCAnimate* Plane::createAnimate(const char* fileName) {
     auto animation_plane = CCAnimation::create();
-    animation_plane->addSpriteFrameWithFileName("menu_plane_left1.png");
-    animation_plane->addSpriteFrameWithFileName("menu_plane_left2.png");
-    animation_plane->addSpriteFrameWithFileName("menu_plane_left3.png");
-    animation_plane->addSpriteFrameWithFileName("menu_plane_left4.png");
-    animation_plane->addSpriteFrameWithFileName("menu_plane_left5.png");
+    for (int i = 1; i <= 5; i++) {
+        CCString *filename = CCString::create("");
+        filename->initWithFormat("menu_plane_left%d.png", i);
+        animation_plane->addSpriteFrameWithFileName(filename->getCString());
+    }
     animation_plane->setDelayPerUnit(0.03f);
     animation_plane->setLoops(-1);
     animation_plane->setRestoreOriginalFrame(false);
@@ -165,8 +154,7 @@ CCAnimate* Plane::createAnimate(const char* fileName)
 /**
  * 开始无敌状态
  */
-void Plane::startStrong(float strongTime)
-{
+void Plane::startStrong(float strongTime) {
     isStrong=true;
     //显示无敌标志
     sp_star->setVisible(true);
@@ -179,8 +167,7 @@ void Plane::startStrong(float strongTime)
 /**
  * 结束无敌
  */
-void Plane::endStrong()
-{
+void Plane::endStrong() {
     //隐藏无敌标志
     sp_star->setVisible(false);
     this->unschedule(schedule_selector(Plane::shine));
@@ -192,14 +179,11 @@ void Plane::endStrong()
 /**
  * 无敌时的闪烁
  */
-void Plane::shine()
-{
+void Plane::shine() {
     if (show==true) {
         this->setVisible(false);
         show=false;
-    }
-    else
-    {
+    }else {
         this->setVisible(true);
         show=true;
     }
