@@ -90,7 +90,7 @@ bool Game::init()
     
     // 计时器
     this->scheduleUpdate();
-    this->schedule(schedule_selector(Game::createEnemy), 1,-1,5);// interval,loop,delay
+    this->schedule(schedule_selector(Game::createEnemy), 0.5,-1,5);// interval,loop,delay
     this->schedule(schedule_selector(Game::createBullet), 0.2,-1,3);
     this->schedule(schedule_selector(Game::createAsBullet), 0.3, -1, 3);
     return true;
@@ -101,24 +101,23 @@ bool Game::init()
  */
 void Game::createEnemy()
 {
-    int random = CCRANDOM_0_1();
+    float random = CCRANDOM_0_1();
     int randomType;
     const char* name;
-    if(random >= 0 && random <= 0.5)
+    if(random <= 0.5)
     {
         name="enemy_red.png";
-        randomType=0;
+        randomType = 0;
     }
-    
-    else if(random >= 0.6 && random <= 0.8)
+    else if(random <= 0.8)
     {
         name="enemy_blue.png";
-        randomType=1;
+        randomType = 1;
     }
-    else if(random >= 9)
+    else
     {
         name="cohete_on.png";
-        randomType=2;
+        randomType = 2;
     }
 
     Enemy *enemy = Enemy::createEnemy(name, randomType);
@@ -569,14 +568,16 @@ void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
     }
 }
 
-/**
- * 析构函数
- */
-Game::~Game(){
-    CCTextureCache::sharedTextureCache()->removeAllTextures();
+void Game::onExit() {
     this->unscheduleUpdate();
     this->unscheduleAllSelectors();
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CC_SAFE_RELEASE(arrayEnemy);
     CC_SAFE_RELEASE(arrayBullet);
+    CCLayer::onExit();
 }
+
+/**
+ * 析构函数
+ */
+Game::~Game(){}

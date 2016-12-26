@@ -53,18 +53,19 @@ void Bullet::update(float time)
         Enemy* enemy = (Enemy*)array->objectAtIndex(i);
         Tool * tool2=NULL;
         //只有与特定敌机相撞并且在屏幕内才算击中敌机
-        if (enemy->boundingBox().intersectsRect(this->boundingBox())&&this->getPositionY()<ScreenHeight)
+        if (enemy->boundingBox().intersectsRect(this->boundingBox()) && this->getPositionY()<ScreenHeight)
             {
-                if(enemy->type!=2)
-                {
-                    Game::sharedWorld()->removeChild(this, true);
+                if(enemy->type!=2) {
+                    
+                    Game::sharedWorld()->arrayBullet->removeObject(this);
+                    this->removeFromParent();
+                    
                     //爆炸粒子效果
                     CCParticleSystemQuad * particle = CCParticleSystemQuad::create("particle_boom.plist");
                     particle->setPosition(enemy->getPosition());//敌机位置
                     particle->setAutoRemoveOnFinish(true);//自动释放
                     Game::sharedWorld()->addChild(particle);
-                    if (enemy->enemyHp==0)
-                    {
+                    if (enemy->enemyHp==0) {
                         //爆炸音效
                         CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("effect_boom.mp3");
                         //一定几率产生道具
@@ -79,9 +80,7 @@ void Bullet::update(float time)
                         array->removeObject(enemy);
                         //删除敌怪
                         Game::sharedWorld()->removeChild(enemy, true);
-                    }
-                    else
-                    {
+                    }else {
                         enemy->enemyHp--;
                     }
                 }

@@ -26,23 +26,23 @@ Enemy* Enemy::createEnemy(const char* fileName,int _type)
 void Enemy::enemyInit(const char* fileName,int _type)
 {
     //为不同的敌机设置分值以及出现位置
-    type=_type;
+    type = _type;
     if(_type==0)
     {
         scoreValue=200;
-        enemyHp=8;
+        enemyHp = 8;
         this->setPosition(ccp(int(CCRANDOM_MINUS1_1()*10)*200+ScreenWidth/2,ScreenHeight+this->getContentSize().height));
     }
     else if(_type==1)
     {
         scoreValue=400;
-        enemyHp=10;
+        enemyHp = 10;
         this->setPosition(ccp(ScreenWidth/2,ScreenHeight+this->getContentSize().height));
     }
     else if(_type==2)
     {
-        scoreValue=0;
-        enemyHp=5;
+        scoreValue = 0;
+        enemyHp = 5;
         this->setPosition(ccp(CCRANDOM_0_1()*ScreenWidth,ScreenHeight+this->getContentSize().height));
     }
     this->scheduleUpdate();

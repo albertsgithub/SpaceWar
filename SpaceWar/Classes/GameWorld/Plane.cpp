@@ -83,13 +83,6 @@ void Plane::playerInit(const char* fileName,int _hpMax,int _hp,float x,float y) 
  * 系统帧更新，检测与敌机碰撞
  */
 void Plane::update(float time) {
-    if (!Game::sharedWorld()->demon) return;
-    //检测与boss碰撞
-    Demon* theBoss = Game::sharedWorld()->demon;
-    if (theBoss->boundingBox().intersectsRect(this->boundingBox())) {
-        this->collideWithEnemy();
-    }
-    
     //检测与敌机碰撞
     CCArray * array = Game::sharedWorld()->arrayEnemy;
     for (int i =0; i<array->count(); i++) {
@@ -101,6 +94,13 @@ void Plane::update(float time) {
             this->collideWithEnemy();
             break;
         }
+    }
+    
+    if (!Game::sharedWorld()->demon) return;
+    //检测与boss碰撞
+    Demon* theBoss = Game::sharedWorld()->demon;
+    if (theBoss->boundingBox().intersectsRect(this->boundingBox())) {
+        this->collideWithEnemy();
     }
 }
 

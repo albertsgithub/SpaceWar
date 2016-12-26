@@ -22,8 +22,11 @@ public:
     //初始化菜单
     bool init();
     //按帧更新
-    void update(float time);
+    virtual void update(float time);
+    virtual void onExit();
+    virtual ~Menu();
     CREATE_FUNC(Menu);
+    
     
     //记录右边飞机的显示隐藏状态
     bool show;

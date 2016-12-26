@@ -327,3 +327,10 @@ void Menu::musicOff(){
     //继续播放背景音乐
     CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
+
+void Menu::onExit() {
+    CCLayer::onExit();
+}
+
+Menu::~Menu() {
+}

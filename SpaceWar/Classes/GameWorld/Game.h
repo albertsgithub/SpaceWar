@@ -30,6 +30,9 @@ class Game : public CCLayer
     CREATE_FUNC(Game);
     virtual bool init();
     virtual void update(float time);
+    virtual void onExit();
+    virtual ~Game();
+
 
 public:
     static CCScene* scene();
@@ -100,7 +103,5 @@ public:
     //返回主菜单
     void goHome();
     
-    //析构函数
-    virtual ~Game();
 };
 #endif /* defined(________Game__) */
