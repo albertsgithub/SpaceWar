@@ -7,9 +7,7 @@
 //
 #include "Enemy.h"
 #include "Game.h"
-/**
- * 实例化函数
- */
+
 Enemy* Enemy::createEnemy(const char* fileName,int _type)
 {
     Enemy* enemy = new Enemy();
@@ -49,40 +47,6 @@ void Enemy::enemyInit(const char* fileName,int _type)
     }
     this->scheduleUpdate();
 }
-/**
- * 自动创建敌怪对象
- */
-void Enemy::autoCreateEnemy()
-{
-    //一次创建2个敌机
-    for (int i = 0; i < 2; i++)
-    {
-        Enemy* enemy=NULL;
-        int random=CCRANDOM_0_1() * 10;
-        int randomType;
-        
-        const char* name;
-        if(random>=0 && random<=5)
-        {
-            name="enemy_red.png";
-            randomType=0;
-        }
-        
-        else if(random>=6 && random<=8)
-        {
-            name="enemy_blue.png";
-            randomType=1;
-        }
-        else if(random>=9 && random<=10)
-        {
-            name="cohete_on.png";
-            randomType=2;
-        }
-        enemy = Enemy::createEnemy(name, randomType);
-        Game::sharedWorld()->arrayEnemy->addObject(enemy);
-        Game::sharedWorld()->addChild(enemy);
-    }
-}
 
 /**
  * 三种不同的运动路径
@@ -99,9 +63,7 @@ void Enemy::update(float time)
     if (!Game::sharedWorld()->player) return;
     CCMoveTo *action_moveToPlayer = CCMoveTo::create(700, ccp(Game::sharedWorld()->player->getPosition().x,-100));//炸弹移动向主机的动作
     CCEaseExponentialOut *action_speedMoveToPlayer = CCEaseExponentialOut::create(action_moveToPlayer);           //变速动作
-    
-    switch (type)
-    {
+    switch (type) {
         case 0:
             this->setPosition(ccpAdd(this->getPosition(), ccp(0.5,-3)));
             break;
@@ -114,19 +76,4 @@ void Enemy::update(float time)
         default:
             break;
     }
-}
-
-/**
- * 制作动画
- */
-CCAnimate* Enemy::createAnimate()
-{
-//    auto animation_enemy = CCAnimation::create();
-//    animation_enemy->addSpriteFrameWithFileName("cohete_on.png");
-//    animation_enemy->addSpriteFrameWithFileName("cohete_off.png");
-//    animation_enemy->setDelayPerUnit(0.1f);
-//    animation_enemy->setLoops(-1);
-//    animation_enemy->setRestoreOriginalFrame(true);
-//    auto animate_boss = CCAnimate::create(animation_enemy);
-//    return animate_boss;
 }

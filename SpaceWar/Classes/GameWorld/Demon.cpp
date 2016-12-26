@@ -9,6 +9,7 @@
 #include "Demon.h"
 #include "Game.h"
 #include "EnemyBullet.h"
+#include "SimpleAudioEngine.h"
 
 Demon* Demon::createDemon(const char *fileName, int _type)
 {
@@ -83,4 +84,53 @@ CCAnimate* Demon::createAnimate(int type) {
     animation_boss->setRestoreOriginalFrame(false);
     auto animate_wellcome = CCAnimate::create(animation_boss);
     return animate_wellcome;
+}
+
+// 碰撞检测
+void Demon::update(float time) {
+    if (getPositionY() <= (ScreenHeight/2-10)) return;
+
+    // 被子弹击中
+    CCArray *bulletArr = Game::sharedWorld()->arrayBullet;
+    for(int i = 0; i < bulletArr->count(); i++) {
+        Bullet *bullet = (Bullet*)bulletArr->objectAtIndex(i);
+        if (boundingBox().intersectsRect(bullet->boundingBox())) {
+            // 爆炸粒子效果
+            CCParticleSystemQuad * particle = CCParticleSystemQuad::create("particle_boom.plist");
+            particle->setPosition(this->getPosition());
+            particle->setAutoRemoveOnFinish(true);
+            Game::sharedWorld()->addChild(particle);
+            // 减血
+            bossHp--;
+            // boss死亡？
+            if (bossHp <= 0) {
+                //爆炸粒子效果
+                CCParticleSystemQuad * particle = CCParticleSystemQuad::create("particle_boom.plist");
+                particle->setPosition(ccp(getPositionX()-10,getPositionY()));
+                particle->setAutoRemoveOnFinish(true);
+                Game::sharedWorld()->addChild(particle);
+                CCParticleSystemQuad * particle2 = CCParticleSystemQuad::create("particle_boom.plist");
+                particle2->setPosition(ccp(getPositionX()+10, getPositionY()));
+                particle2->setAutoRemoveOnFinish(true);
+                Game::sharedWorld()->addChild(particle2);
+                
+                //爆炸音效
+                CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
+                
+                //显示击杀提示
+                Game::sharedWorld()->showWarn();
+                
+                // 移除boss
+                removeFromParent();
+                Game::sharedWorld()->demon = NULL;
+            }else {
+                bossHp--;
+            }
+            // 移除bullet
+            bulletArr->removeObject(bullet);
+            bullet->removeFromParent();
+            bullet->autorelease();
+            break;
+        }
+    }
 }

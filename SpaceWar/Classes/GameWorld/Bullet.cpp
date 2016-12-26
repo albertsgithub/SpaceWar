@@ -11,83 +11,41 @@
 #include "Tool.h"
 #include "SimpleAudioEngine.h"
 
-/**
- * 子弹实例化函数，惨数：贴图资源，x轴水平速度，y轴竖直速度，出现位置
- */
-Bullet* Bullet::createBullet(const char* _fileName,float _speedx,float _speedy,CCPoint _position)
-{
+/*子弹实例化函数，惨数：贴图资源，x轴水平速度，y轴竖直速度，出现位置*/
+Bullet* Bullet::createBullet(const char* _fileName,float _speedx,float _speedy,CCPoint _position) {
     Bullet* bullet = new Bullet();
     if(bullet && bullet->initWithFile(_fileName))
     {
-        bullet->autorelease();
         bullet->bulletInit(_speedx,_speedy,_position);
         return bullet;
     }
     CC_SAFE_DELETE(bullet);
     return NULL;
 }
-/**
- * 子弹初始化
- */
-void Bullet::bulletInit(float _speedx,float _speedy,CCPoint _position)
-{
+
+void Bullet::bulletInit(float _speedx,float _speedy,CCPoint _position) {
     speedx = _speedx;
     speedy = _speedy;
     this->setPosition(_position);
+    // 碰撞检测
     this->scheduleUpdate();
+    // 移动回调
+    this->schedule(schedule_selector(Bullet::move), 0.01);
 }
 
-/**
- * 子弹运动方式(向上)
- */
-void Bullet::update(float time)
-{
-    //改变主机子弹方向
+void Bullet::move() {
+    // 子弹移动
     this->setPosition(ccpAdd(this->getPosition(), ccp(speedx,speedy)));
     
     //子弹超出屏幕则移除
-    if (this->getPositionY()>=ScreenHeight)
+    if (this->getPositionY() >= ScreenHeight) {
         this->removeFromParent();
-    
-    //子弹与boss碰撞
-    Demon* theBoss = Game::sharedWorld()->demon;
-    if (theBoss && theBoss->boundingBox().intersectsRect(this->boundingBox()) && theBoss->getPositionY()>=ScreenHeight/2-10)
-    {
-        Game::sharedWorld()->removeChild(this, true);
-        // 爆炸粒子效果
-        CCParticleSystemQuad * particle = CCParticleSystemQuad::create("particle_boom.plist");
-        particle->setPosition(this->getPosition());
-        particle->setAutoRemoveOnFinish(true);
-        Game::sharedWorld()->addChild(particle);
-        
-        theBoss->bossHp--;
-        if (theBoss->bossHp <= 0) {
-            //爆炸粒子效果
-            CCParticleSystemQuad * particle = CCParticleSystemQuad::create("particle_boom.plist");
-            particle->setPosition(ccp(theBoss->getPositionX()-10,theBoss->getPositionY()));
-            particle->setAutoRemoveOnFinish(true);//自动释放
-            Game::sharedWorld()->addChild(particle);
-            //爆炸粒子效果
-            CCParticleSystemQuad * particle2 = CCParticleSystemQuad::create("particle_boom.plist");
-            particle2->setPosition(ccp(theBoss->getPositionX()+10,theBoss->getPositionY()));//子弹位置
-            particle2->setAutoRemoveOnFinish(true);//自动释放
-            Game::sharedWorld()->addChild(particle2);
-           
-            //爆炸音效
-            CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
-            
-            //显示击杀提示
-            Game::sharedWorld()->record = Game::sharedWorld()->instance;
-            Game::sharedWorld()->showWarn();
-            
-            // 移除boss
-            theBoss->removeFromParent();
-            theBoss = NULL;
-        }else {
-            theBoss->bossHp--;
-        }
+        Game::sharedWorld()->arrayBullet->removeObject(this);
     }
-    
+}
+
+void Bullet::update(float time)
+{
     //子弹与敌机相撞
     CCArray * array = Game::sharedWorld()->arrayEnemy;
     for (int i =0; i<array->count(); i++)

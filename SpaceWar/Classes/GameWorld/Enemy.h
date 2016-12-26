@@ -21,13 +21,7 @@ public:
     int enemyHp;
     
     static Enemy* createEnemy(const char* fileName,int _type);
-
     void enemyInit(const char* fileName,int _type);
-    
-    void autoCreateEnemy();
-
-    CCAnimate* createAnimate();
-
     virtual void update(float time);
 };
 

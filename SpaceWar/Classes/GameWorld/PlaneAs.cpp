@@ -52,13 +52,12 @@ void PlaneAs::collideWithEnemy()
 /**
  * 重载制作动画函数
  */
-CCAnimate* PlaneAs::createAnimate(const char *fileName)
-{
+CCAnimate* PlaneAs::createAnimate(const char *fileName) {
     auto animation_PlaneAs = CCAnimation::create();
     for (int i = 1; i <= 1; i++) {
-        CCString *name = CCString::create("");
-        name->initWithFormat("menu_plane_left%d.png", i);
-        animation_PlaneAs->addSpriteFrameWithFileName(fileName);
+        CCString *name = CCString::create("plane_second.png");
+        //name->initWithFormat("menu_plane_left%d.png", i);
+        animation_PlaneAs->addSpriteFrameWithFileName(name->getCString());
     }
     animation_PlaneAs->setDelayPerUnit(0.03f);
     animation_PlaneAs->setLoops(-1);

@@ -14,21 +14,14 @@ class Bullet :public CCSprite
 {
 public:
     //子弹水平速度
-    float speedx;//速度
+    float speedx;
     //子弹垂直速度
-    float speedy;//速度
+    float speedy;
     
-    /**
-     * 子弹实例化函数，惨数：贴图资源，x轴水平速度，y轴竖直速度，出现位置
-     */
+    /*子弹实例化函数，惨数：贴图资源，x轴水平速度，y轴竖直速度，出现位置*/
     static Bullet* createBullet(const char* _fileName,float _speedx,float _speedy,CCPoint _position);
-    /**
-     * 子弹初始化
-     */
     void bulletInit(float _speedx,float _speed,CCPoint _position);
-    /**
-     * 系统安帧更新，改变子弹运动轨迹
-     */
     virtual void update(float time);
+    void move();
 };
 #endif /* defined(________Bullet__) */

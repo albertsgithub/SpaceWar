@@ -29,18 +29,19 @@ class Game : public CCLayer
     
     CREATE_FUNC(Game);
     virtual bool init();
+    virtual void update(float time);
 
 public:
     static CCScene* scene();
     static Game * sharedWorld();
     /** 游戏数据变量 **/
-    int score = 0;
-    int killNum = 0;                   // 杀敌数
-    int instance = 0;                  // 距离
-    int record = 100000;               // 距离存储器
-    int diamond_c = 0;                 // 水晶钻石数量
-    int diamond_y = 0;                 // 黄钻石数量
-    int diamond_r = 0;                 // 红钻石数量
+    int level = 1;           // boss等级
+    int score = 0;           // 分数
+    int killNum = 0;         // 杀敌数
+    int instance = 0;        // 距离
+    int diamond_c = 0;       // 水晶钻石数量
+    int diamond_y = 0;       // 黄钻石数量
+    int diamond_r = 0;       // 红钻石数量
     
     /** UI元素 **/
     CCLabelTTF* labelScores;       // 分数标签
@@ -62,32 +63,32 @@ public:
     // 游戏模式
     GAME_TYPE gameType;
     // 存放敌怪的数组
-    CCArray * arrayEnemy;
-
-    //刷新飞行距离
-    void setDistance();
+    CCArray *arrayEnemy;
+    // 子弹数组
+    CCArray *arrayBullet;
+    
+    /** 工厂函数 **/
+    void createBullet();
+    void createAsBullet();
+    void createEnemy();
+    
+    /** 工具函数 **/
+    // UI初始化
+    void initUI();
+    // 游戏结算
+    void dataStore();
+    //显示游戏结束画面
+    void showGameOver();
+    //提示
+    void showWarn();
+    void hideWarn();
     //加分
     void addScore(float _value);
     //加杀敌数
     void addKillCount(float _value);
     //计算两点之间距离
     float Distance(CCPoint point1,CCPoint point2);
-    //产生子弹、敌机
-    void createBullet();
-    void createBullet0();
-    void createEnemy();
-    
-    /** 工具函数 **/
-    // 游戏结算
-    void dataStore();
-    //显示游戏结束画面
-    void showGameOver();
-    //隐藏提示
-    void showWarn();
-    //按帧更新
-    virtual void update(float time);
-    // UI初始化
-    void initUI();
+
     
     /** 回调函数 **/
     //拖动事件

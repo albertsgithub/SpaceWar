@@ -44,9 +44,7 @@ void EnemyBullet::update(float time)
             CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("plane0.wav");
             Game::sharedWorld()->removeChild(theBoss, true);
             //显示击杀提示
-            Game::sharedWorld()->record=Game::sharedWorld()->instance;
-            if(theBoss->type==0)
-                Game::sharedWorld()->showWarn();
+            Game::sharedWorld()->showWarn();
         }
         else
         {

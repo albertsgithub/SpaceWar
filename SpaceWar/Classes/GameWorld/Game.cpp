@@ -63,8 +63,11 @@ bool Game::init()
         gameType = GAME_SINGLE;
     }
     
-    arrayEnemy = CCArray::create();     //初始化敌人数组
-    CC_SAFE_RETAIN(arrayEnemy);         //增加敌人数组的一次引用
+    // 数组初始化
+    arrayEnemy = CCArray::create();
+    CC_SAFE_RETAIN(arrayEnemy);
+    arrayBullet = CCArray::create();
+    CC_SAFE_RETAIN(arrayBullet);
     
     // UI
     initUI();
@@ -74,7 +77,7 @@ bool Game::init()
         //精灵贴图、最大血量、初始化血量、初始位置
         player=Plane::createPlayer("plane_one.png",5,5,ScreenWidth/3,100);
         addChild(player,0);
-        playerAs=PlaneAs::createPlayer("hero_purple1.png",5,5,ScreenWidth/3*2, 100);
+        playerAs=PlaneAs::createPlayer("plane_second.png",5,5,ScreenWidth/3*2, 100);
         addChild(playerAs,0);
     }else{
         //精灵贴图、最大血量、初始化血量、初始位置
@@ -87,21 +90,40 @@ bool Game::init()
     
     // 计时器
     this->scheduleUpdate();
-    // 每1秒产生一次敌机,无限重复，第一次延迟5s
-    this->schedule(schedule_selector(Game::createEnemy), 1,-1,5);
-    // 每0.2秒产生一次子弹，无限重复，第一次延迟3s
+    this->schedule(schedule_selector(Game::createEnemy), 1,-1,5);// interval,loop,delay
     this->schedule(schedule_selector(Game::createBullet), 0.2,-1,3);
-    this->schedule(schedule_selector(Game::createBullet0), 0.3, -1, 3);
+    this->schedule(schedule_selector(Game::createAsBullet), 0.3, -1, 3);
     return true;
 }
 
 /**
- * 更新不断产生敌机
+ * 敌机工厂
  */
 void Game::createEnemy()
 {
-    Enemy *enemy = NULL;
-    enemy->autoCreateEnemy();
+    int random = CCRANDOM_0_1();
+    int randomType;
+    const char* name;
+    if(random >= 0 && random <= 0.5)
+    {
+        name="enemy_red.png";
+        randomType=0;
+    }
+    
+    else if(random >= 0.6 && random <= 0.8)
+    {
+        name="enemy_blue.png";
+        randomType=1;
+    }
+    else if(random >= 9)
+    {
+        name="cohete_on.png";
+        randomType=2;
+    }
+
+    Enemy *enemy = Enemy::createEnemy(name, randomType);
+    arrayEnemy->addObject(enemy);
+    addChild(enemy);
 }
 
 /**
@@ -110,8 +132,12 @@ void Game::createEnemy()
 void Game::createBullet()
 {
     if(!player) return;
-    addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(player->getPosition().x+13,player->getPosition().y)));
-    addChild(Bullet::createBullet("bullet_red.png",0,30,ccp(player->getPosition().x-13,player->getPosition().y)));
+    Bullet *leftbullet = Bullet::createBullet("bullet_red.png",0,15,ccp(player->getPosition().x-13,player->getPosition().y));
+    Bullet *rightbullet = Bullet::createBullet("bullet_red.png",0,15,ccp(player->getPosition().x+13,player->getPosition().y));
+    arrayBullet->addObject(leftbullet);
+    arrayBullet->addObject(rightbullet);
+    addChild(leftbullet,0);
+    addChild(rightbullet,0);
     //子弹音效
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("effect_bullet.mp3");
 }
@@ -119,14 +145,22 @@ void Game::createBullet()
 /**
  * 产生辅机子弹
  */
-void Game::createBullet0()
+void Game::createAsBullet()
 {
     if(!playerAs) return;
     //子弹参数：图片-x速度-y速度-初始位置
-    addChild(Bullet::createBullet("bullet_blue.png",5,15,ccp(playerAs->getPosition().x+5,playerAs->getPosition().y+20)));
-    addChild(Bullet::createBullet("bullet_blue.png",-5,15,ccp(playerAs->getPosition().x-5,playerAs->getPosition().y+20)));
-    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAs->getPosition().x-10,playerAs->getPosition().y+20)));
-    addChild(Bullet::createBullet("bullet_blue.png",0,10,ccp(playerAs->getPosition().x+10,playerAs->getPosition().y+20)));
+    Bullet *bullet1 = Bullet::createBullet("bullet_blue.png",2,8,ccp(playerAs->getPosition().x+5,playerAs->getPosition().y+20));
+    Bullet *bullet2 = Bullet::createBullet("bullet_blue.png",-2,8,ccp(playerAs->getPosition().x-5,playerAs->getPosition().y+20));
+    Bullet *bullet3 = Bullet::createBullet("bullet_blue.png",0,5,ccp(playerAs->getPosition().x-10,playerAs->getPosition().y+20));
+    Bullet *bullet4 = Bullet::createBullet("bullet_blue.png",0,5,ccp(playerAs->getPosition().x+10,playerAs->getPosition().y+20));
+    arrayBullet->addObject(bullet1);
+    arrayBullet->addObject(bullet2);
+    arrayBullet->addObject(bullet3);
+    arrayBullet->addObject(bullet4);
+    addChild(bullet1);
+    addChild(bullet2);
+    addChild(bullet3);
+    addChild(bullet4);
 }
 
 /**
@@ -141,6 +175,13 @@ void Game::showWarn()
     message->setColor(ccc3(255, 0, 0));
     message->setTag(tagWarn);
     addChild(message);
+    
+    // 定时隐藏提示
+    scheduleOnce(schedule_selector(Game::hideWarn), 3);
+}
+void Game::hideWarn() {
+    CCLabelTTF *message = (CCLabelTTF*)getChildByTag(tagWarn);
+    message->removeFromParent();
 }
 
 /**
@@ -151,22 +192,26 @@ void Game::update(float time)
     // 1.设置boss的登场
     //当到达一定距离并且当前不存在boss时，添加boss
     //1.boss1
-    if(instance>1000 && instance<2000 && !demon)
+    
+    if(instance>1000 && level == 1)
     {
         demon = Demon::createDemon("boss.png",0);
         addChild(demon,0);
+        level++;
     }
     //2.boss2
-    if(instance>4000 && instance<6000 && !demon)
+    if(instance>3000 && level == 2)
     {
         demon = Demon::createDemon("menu_plane_left1.png",1);
         addChild(demon,0);
+        level++;
     }
     //3.boss3
-    if(instance>7000 && !demon)
+    if(instance>5000 && level == 3)
     {
         demon = Demon::createDemon("purple1.png",2);
         addChild(demon,0);
+        level++;
     }
     
     // 1.更新钻石数目
@@ -195,12 +240,6 @@ void Game::update(float time)
     if (playerAs) {
         string strPlane0Hp=Convert2String(playerAs->hp-1);
         Game::sharedWorld()->labelPlayerAsHP->setString(strPlane0Hp.c_str());
-    }
-    
-    //200m后隐藏提示
-    if (instance>record+200){
-        Game::sharedWorld()->getChildByTag(tagWarn)->setVisible(false);
-        record = instance + 100000;
     }
     
     // 3.更新距离
@@ -539,4 +578,5 @@ Game::~Game(){
     this->unscheduleAllSelectors();
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CC_SAFE_RELEASE(arrayEnemy);
+    CC_SAFE_RELEASE(arrayBullet);
 }

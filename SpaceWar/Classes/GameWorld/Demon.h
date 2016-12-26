@@ -15,6 +15,7 @@ class Demon : public CCSprite {
     
     void bossInit(const char* fileName,int type);
     CCAnimate *createAnimate(int type);
+    virtual void update(float time);
     
 public:
     static Demon* createDemon(const char* fileName,int _type);
