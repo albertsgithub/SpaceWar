@@ -29,8 +29,9 @@ public:
     
     
     //记录右边飞机的显示隐藏状态
-    bool show;
+    bool show = true;
     
+    void addUI();
     //开始游戏
     void playIsPressed();
     //成绩

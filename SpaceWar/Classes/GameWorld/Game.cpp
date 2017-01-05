@@ -510,7 +510,7 @@ void Game::goHome()
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     //切换到"菜单"场景
-    CCDirector::sharedDirector()->replaceScene(Menu::scene());
+    CCDirector::sharedDirector()->popScene();
 
 }
 
@@ -569,15 +569,17 @@ void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
 }
 
 void Game::onExit() {
+    CCTextureCache::sharedTextureCache()->removeAllTextures();
     this->unscheduleUpdate();
     this->unscheduleAllSelectors();
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    CC_SAFE_RELEASE(arrayEnemy);
-    CC_SAFE_RELEASE(arrayBullet);
     CCLayer::onExit();
 }
 
 /**
  * 析构函数
  */
-Game::~Game(){}
+Game::~Game(){
+    CC_SAFE_RELEASE(arrayEnemy);
+    CC_SAFE_RELEASE(arrayBullet);
+}

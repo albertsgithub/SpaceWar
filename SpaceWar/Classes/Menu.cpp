@@ -47,10 +47,12 @@ bool Menu::init()
     // 打印屏幕尺寸
     //cout<<"screenWidth:"<<ScreenWidth<<endl;
     //cout<<"screenHeight:"<<ScreenHeight<<endl;
-    
-    // 0.初始化右边飞机显示状态
-    show = true;
-    
+    addUI();
+    this->scheduleUpdate();
+    return true;
+}
+
+void Menu::addUI() {
     // 1.开场背景音乐
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
     
@@ -101,7 +103,7 @@ bool Menu::init()
     //离子源位置
     particleLight->setPosition(ScreenWidth/2,ScreenHeight/3);
     //添加离子源
-    addChild(particleLight);
+    //addChild(particleLight);
     
     // 6.游戏模式选择按钮
     //按钮文字
@@ -109,12 +111,12 @@ bool Menu::init()
     CCLabelTTF *doubleTTF = CCLabelTTF::create("单机模式", font1, 30);
     //选择按钮组件
     CCControlSwitch *modelSwitch = CCControlSwitch::create(
-                            CCSprite::create("menu_switch_bg.png"),
-                            CCSprite::create("menu_switch_bg.png"),
-                            CCSprite::create("menu_switch_bg.png"),
-                            CCSprite::create("menu_switch_dot.png"),
-                            singleTTF,
-                            doubleTTF);
+                                                           CCSprite::create("menu_switch_bg.png"),
+                                                           CCSprite::create("menu_switch_bg.png"),
+                                                           CCSprite::create("menu_switch_bg.png"),
+                                                           CCSprite::create("menu_switch_dot.png"),
+                                                           singleTTF,
+                                                           doubleTTF);
     //按钮组件位置
     modelSwitch->setPosition(ccp(ScreenWidth/2,100));
     //设置起始状态为开
@@ -145,10 +147,6 @@ bool Menu::init()
     menu->setPosition(ScreenWidth/2,ScreenHeight/2);
     //添加菜单到界面
     addChild(menu);
-    
-    // 6.界面系统刷新
-    this->scheduleUpdate();
-    return true;
 }
 
 /**
@@ -187,7 +185,7 @@ void Menu::playIsPressed(){
         CCUserDefault::sharedUserDefault()->setBoolForKey("choosedModel", false);
     }
     //切换到游戏场景
-    CCDirector::sharedDirector()->replaceScene(transition::create(turnTime, Game::scene()));
+    CCDirector::sharedDirector()->pushScene(transition::create(turnTime, Game::scene()));
 }
 
 /**
