@@ -16,6 +16,7 @@ Bullet* Bullet::createBullet(const char* _fileName,float _speedx,float _speedy,C
     Bullet* bullet = new Bullet();
     if(bullet && bullet->initWithFile(_fileName))
     {
+        bullet->autorelease();
         bullet->bulletInit(_speedx,_speedy,_position);
         return bullet;
     }

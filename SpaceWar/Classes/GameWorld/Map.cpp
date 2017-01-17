@@ -14,12 +14,12 @@
  *
  *  @return 返回滚动地图
  */
-Map* Map::createMap(const char* fileName,int speed){
+Map* Map::createMap(const char* fileName,int speed) {
     Map* map = new Map();
-    if(map && map->create()){
+    if(map && map->create()) {
         map->autorelease();
         map->mapInit(fileName);
-        map->speed=speed;
+        map->speed = speed;
         return map;
     }
     CC_SAFE_DELETE(map);
@@ -31,7 +31,7 @@ Map* Map::createMap(const char* fileName,int speed){
  *
  *  @param fileName 地图的贴图资源
  */
-void Map::mapInit(const char* fileName)
+void Map::mapInit(const char *fileName)
 {
     //第一张地图背景图
     turnImg = CCSprite::create(fileName);
@@ -72,6 +72,7 @@ void Map::update(float time){
         turnImg2->setPosition(ccpAdd(turnImg2->getPosition(), ccp(0,-speed)));
     }
 }
+
 /**
  * 生命周期结束
  */

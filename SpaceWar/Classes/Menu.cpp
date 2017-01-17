@@ -52,6 +52,10 @@ bool Menu::init()
     return true;
 }
 
+void Menu::onEnter() {
+    CCLayer::onEnter();
+}
+
 void Menu::addUI() {
     // 1.开场背景音乐
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("menu_bg_music.mp3",true);
@@ -157,14 +161,14 @@ void Menu::update(float time)
     // 获取右边的飞机贴图
     CCSprite *planeRight=(CCSprite*)getChildByTag(tagRightPlane);
     // 每一帧切换右边飞机显示、隐藏状态
-    if (show==true) {
+    if (show == true) {
         planeRight->setVisible(false);
-        show=false;
+        show = false;
     }
     else
     {
         planeRight->setVisible(true);
-        show=true;
+        show = true;
     }
 }
 
@@ -185,7 +189,7 @@ void Menu::playIsPressed(){
         CCUserDefault::sharedUserDefault()->setBoolForKey("choosedModel", false);
     }
     //切换到游戏场景
-    CCDirector::sharedDirector()->pushScene(transition::create(turnTime, Game::scene()));
+    CCDirector::sharedDirector()->replaceScene(transition::create(turnTime, Game::scene()));
 }
 
 /**
@@ -306,9 +310,9 @@ void Menu::setIsPressed(){
 }
 
 /**
- *关闭关于我们
+ * 关闭关于我们
  */
-void Menu::closeUs(){
+void Menu::closeUs() {
     //播放点击按钮音效
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     this->removeChildByTag(tagColorLayer);
@@ -317,11 +321,11 @@ void Menu::closeUs(){
 /**
  *音乐开关
  */
-void Menu::musicOn(){
+void Menu::musicOn() {
     //暂停播放背景音乐
     CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
-void Menu::musicOff(){
+void Menu::musicOff() {
     //继续播放背景音乐
     CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }

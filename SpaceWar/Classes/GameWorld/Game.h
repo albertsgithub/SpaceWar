@@ -29,6 +29,7 @@ class Game : public CCLayer
     
     CREATE_FUNC(Game);
     virtual bool init();
+    virtual void onEnter();
     virtual void update(float time);
     virtual void onExit();
     virtual ~Game();

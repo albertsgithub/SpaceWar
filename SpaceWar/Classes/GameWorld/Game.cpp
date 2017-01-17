@@ -26,7 +26,7 @@ string Convert2String(const T &value)
     return ss.str();
 }
 // 游戏静态单例
-static Game * game;
+static Game *game;
 
 //游戏场景单例
 Game * Game::sharedWorld()
@@ -94,6 +94,10 @@ bool Game::init()
     this->schedule(schedule_selector(Game::createBullet), 0.2,-1,3);
     this->schedule(schedule_selector(Game::createAsBullet), 0.3, -1, 3);
     return true;
+}
+
+void Game::onEnter() {
+    CCLayer::onEnter();
 }
 
 /**
@@ -402,22 +406,19 @@ void Game::initUI()
 void Game::dataStore() {
     //存储最高分数
     int oldScore = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_score","-1").c_str());
-    if(score > oldScore)
-    {
+    if(score > oldScore) {
         CCUserDefault::sharedUserDefault()->setStringForKey("user_score", Convert2String(score));
         CCUserDefault::sharedUserDefault()->flush();
     }
     //存储最高杀敌数
     int oldKillNum = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_killNum","-1").c_str());
-    if(killNum > oldKillNum)
-    {
+    if(killNum > oldKillNum) {
         CCUserDefault::sharedUserDefault()->setStringForKey("user_killNum", Convert2String(killNum));
         CCUserDefault::sharedUserDefault()->flush();
     }
     //存储最远距离
     int oldInstance = atoi(CCUserDefault::sharedUserDefault()->getStringForKey("user_distance","-1").c_str());
-    if(instance > oldInstance)
-    {
+    if(instance > oldInstance) {
         CCUserDefault::sharedUserDefault()->setStringForKey("user_distance", Convert2String(instance));
         CCUserDefault::sharedUserDefault()->flush();
     }
@@ -436,8 +437,7 @@ void Game::dataStore() {
 
 }
 
-void Game::showGameOver()
-{
+void Game::showGameOver() {
     CCLayerColor *layer = CCLayerColor::create(ccc4(0, 0, 0, 190), ScreenWidth, ScreenHeight);
     this->addChild(layer);
     
@@ -462,8 +462,7 @@ void Game::showGameOver()
 /**
  * 暂停游戏
  */
-void Game:: pauseGame()
-{
+void Game:: pauseGame() {
     //按钮音效
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     //游戏暂停
@@ -490,8 +489,7 @@ void Game:: pauseGame()
 /**
  * 继续游戏
  */
-void Game:: resumeGame()
-{
+void Game:: resumeGame() {
     //音效
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     //移除暂停界面
@@ -505,28 +503,24 @@ void Game:: resumeGame()
 /**
  * 返回主菜单
  */
-void Game::goHome()
-{
+void Game::goHome() {
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(clickEffect);
     CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
     //切换到"菜单"场景
-    CCDirector::sharedDirector()->popScene();
-
+    CCDirector::sharedDirector()->replaceScene(transition::create(turnTime, Menu::scene()));
 }
 
 /**
  * 计算两点之间的距离
  */
-float Game::Distance(CCPoint point1,CCPoint point2)
-{
+float Game::Distance(CCPoint point1,CCPoint point2) {
     return sqrt(pow((point1.x-point2.x),2)+pow(point1.y-point2.y, 2));
 }
 
 /**
  * 用户手指进行移动或者拖拽
  */
-void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
-{
+void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent) {
     //int c = pTouches->count();
     //cout<<"触点个数："<<c<<endl;
     if (!player) return;
@@ -541,16 +535,14 @@ void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
         //根据触点与两个飞机之间的距离判断触控情况
         //首先触点与飞机必须足够近，不然用户并没有触碰到飞机
         //触点应该给相对较近的那个飞机
-        if (pTouch->getID()==0)
-        {
+        if (pTouch->getID()==0) {
             if (Distance(location, point1)<Distance(location, point2)&&Distance(location, point1)<100.0) {
                 player->setPosition(location);
             }
-            else if(Distance(location, point2)<100.0)
+            else if(Distance(location, point2) < 100.0)
                 playerAs->setPosition(location);
         }
-        else if (pTouch->getID()==1)
-        {
+        else if (pTouch->getID()==1) {
             if (Distance(location, point2)<Distance(location, point1)&&Distance(location, point2)<100.0) {
                 playerAs->setPosition(location);
             }
@@ -558,28 +550,27 @@ void Game::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
                 player->setPosition(location);
         }
     }
-    }else{
+    }
+    else {
         CCPoint point1=player->getPosition();
         CCTouch *pTouch = (CCTouch*)(*iter);
         CCPoint location = pTouch->getLocation();
-        if (Distance(point1, location)<=player->getContentSize().width){
+        if (Distance(point1, location)<=player->getContentSize().width) {
             player->setPosition(location);
         }
     }
 }
 
 void Game::onExit() {
-    CCTextureCache::sharedTextureCache()->removeAllTextures();
-    this->unscheduleUpdate();
-    this->unscheduleAllSelectors();
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CCLayer::onExit();
 }
 
-/**
- * 析构函数
- */
-Game::~Game(){
+Game::~Game() {
+    //this->unscheduleUpdate();
+    //this->unscheduleAllSelectors();
+    //CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    
+    game = NULL;
     CC_SAFE_RELEASE(arrayEnemy);
     CC_SAFE_RELEASE(arrayBullet);
 }
